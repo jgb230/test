@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/A.hpp
+stdlib.h
+-
+stdio.h
+-
+string
+-
+
+../include/B.hpp
+stdlib.h
+-
+stdio.h
+-
+string
+-
+A.hpp
+../include/A.hpp
+
+/home/jgb/c++/test/src/B.cpp
+B.hpp
+/home/jgb/c++/test/src/B.hpp
+

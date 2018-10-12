@@ -1,0 +1,6 @@
+/home/jgb/c++/test/build/CMakeFiles/edit_cache.dir
+/home/jgb/c++/test/build/CMakeFiles/rebuild_cache.dir
+/home/jgb/c++/test/build/CMakeFiles/A.dir
+/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir
+/home/jgb/c++/test/build/CMakeFiles/B.dir
+/home/jgb/c++/test/build/CMakeFiles/C.dir
