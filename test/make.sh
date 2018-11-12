@@ -19,4 +19,5 @@ cmake  $options ../
 make $para_make
 
 cp *.so ../lib/
-
+#cp mem/*.so ../lib/
+#cp thread/*.so ../lib/

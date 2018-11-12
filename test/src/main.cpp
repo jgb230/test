@@ -1,8 +1,8 @@
 
 #include "A.hpp"
-#include "LoadLD.hpp"
+#include "jgb_LoadLD.hpp"
+#include "loadAPI/loadAPI.hpp"
 using namespace std;
-
 
 int main(){
     A *sa = new A();
@@ -60,6 +60,19 @@ int main(){
         lib->unload();
     }
     delete lib;
+
+    int testa[10] = { 0 };
+    for (int i = 1; i <= 10; ++i){
+        testa[i-1] = i;
+    }
+
+#define TEST(OFF) testa + OFF
+
+    for (int i = 1; i <= 10; ++i){
+        printf("cout %d\n",*TEST(i - 1));
+    }
+
+    loadAPI();
 
     return 0;
 }

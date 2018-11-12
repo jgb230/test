@@ -21,6 +21,8 @@ link_directories(../
 
 #aux_source_directory(src DIR_SRCS)
 
+#add_subdirectory(mem)
+#add_subdirectory(thread)
 
 ################################ A.so
 set(ASRC src/A.cpp)
@@ -51,6 +53,7 @@ set(LIBS A
 MESSAGE(${PROJECT_SOURCE_DIR})
 
 set(SRC src/main.cpp)
+
 #add_library(${PROJECT_NAME} SHARED ${SRC})
 add_executable(${PROJECT_NAME} ${SRC})
 #set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGs "-fPIC")

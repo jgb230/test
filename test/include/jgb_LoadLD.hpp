@@ -1,5 +1,5 @@
-#ifndef TEST_LD_H
-#define TEST_LD_H
+#ifndef JGB_TEST_LD_H
+#define JGB_TEST_LD_H
 
 #include <boost/dll/shared_library.hpp>
 
