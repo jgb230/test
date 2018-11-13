@@ -2,9 +2,11 @@
 #include "A.hpp"
 #include "jgb_LoadLD.hpp"
 #include "loadAPI/loadAPI.hpp"
+#include "redis/redisJgb.hpp"
 using namespace std;
 
 int main(){
+    #if 0
     A *sa = new A();
     printf("1 %s\n",sa->call().c_str());
 
@@ -73,6 +75,8 @@ int main(){
     }
 
     loadAPI();
+#endif
+    redis_test();
 
     return 0;
 }

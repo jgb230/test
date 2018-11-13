@@ -1,0 +1,10 @@
+prefix=/home/lifugang/codes/mtsframe/mtsframe_2.1.0/ext/hiredis-vip/INSTALL
+exec_prefix=${prefix}
+libdir=/home/lifugang/codes/mtsframe/mtsframe_2.1.0/ext/hiredis-vip/INSTALL/lib
+includedir=/home/lifugang/codes/mtsframe/mtsframe_2.1.0/ext/hiredis-vip/INSTALL/include/hiredis-vip
+
+Name: hiredis-vip
+Description: Minimalistic C client library for Redis and Redis Cluster.
+Version: 2.0.0
+Libs: -L${libdir} -lhiredis_vip
+Cflags: -I${includedir} -D_FILE_OFFSET_BITS=64

@@ -7,15 +7,19 @@ set(RCXX_FLAGS "$ENV{CXXFLAGS} -Wall -std=c++11")
 set(CMAKE_CXX_FLAGS_DEBUG "${RCXX_FLAGS} -o0 -g -ggdb -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "${RCXX_FLAGS} -o3 ")
 
+add_compile_options(-std=c++11)
+
 set(CMAKE_BUILD_TYPE Debug)
 
 project(jgbtest)
 include_directories(include
-					../boost_1_64_0/)
+					boost_1_64_0/
+					./redis/include/)
 
 link_directories(../
 				lib/
-				../boost_1_64_0/stage/lib
+				boost_1_64_0/stage/lib/
+				./redis/lib/
 				)
 
 
@@ -48,7 +52,9 @@ set(LIBS A
 		dl
 		boost_system 
 		boost_filesystem
-		boost_program_options)
+		boost_program_options
+		hiredis_vip
+		)
 
 MESSAGE(${PROJECT_SOURCE_DIR})
 
