@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -std=c++11 -o0 -g -ggdb -DDEBUG   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jgb/c++/test/include -I/home/jgb/c++/test/boost_1_64_0 -I/home/jgb/c++/test/./redis/include 
+CXX_INCLUDES = -I/home/jgb/c++/test/include -I/home/jgb/c++/test/../boost_1_64_0 -I/home/jgb/c++/test/./redis/include 
 

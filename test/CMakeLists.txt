@@ -13,12 +13,12 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(jgbtest)
 include_directories(include
-					boost_1_64_0/
+					../boost_1_64_0/
 					./redis/include/)
 
 link_directories(../
 				lib/
-				boost_1_64_0/stage/lib/
+				../boost_1_64_0/stage/lib/
 				./redis/lib/
 				)
 

@@ -1,1 +1,1 @@
-/usr/bin/c++  -fPIC  -Wall -std=c++11 -o0 -g -ggdb -DDEBUG  -shared -Wl,-soname,libA.so -o libA.so CMakeFiles/A.dir/src/A.cpp.o  -L/home/jgb/c++/test/..  -L/home/jgb/c++/test/lib  -L/home/jgb/c++/test/boost_1_64_0/stage/lib  -L/home/jgb/c++/test/./redis/lib 
+/usr/bin/c++  -fPIC  -Wall -std=c++11 -o0 -g -ggdb -DDEBUG  -shared -Wl,-soname,libA.so -o libA.so CMakeFiles/A.dir/src/A.cpp.o  -L/home/jgb/c++/test/..  -L/home/jgb/c++/test/lib  -L/home/jgb/c++/test/../boost_1_64_0/stage/lib  -L/home/jgb/c++/test/./redis/lib 
