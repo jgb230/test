@@ -398,20 +398,20 @@ void redis_test(){
 
     std::set<std::string> setTemp;
 
-    // TESLOG(INFO, "fun\n");
-    // findIntersection("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
-    // for (auto &iter: setTemp){
-    //     TESLOG(INFO, "%s\n", iter.c_str());
-    // }
-    // TESLOG(INFO, "fun1\n");
-    // findIntersection1("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
-    // for (auto &iter: setTemp){
-    //     TESLOG(INFO, "%s\n", iter.c_str());
-    // }
-    TESLOG(INFO, "test\n");
-    test(_context);
-    TESLOG(INFO, "test1\n");
-    test1(_context);
+    TESLOG(INFO, "fun\n");
+    findIntersection("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
+    for (auto &iter: setTemp){
+        TESLOG(INFO, "%s\n", iter.c_str());
+    }
+    TESLOG(INFO, "fun1\n");
+    findIntersection1("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
+    for (auto &iter: setTemp){
+        TESLOG(INFO, "%s\n", iter.c_str());
+    }
+    // TESLOG(INFO, "test\n");
+    // test(_context);
+    // TESLOG(INFO, "test1\n");
+    // test1(_context);
 
 
     if(_context)

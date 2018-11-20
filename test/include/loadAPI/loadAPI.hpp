@@ -4,6 +4,9 @@
 #include <string>
 #include <map>
 
+
+#define TESLOG(level,...) printf(__VA_ARGS__)
+
 #define CC_PROP_REFER(openType, varType, varName, funName, refer)\
 openType: varType m_##varName; \
 public: inline varType refer get##funName(){ return this->m_##varName;}\
@@ -13,6 +16,22 @@ openType:
 
 #define CC_PROP(openType, varType, varName, funName)\
         CC_PROP_REFER(openType, varType, varName, funName,)
+
+
+std::map<std::string, void*> m_call;
+
+
+
+// 成员函数指针不能直接转换成void* ，原因 成员函数指针还包含类的一些信息
+// 所以增加转换函数
+
+template <typename F>
+void * memfunccastvoid(F f)
+{
+    void * p = malloc(sizeof(F));
+    new(p) F(f);
+    return p;
+}
 
 
 class externSYS{
@@ -51,27 +70,34 @@ class externSYS{
 
 };
 
-void loadAPI(){
-    typedef void (externSYS::*FUN1)();
-    typedef int (externSYS::*FUN2)();
-    typedef void (externSYS::*FUN3)(std::string &);
-    #define CALLP1(obj, FAG, pcall) (obj.*(*(FAG*)pcall))()
-    #define CALLP2(obj, FAG, pcall, arg1) (obj.*(*(FAG*)pcall))(arg1)
+typedef void (externSYS::*FUN1)();
+typedef int (externSYS::*FUN2)();
+typedef void (externSYS::*FUN3)(std::string &);
+#define CALLP1(obj, FAG, pcall) (obj.*(*(FAG*)pcall))()
+#define CALLP2(obj, FAG, pcall, arg1) (obj.*(*(FAG*)pcall))(arg1)
 
-    std::map<std::string, int64_t*> m_call;
+
+void loadAPI(){
 
     FUN1 f1 = &externSYS::printName;
-    int64_t *i = (int64_t*)&f1;
+    void *i = memfunccastvoid<FUN1>(f1);
     m_call.insert(std::make_pair("name", i));
 
     FUN3 f2 = &externSYS::printAddr;
-    i = (int64_t*)&f2;
+    i = memfunccastvoid<FUN3>(f2);
     m_call.insert(std::make_pair("addr", i));
 
     FUN2 f3 = &externSYS::printAge;
-    i = (int64_t*)&f3;
+    i = memfunccastvoid<FUN2>(f3);
     m_call.insert(std::make_pair("age", i));
 
+}
+
+
+
+void testAPI(){
+
+    loadAPI();
     externSYS es("jgb", "hz", 28);
 
     std::string ex = "zj";
@@ -84,8 +110,32 @@ void loadAPI(){
     es.printAddr(ex);
     es.printAge();
 
-    CALLP1(es, FUN1, m_call.find("name")->second);
-    CALLP2(es, FUN3, m_call.find("addr")->second, ex);
-    int age = CALLP1(es, FUN2, m_call.find("age")->second);
+    auto iter1 = m_call.find("name");
+    if (iter1 == m_call.end())
+    {
+        TESLOG(ERROR, "Not Find szKey=[name] in m_call");
+        return;
+    }
+    void* pCallFun = iter1->second;
+    CALLP1(es, FUN1, pCallFun);
+
+    iter1 = m_call.find("addr");
+    if (iter1 == m_call.end())
+    {
+        TESLOG(ERROR, "Not Find szKey=[addr] in m_call");
+        return;
+    }
+    pCallFun = iter1->second;
+    CALLP2(es, FUN3, pCallFun, ex);
+
+    iter1 = m_call.find("age");
+    if (iter1 == m_call.end())
+    {
+        TESLOG(ERROR, "Not Find szKey=[age] in m_call");
+        return;
+    }
+    pCallFun = iter1->second;
+    int age = CALLP1(es, FUN2, pCallFun);
     std::cout << "cout " << age << std::endl;
+
 }

@@ -1,918 +1,378 @@
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087510742986
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354059272469
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087510743229
-微妙，endTime: 1542087510747279; 微妙，runTime:4050
+微妙，beginTime: 1542354059272787
+微妙，endTime: 1542354059276230; 微妙，runTime:3443
 Elements[0]
-微妙，endTime: 1542087510747291; 微妙，runTime:4305
+微妙，endTime: 1542354059276246; 微妙，runTime:3777
 fun1
-微妙，beginTime: 1542087510747309
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087510747331
-微妙，endTime: 1542087510748197; 微妙，runTime:866
+微妙，beginTime: 1542354059276270
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354059276293
+微妙，endTime: 1542354059277369; 微妙，runTime:1076
 Elements[0]
-微妙，endTime: 1542087510748203; 微妙，runTime:894
+微妙，endTime: 1542354059277376; 微妙，runTime:1106
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087512019323
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354059972684
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512019593
-微妙，endTime: 1542087512021335; 微妙，runTime:1742
+微妙，beginTime: 1542354059972765
+微妙，endTime: 1542354059974608; 微妙，runTime:1843
 Elements[0]
-微妙，endTime: 1542087512021398; 微妙，runTime:2075
+微妙，endTime: 1542354059974613; 微妙，runTime:1929
 fun1
-微妙，beginTime: 1542087512021411
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512021427
-微妙，endTime: 1542087512022946; 微妙，runTime:1519
+微妙，beginTime: 1542354059974619
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354059974625
+微妙，endTime: 1542354059975203; 微妙，runTime:578
 Elements[0]
-微妙，endTime: 1542087512022953; 微妙，runTime:1542
+微妙，endTime: 1542354059975206; 微妙，runTime:587
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087512383111
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354060356972
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512383338
-微妙，endTime: 1542087512385484; 微妙，runTime:2146
+微妙，beginTime: 1542354060357279
+微妙，endTime: 1542354060360452; 微妙，runTime:3173
 Elements[0]
-微妙，endTime: 1542087512385490; 微妙，runTime:2379
+微妙，endTime: 1542354060360463; 微妙，runTime:3491
 fun1
-微妙，beginTime: 1542087512385499
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512385508
-微妙，endTime: 1542087512386202; 微妙，runTime:694
+微妙，beginTime: 1542354060360478
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354060360497
+微妙，endTime: 1542354060361875; 微妙，runTime:1378
 Elements[0]
-微妙，endTime: 1542087512386205; 微妙，runTime:706
+微妙，endTime: 1542354060361882; 微妙，runTime:1404
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087512691952
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354060726504
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512692115
-微妙，endTime: 1542087512695242; 微妙，runTime:3127
+微妙，beginTime: 1542354060726701
+微妙，endTime: 1542354060729335; 微妙，runTime:2634
 Elements[0]
-微妙，endTime: 1542087512695259; 微妙，runTime:3307
+微妙，endTime: 1542354060729344; 微妙，runTime:2840
 fun1
-微妙，beginTime: 1542087512695283
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087512695329
-微妙，endTime: 1542087512696412; 微妙，runTime:1083
+微妙，beginTime: 1542354060729358
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354060729374
+微妙，endTime: 1542354060730761; 微妙，runTime:1387
 Elements[0]
-微妙，endTime: 1542087512696417; 微妙，runTime:1134
+微妙，endTime: 1542354060730767; 微妙，runTime:1409
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087513020818
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354061101355
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513021071
-微妙，endTime: 1542087513024183; 微妙，runTime:3112
+微妙，beginTime: 1542354061101651
+微妙，endTime: 1542354061104713; 微妙，runTime:3062
 Elements[0]
-微妙，endTime: 1542087513024222; 微妙，runTime:3404
+微妙，endTime: 1542354061104724; 微妙，runTime:3369
 fun1
-微妙，beginTime: 1542087513024326
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513024351
-微妙，endTime: 1542087513025621; 微妙，runTime:1270
+微妙，beginTime: 1542354061104740
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354061104759
+微妙，endTime: 1542354061106061; 微妙，runTime:1302
 Elements[0]
-微妙，endTime: 1542087513025628; 微妙，runTime:1302
+微妙，endTime: 1542354061106068; 微妙，runTime:1328
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087513338693
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354061460629
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513339183
-微妙，endTime: 1542087513342484; 微妙，runTime:3301
+微妙，beginTime: 1542354061460882
+微妙，endTime: 1542354061463436; 微妙，runTime:2554
 Elements[0]
-微妙，endTime: 1542087513342496; 微妙，runTime:3803
+微妙，endTime: 1542354061463447; 微妙，runTime:2818
 fun1
-微妙，beginTime: 1542087513342510
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513342530
-微妙，endTime: 1542087513344112; 微妙，runTime:1582
+微妙，beginTime: 1542354061463463
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354061463482
+微妙，endTime: 1542354061464914; 微妙，runTime:1432
 Elements[0]
-微妙，endTime: 1542087513344118; 微妙，runTime:1608
+微妙，endTime: 1542354061464922; 微妙，runTime:1459
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087513652176
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354061821765
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513652428
-微妙，endTime: 1542087513655382; 微妙，runTime:2954
+微妙，beginTime: 1542354061822003
+微妙，endTime: 1542354061825086; 微妙，runTime:3083
 Elements[0]
-微妙，endTime: 1542087513655392; 微妙，runTime:3216
+微妙，endTime: 1542354061825098; 微妙，runTime:3333
 fun1
-微妙，beginTime: 1542087513655409
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513655431
-微妙，endTime: 1542087513656867; 微妙，runTime:1436
+微妙，beginTime: 1542354061825115
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354061825135
+微妙，endTime: 1542354061826622; 微妙，runTime:1487
 Elements[0]
-微妙，endTime: 1542087513656874; 微妙，runTime:1465
+微妙，endTime: 1542354061826629; 微妙，runTime:1514
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087513938866
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354062156424
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513939035
-微妙，endTime: 1542087513942247; 微妙，runTime:3212
+微妙，beginTime: 1542354062156736
+微妙，endTime: 1542354062159622; 微妙，runTime:2886
 Elements[0]
-微妙，endTime: 1542087513942254; 微妙，runTime:3388
+微妙，endTime: 1542354062159632; 微妙，runTime:3208
 fun1
-微妙，beginTime: 1542087513942265
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087513942281
-微妙，endTime: 1542087513942909; 微妙，runTime:628
+微妙，beginTime: 1542354062159648
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354062159666
+微妙，endTime: 1542354062160968; 微妙，runTime:1302
 Elements[0]
-微妙，endTime: 1542087513942914; 微妙，runTime:649
+微妙，endTime: 1542354062160975; 微妙，runTime:1327
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087514241327
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354062511710
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514241535
-微妙，endTime: 1542087514244693; 微妙，runTime:3158
+微妙，beginTime: 1542354062511872
+微妙，endTime: 1542354062513545; 微妙，runTime:1673
 Elements[0]
-微妙，endTime: 1542087514244702; 微妙，runTime:3375
+微妙，endTime: 1542354062513552; 微妙，runTime:1842
 fun1
-微妙，beginTime: 1542087514244714
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514244731
-微妙，endTime: 1542087514246163; 微妙，runTime:1432
+微妙，beginTime: 1542354062513561
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354062513573
+微妙，endTime: 1542354062514279; 微妙，runTime:706
 Elements[0]
-微妙，endTime: 1542087514246169; 微妙，runTime:1455
+微妙，endTime: 1542354062514284; 微妙，runTime:723
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087514548581
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354062870568
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514548889
-微妙，endTime: 1542087514551897; 微妙，runTime:3008
+微妙，beginTime: 1542354062870867
+微妙，endTime: 1542354062873673; 微妙，runTime:2806
 Elements[0]
-微妙，endTime: 1542087514551908; 微妙，runTime:3327
+微妙，endTime: 1542354062873684; 微妙，runTime:3116
 fun1
-微妙，beginTime: 1542087514551925
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514551949
-微妙，endTime: 1542087514553342; 微妙，runTime:1393
+微妙，beginTime: 1542354062873702
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354062873722
+微妙，endTime: 1542354062875217; 微妙，runTime:1495
 Elements[0]
-微妙，endTime: 1542087514553349; 微妙，runTime:1424
+微妙，endTime: 1542354062875224; 微妙，runTime:1522
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087514844695
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354063196910
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514845015
-微妙，endTime: 1542087514848222; 微妙，runTime:3207
+微妙，beginTime: 1542354063197150
+微妙，endTime: 1542354063200518; 微妙，runTime:3368
 Elements[0]
-微妙，endTime: 1542087514848234; 微妙，runTime:3539
+微妙，endTime: 1542354063200530; 微妙，runTime:3620
 fun1
-微妙，beginTime: 1542087514848252
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087514848274
-微妙，endTime: 1542087514849398; 微妙，runTime:1124
+微妙，beginTime: 1542354063200548
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354063200567
+微妙，endTime: 1542354063201881; 微妙，runTime:1314
 Elements[0]
-微妙，endTime: 1542087514849405; 微妙，runTime:1153
+微妙，endTime: 1542354063201889; 微妙，runTime:1341
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087515124509
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354063533837
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515124855
-微妙，endTime: 1542087515127644; 微妙，runTime:2789
+微妙，beginTime: 1542354063534079
+微妙，endTime: 1542354063537119; 微妙，runTime:3040
 Elements[0]
-微妙，endTime: 1542087515127657; 微妙，runTime:3148
+微妙，endTime: 1542354063537129; 微妙，runTime:3292
 fun1
-微妙，beginTime: 1542087515127675
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515128460
-微妙，endTime: 1542087515130209; 微妙，runTime:1749
+微妙，beginTime: 1542354063537145
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354063537165
+微妙，endTime: 1542354063538952; 微妙，runTime:1787
 Elements[0]
-微妙，endTime: 1542087515130216; 微妙，runTime:2541
+微妙，endTime: 1542354063538959; 微妙，runTime:1814
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087515406648
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354063902601
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515406820
-微妙，endTime: 1542087515409567; 微妙，runTime:2747
+微妙，beginTime: 1542354063902805
+微妙，endTime: 1542354063905955; 微妙，runTime:3150
 Elements[0]
-微妙，endTime: 1542087515409574; 微妙，runTime:2926
+微妙，endTime: 1542354063905966; 微妙，runTime:3365
 fun1
-微妙，beginTime: 1542087515409586
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515409601
-微妙，endTime: 1542087515410712; 微妙，runTime:1111
+微妙，beginTime: 1542354063905981
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354063905999
+微妙，endTime: 1542354063907519; 微妙，runTime:1520
 Elements[0]
-微妙，endTime: 1542087515410717; 微妙，runTime:1131
+微妙，endTime: 1542354063907525; 微妙，runTime:1544
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087515716259
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354064260993
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515716514
-微妙，endTime: 1542087515719552; 微妙，runTime:3038
+微妙，beginTime: 1542354064261903
+微妙，endTime: 1542354064264944; 微妙，runTime:3041
 Elements[0]
-微妙，endTime: 1542087515719562; 微妙，runTime:3303
+微妙，endTime: 1542354064264953; 微妙，runTime:3960
 fun1
-微妙，beginTime: 1542087515719578
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087515719599
-微妙，endTime: 1542087515721445; 微妙，runTime:1846
+微妙，beginTime: 1542354064264966
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354064264981
+微妙，endTime: 1542354064266392; 微妙，runTime:1411
 Elements[0]
-微妙，endTime: 1542087515721452; 微妙，runTime:1874
+微妙，endTime: 1542354064266397; 微妙，runTime:1431
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087516009834
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354064605121
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516010085
-微妙，endTime: 1542087516012537; 微妙，runTime:2452
+微妙，beginTime: 1542354064605425
+微妙，endTime: 1542354064608178; 微妙，runTime:2753
 Elements[0]
-微妙，endTime: 1542087516012544; 微妙，runTime:2710
+微妙，endTime: 1542354064608189; 微妙，runTime:3068
 fun1
-微妙，beginTime: 1542087516012554
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516012568
-微妙，endTime: 1542087516014052; 微妙，runTime:1484
+微妙，beginTime: 1542354064608207
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354064608228
+微妙，endTime: 1542354064609565; 微妙，runTime:1337
 Elements[0]
-微妙，endTime: 1542087516014056; 微妙，runTime:1502
+微妙，endTime: 1542354064609573; 微妙，runTime:1366
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087516318147
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354064981196
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516318468
-微妙，endTime: 1542087516321301; 微妙，runTime:2833
+微妙，beginTime: 1542354064981443
+微妙，endTime: 1542354064983404; 微妙，runTime:1961
 Elements[0]
-微妙，endTime: 1542087516321313; 微妙，runTime:3166
+微妙，endTime: 1542354064983409; 微妙，runTime:2213
 fun1
-微妙，beginTime: 1542087516321330
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516321365
-微妙，endTime: 1542087516322681; 微妙，runTime:1316
+微妙，beginTime: 1542354064983419
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354064983430
+微妙，endTime: 1542354064984219; 微妙，runTime:789
 Elements[0]
-微妙，endTime: 1542087516322688; 微妙，runTime:1358
+微妙，endTime: 1542354064984223; 微妙，runTime:804
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087516607596
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354065381313
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516607770
-微妙，endTime: 1542087516609538; 微妙，runTime:1768
+微妙，beginTime: 1542354065381666
+微妙，endTime: 1542354065384517; 微妙，runTime:2851
 Elements[0]
-微妙，endTime: 1542087516609545; 微妙，runTime:1949
+微妙，endTime: 1542354065384528; 微妙，runTime:3215
 fun1
-微妙，beginTime: 1542087516609555
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516609568
-微妙，endTime: 1542087516610956; 微妙，runTime:1388
+微妙，beginTime: 1542354065384545
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354065384566
+微妙，endTime: 1542354065385740; 微妙，runTime:1174
 Elements[0]
-微妙，endTime: 1542087516610960; 微妙，runTime:1405
+微妙，endTime: 1542354065385747; 微妙，runTime:1202
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087516902183
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354065692940
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516902393
-微妙，endTime: 1542087516905784; 微妙，runTime:3391
+微妙，beginTime: 1542354065693184
+微妙，endTime: 1542354065696476; 微妙，runTime:3292
 Elements[0]
-微妙，endTime: 1542087516905794; 微妙，runTime:3611
+微妙，endTime: 1542354065696487; 微妙，runTime:3547
 fun1
-微妙，beginTime: 1542087516906019
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087516906046
-微妙，endTime: 1542087516907829; 微妙，runTime:1783
+微妙，beginTime: 1542354065696505
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354065696526
+微妙，endTime: 1542354065697930; 微妙，runTime:1404
 Elements[0]
-微妙，endTime: 1542087516907835; 微妙，runTime:1816
+微妙，endTime: 1542354065697938; 微妙，runTime:1433
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087517195110
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354066020973
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517195426
-微妙，endTime: 1542087517198529; 微妙，runTime:3103
+微妙，beginTime: 1542354066021215
+微妙，endTime: 1542354066023097; 微妙，runTime:1882
 Elements[0]
-微妙，endTime: 1542087517198540; 微妙，runTime:3430
+微妙，endTime: 1542354066023107; 微妙，runTime:2134
 fun1
-微妙，beginTime: 1542087517198557
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517198579
-微妙，endTime: 1542087517200151; 微妙，runTime:1572
+微妙，beginTime: 1542354066023124
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354066023143
+微妙，endTime: 1542354066024894; 微妙，runTime:1751
 Elements[0]
-微妙，endTime: 1542087517200159; 微妙，runTime:1602
+微妙，endTime: 1542354066024902; 微妙，runTime:1778
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087517507360
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354066389104
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517507538
-微妙，endTime: 1542087517510033; 微妙，runTime:2495
+微妙，beginTime: 1542354066389347
+微妙，endTime: 1542354066394111; 微妙，runTime:4764
 Elements[0]
-微妙，endTime: 1542087517510040; 微妙，runTime:2680
+微妙，endTime: 1542354066394146; 微妙，runTime:5042
 fun1
-微妙，beginTime: 1542087517510063
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517510078
-微妙，endTime: 1542087517511495; 微妙，runTime:1417
+微妙，beginTime: 1542354066394437
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354066394458
+微妙，endTime: 1542354066396030; 微妙，runTime:1572
 Elements[0]
-微妙，endTime: 1542087517511500; 微妙，runTime:1437
+微妙，endTime: 1542354066396036; 微妙，runTime:1599
+Disconnect From Redis Server[172.16.0.21:7000]
 Redis Connect to addr[172.16.0.21:7000] Success
 fun
-微妙，beginTime: 1542087517809089
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
+微妙，beginTime: 1542354066724187
+findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2])
 mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517809291
-微妙，endTime: 1542087517812500; 微妙，runTime:3209
+微妙，beginTime: 1542354066724355
+微妙，endTime: 1542354066727438; 微妙，runTime:3083
 Elements[0]
-微妙，endTime: 1542087517812509; 微妙，runTime:3420
+微妙，endTime: 1542354066727447; 微妙，runTime:3260
 fun1
-微妙，beginTime: 1542087517812521
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087517812538
-微妙，endTime: 1542087517814048; 微妙，runTime:1510
+微妙，beginTime: 1542354066727460
+findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
+微妙，beginTime: 1542354066727474
+微妙，endTime: 1542354066728157; 微妙，runTime:683
 Elements[0]
-微妙，endTime: 1542087517814054; 微妙，runTime:1533
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087518125411
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518125667
-微妙，endTime: 1542087518129050; 微妙，runTime:3383
-Elements[0]
-微妙，endTime: 1542087518129061; 微妙，runTime:3650
-fun1
-微妙，beginTime: 1542087518129078
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518129099
-微妙，endTime: 1542087518130148; 微妙，runTime:1049
-Elements[0]
-微妙，endTime: 1542087518130155; 微妙，runTime:1077
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087518404893
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518405213
-微妙，endTime: 1542087518408519; 微妙，runTime:3306
-Elements[0]
-微妙，endTime: 1542087518408530; 微妙，runTime:3637
-fun1
-微妙，beginTime: 1542087518408546
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518408568
-微妙，endTime: 1542087518409914; 微妙，runTime:1346
-Elements[0]
-微妙，endTime: 1542087518409921; 微妙，runTime:1375
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087518684317
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518684577
-微妙，endTime: 1542087518688064; 微妙，runTime:3487
-Elements[0]
-微妙，endTime: 1542087518688076; 微妙，runTime:3759
-fun1
-微妙，beginTime: 1542087518688095
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518688116
-微妙，endTime: 1542087518689818; 微妙，runTime:1702
-Elements[0]
-微妙，endTime: 1542087518689826; 微妙，runTime:1731
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087518991166
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518991370
-微妙，endTime: 1542087518994057; 微妙，runTime:2687
-Elements[0]
-微妙，endTime: 1542087518994064; 微妙，runTime:2898
-fun1
-微妙，beginTime: 1542087518994074
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087518994089
-微妙，endTime: 1542087518995641; 微妙，runTime:1552
-Elements[0]
-微妙，endTime: 1542087518995646; 微妙，runTime:1572
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087519300101
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519300358
-微妙，endTime: 1542087519302502; 微妙，runTime:2144
-Elements[0]
-微妙，endTime: 1542087519302509; 微妙，runTime:2408
-fun1
-微妙，beginTime: 1542087519302520
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519302536
-微妙，endTime: 1542087519303969; 微妙，runTime:1433
-Elements[0]
-微妙，endTime: 1542087519303974; 微妙，runTime:1454
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087519588623
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519588889
-微妙，endTime: 1542087519592140; 微妙，runTime:3251
-Elements[0]
-微妙，endTime: 1542087519592152; 微妙，runTime:3529
-fun1
-微妙，beginTime: 1542087519592169
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519592191
-微妙，endTime: 1542087519593316; 微妙，runTime:1125
-Elements[0]
-微妙，endTime: 1542087519593323; 微妙，runTime:1154
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087519883301
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519883550
-微妙，endTime: 1542087519886603; 微妙，runTime:3053
-Elements[0]
-微妙，endTime: 1542087519886614; 微妙，runTime:3313
-fun1
-微妙，beginTime: 1542087519886631
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087519886652
-微妙，endTime: 1542087519888124; 微妙，runTime:1472
-Elements[0]
-微妙，endTime: 1542087519888131; 微妙，runTime:1500
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087520198357
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520198505
-微妙，endTime: 1542087520200834; 微妙，runTime:2329
-Elements[0]
-微妙，endTime: 1542087520200840; 微妙，runTime:2483
-fun1
-微妙，beginTime: 1542087520200850
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520200862
-微妙，endTime: 1542087520201759; 微妙，runTime:897
-Elements[0]
-微妙，endTime: 1542087520201764; 微妙，runTime:914
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087520500176
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520500435
-微妙，endTime: 1542087520502355; 微妙，runTime:1920
-Elements[0]
-微妙，endTime: 1542087520502363; 微妙，runTime:2187
-fun1
-微妙，beginTime: 1542087520502373
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520502388
-微妙，endTime: 1542087520503006; 微妙，runTime:618
-Elements[0]
-微妙，endTime: 1542087520503010; 微妙，runTime:637
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087520821257
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520821514
-微妙，endTime: 1542087520825522; 微妙，runTime:4008
-Elements[0]
-微妙，endTime: 1542087520825535; 微妙，runTime:4278
-fun1
-微妙，beginTime: 1542087520825553
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087520825576
-微妙，endTime: 1542087520827095; 微妙，runTime:1519
-Elements[0]
-微妙，endTime: 1542087520827102; 微妙，runTime:1549
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087521106301
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521106472
-微妙，endTime: 1542087521108918; 微妙，runTime:2446
-Elements[0]
-微妙，endTime: 1542087521108926; 微妙，runTime:2625
-fun1
-微妙，beginTime: 1542087521108938
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521108953
-微妙，endTime: 1542087521110278; 微妙，runTime:1325
-Elements[0]
-微妙，endTime: 1542087521110283; 微妙，runTime:1345
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087521391609
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521391783
-微妙，endTime: 1542087521394637; 微妙，runTime:2854
-Elements[0]
-微妙，endTime: 1542087521394645; 微妙，runTime:3036
-fun1
-微妙，beginTime: 1542087521394657
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521394674
-微妙，endTime: 1542087521396236; 微妙，runTime:1562
-Elements[0]
-微妙，endTime: 1542087521396241; 微妙，runTime:1584
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087521700757
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521701014
-微妙，endTime: 1542087521704228; 微妙，runTime:3214
-Elements[0]
-微妙，endTime: 1542087521704237; 微妙，runTime:3480
-fun1
-微妙，beginTime: 1542087521704251
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521704269
-微妙，endTime: 1542087521705636; 微妙，runTime:1367
-Elements[0]
-微妙，endTime: 1542087521705642; 微妙，runTime:1391
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087521990321
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521990917
-微妙，endTime: 1542087521994445; 微妙，runTime:3528
-Elements[0]
-微妙，endTime: 1542087521994457; 微妙，runTime:4136
-fun1
-微妙，beginTime: 1542087521994476
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087521994499
-微妙，endTime: 1542087521995763; 微妙，runTime:1264
-Elements[0]
-微妙，endTime: 1542087521995770; 微妙，runTime:1294
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087522331372
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522331549
-微妙，endTime: 1542087522333655; 微妙，runTime:2106
-Elements[0]
-微妙，endTime: 1542087522333662; 微妙，runTime:2290
-fun1
-微妙，beginTime: 1542087522333673
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522333687
-微妙，endTime: 1542087522335395; 微妙，runTime:1708
-Elements[0]
-微妙，endTime: 1542087522335400; 微妙，runTime:1727
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087522620551
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522620837
-微妙，endTime: 1542087522624383; 微妙，runTime:3546
-Elements[0]
-微妙，endTime: 1542087522624395; 微妙，runTime:3844
-fun1
-微妙，beginTime: 1542087522624414
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522624438
-微妙，endTime: 1542087522625745; 微妙，runTime:1307
-Elements[0]
-微妙，endTime: 1542087522625752; 微妙，runTime:1338
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087522923990
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522924298
-微妙，endTime: 1542087522927401; 微妙，runTime:3103
-Elements[0]
-微妙，endTime: 1542087522927414; 微妙，runTime:3424
-fun1
-微妙，beginTime: 1542087522927432
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087522927454
-微妙，endTime: 1542087522928596; 微妙，runTime:1142
-Elements[0]
-微妙，endTime: 1542087522928604; 微妙，runTime:1172
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087523203755
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523203965
-微妙，endTime: 1542087523206388; 微妙，runTime:2423
-Elements[0]
-微妙，endTime: 1542087523206398; 微妙，runTime:2643
-fun1
-微妙，beginTime: 1542087523206411
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523206429
-微妙，endTime: 1542087523207840; 微妙，runTime:1411
-Elements[0]
-微妙，endTime: 1542087523207846; 微妙，runTime:1435
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087523485645
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523485824
-微妙，endTime: 1542087523487568; 微妙，runTime:1744
-Elements[0]
-微妙，endTime: 1542087523487573; 微妙，runTime:1928
-fun1
-微妙，beginTime: 1542087523487581
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523487592
-微妙，endTime: 1542087523488282; 微妙，runTime:690
-Elements[0]
-微妙，endTime: 1542087523488286; 微妙，runTime:705
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087523835775
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523836003
-微妙，endTime: 1542087523838582; 微妙，runTime:2579
-Elements[0]
-微妙，endTime: 1542087523838592; 微妙，runTime:2817
-fun1
-微妙，beginTime: 1542087523839138
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087523839161
-微妙，endTime: 1542087523840534; 微妙，runTime:1373
-Elements[0]
-微妙，endTime: 1542087523840539; 微妙，runTime:1401
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087524213377
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524213718
-微妙，endTime: 1542087524216423; 微妙，runTime:2705
-Elements[0]
-微妙，endTime: 1542087524216433; 微妙，runTime:3056
-fun1
-微妙，beginTime: 1542087524216449
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524216470
-微妙，endTime: 1542087524217906; 微妙，runTime:1436
-Elements[0]
-微妙，endTime: 1542087524217913; 微妙，runTime:1464
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087524517485
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524517732
-微妙，endTime: 1542087524522058; 微妙，runTime:4326
-Elements[0]
-微妙，endTime: 1542087524522070; 微妙，runTime:4585
-fun1
-微妙，beginTime: 1542087524522086
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524522109
-微妙，endTime: 1542087524523267; 微妙，runTime:1158
-Elements[0]
-微妙，endTime: 1542087524523274; 微妙，runTime:1188
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087524860461
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524860717
-微妙，endTime: 1542087524864410; 微妙，runTime:3693
-Elements[0]
-微妙，endTime: 1542087524864422; 微妙，runTime:3961
-fun1
-微妙，beginTime: 1542087524864439
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087524864462
-微妙，endTime: 1542087524865963; 微妙，runTime:1501
-Elements[0]
-微妙，endTime: 1542087524865970; 微妙，runTime:1531
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087525140033
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525140280
-微妙，endTime: 1542087525145512; 微妙，runTime:5232
-Elements[0]
-微妙，endTime: 1542087525145524; 微妙，runTime:5491
-fun1
-微妙，beginTime: 1542087525145542
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525145565
-微妙，endTime: 1542087525147284; 微妙，runTime:1719
-Elements[0]
-微妙，endTime: 1542087525147292; 微妙，runTime:1750
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087525500349
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525500646
-微妙，endTime: 1542087525503718; 微妙，runTime:3072
-Elements[0]
-微妙，endTime: 1542087525503729; 微妙，runTime:3380
-fun1
-微妙，beginTime: 1542087525503746
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525503769
-微妙，endTime: 1542087525506423; 微妙，runTime:2654
-Elements[0]
-微妙，endTime: 1542087525506431; 微妙，runTime:2685
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087525828625
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525829168
-微妙，endTime: 1542087525832728; 微妙，runTime:3560
-Elements[0]
-微妙，endTime: 1542087525832739; 微妙，runTime:4114
-fun1
-微妙，beginTime: 1542087525832756
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087525832777
-微妙，endTime: 1542087525834060; 微妙，runTime:1283
-Elements[0]
-微妙，endTime: 1542087525834068; 微妙，runTime:1312
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087526141801
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526141967
-微妙，endTime: 1542087526144437; 微妙，runTime:2470
-Elements[0]
-微妙，endTime: 1542087526144444; 微妙，runTime:2643
-fun1
-微妙，beginTime: 1542087526144456
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526144471
-微妙，endTime: 1542087526145912; 微妙，runTime:1441
-Elements[0]
-微妙，endTime: 1542087526145917; 微妙，runTime:1461
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087526476590
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526476913
-微妙，endTime: 1542087526479596; 微妙，runTime:2683
-Elements[0]
-微妙，endTime: 1542087526479607; 微妙，runTime:3017
-fun1
-微妙，beginTime: 1542087526479624
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526479646
-微妙，endTime: 1542087526481284; 微妙，runTime:1638
-Elements[0]
-微妙，endTime: 1542087526481291; 微妙，runTime:1667
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087526803652
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526803805
-微妙，endTime: 1542087526805470; 微妙，runTime:1665
-Elements[0]
-微妙，endTime: 1542087526805477; 微妙，runTime:1825
-fun1
-微妙，beginTime: 1542087526805488
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087526805502
-微妙，endTime: 1542087526806183; 微妙，runTime:681
-Elements[0]
-微妙，endTime: 1542087526806187; 微妙，runTime:699
-Redis Connect to addr[172.16.0.21:7000] Success
-fun
-微妙，beginTime: 1542087527115404
-findIntersection, strLuaScript = return redis.call('SINTER' ,KEYS[1] ,KEYS[2] ,KEYS[3])
-mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087527115712
-微妙，endTime: 1542087527117774; 微妙，runTime:2062
-Elements[0]
-微妙，endTime: 1542087527117785; 微妙，runTime:2381
-fun1
-微妙，beginTime: 1542087527117801
-findIntersection, ccmd = SINTER mi_{181026033809ffdc196c965aRI000004}_程度_剧烈 mi_{181026033809ffdc196c965aRI000004}_类型_刺痛 mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-微妙，beginTime: 1542087527117823
-微妙，endTime: 1542087527119388; 微妙，runTime:1565
-Elements[0]
-微妙，endTime: 1542087527119395; 微妙，runTime:1594
+微妙，endTime: 1542354066728162; 微妙，runTime:702
+Disconnect From Redis Server[172.16.0.21:7000]

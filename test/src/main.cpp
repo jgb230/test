@@ -73,10 +73,11 @@ int main(){
     for (int i = 1; i <= 10; ++i){
         printf("cout %d\n",*TEST(i - 1));
     }
-
-    loadAPI();
-#endif
     redis_test();
+#endif
+
+    testAPI();
+    
 
     return 0;
 }
