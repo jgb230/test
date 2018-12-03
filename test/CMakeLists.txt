@@ -14,7 +14,9 @@ set(CMAKE_BUILD_TYPE Debug)
 project(jgbtest)
 include_directories(include
 					../boost_1_64_0/
-					./redis/include/)
+					./redis/include/
+					~/mtsProject/ext/mts_outer/
+					src/SDK/include)
 
 link_directories(../
 				lib/
@@ -26,7 +28,7 @@ link_directories(../
 #aux_source_directory(src DIR_SRCS)
 
 #add_subdirectory(mem)
-#add_subdirectory(thread)
+add_subdirectory(src/SDK)
 
 ################################ A.so
 set(ASRC src/A.cpp)
@@ -45,16 +47,22 @@ set(CSRC src/C.cpp)
 add_library(C SHARED ${CSRC})
 target_link_libraries(C ${ALIBS})
 
-################################# jgbtest
 set(LIBS A
 	    B
 		C
 		dl
+		clientAPI
 		boost_system 
+		boost_thread
 		boost_filesystem
 		boost_program_options
 		hiredis_vip
+		crypto
 		)
+
+
+################################# jgbtest
+
 
 MESSAGE(${PROJECT_SOURCE_DIR})
 

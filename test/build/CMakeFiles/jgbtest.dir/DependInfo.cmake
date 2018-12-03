@@ -13,12 +13,15 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "../../boost_1_64_0"
   ".././redis/include"
+  "/home/jgb/mtsProject/ext/mts_outer"
+  "../src/SDK/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/jgb/c++/test/build/CMakeFiles/B.dir/DependInfo.cmake"
   "/home/jgb/c++/test/build/CMakeFiles/C.dir/DependInfo.cmake"
+  "/home/jgb/c++/test/build/src/SDK/CMakeFiles/clientAPI.dir/DependInfo.cmake"
   "/home/jgb/c++/test/build/CMakeFiles/A.dir/DependInfo.cmake"
   )
 

@@ -162,6 +162,19 @@ C/fast:
 	$(MAKE) -f CMakeFiles/C.dir/build.make CMakeFiles/C.dir/build
 .PHONY : C/fast
 
+#=============================================================================
+# Target rules for targets named clientAPI
+
+# Build rule for target.
+clientAPI: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 clientAPI
+.PHONY : clientAPI
+
+# fast build rule for target.
+clientAPI/fast:
+	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/build
+.PHONY : clientAPI/fast
+
 src/A.o: src/A.cpp.o
 
 .PHONY : src/A.o
@@ -282,6 +295,7 @@ help:
 	@echo "... jgbtest"
 	@echo "... B"
 	@echo "... C"
+	@echo "... clientAPI"
 	@echo "... src/A.o"
 	@echo "... src/A.i"
 	@echo "... src/A.s"

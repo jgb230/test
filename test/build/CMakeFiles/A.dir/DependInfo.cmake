@@ -13,6 +13,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "../../boost_1_64_0"
   ".././redis/include"
+  "/home/jgb/mtsProject/ext/mts_outer"
+  "../src/SDK/include"
   )
 
 # Targets to which this target links.

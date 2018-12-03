@@ -4,3 +4,6 @@
 /home/jgb/c++/test/build/CMakeFiles/jgbtest.dir
 /home/jgb/c++/test/build/CMakeFiles/B.dir
 /home/jgb/c++/test/build/CMakeFiles/C.dir
+/home/jgb/c++/test/build/src/SDK/CMakeFiles/edit_cache.dir
+/home/jgb/c++/test/build/src/SDK/CMakeFiles/rebuild_cache.dir
+/home/jgb/c++/test/build/src/SDK/CMakeFiles/clientAPI.dir

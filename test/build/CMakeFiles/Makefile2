@@ -103,9 +103,10 @@ clean: CMakeFiles/A.dir/clean
 CMakeFiles/jgbtest.dir/all: CMakeFiles/A.dir/all
 CMakeFiles/jgbtest.dir/all: CMakeFiles/B.dir/all
 CMakeFiles/jgbtest.dir/all: CMakeFiles/C.dir/all
+CMakeFiles/jgbtest.dir/all: src/SDK/CMakeFiles/clientAPI.dir/all
 	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/depend
 	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=7,8 "Built target jgbtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=11,12 "Built target jgbtest"
 .PHONY : CMakeFiles/jgbtest.dir/all
 
 # Include target in all.
@@ -115,7 +116,7 @@ all: CMakeFiles/jgbtest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/jgbtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jgb/c++/test/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jgb/c++/test/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/jgbtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jgb/c++/test/build/CMakeFiles 0
 .PHONY : CMakeFiles/jgbtest.dir/rule
@@ -206,6 +207,61 @@ CMakeFiles/C.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/C.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory src/SDK
+
+# Convenience name for "all" pass in the directory.
+src/SDK/all: src/SDK/CMakeFiles/clientAPI.dir/all
+
+.PHONY : src/SDK/all
+
+# Convenience name for "clean" pass in the directory.
+src/SDK/clean: src/SDK/CMakeFiles/clientAPI.dir/clean
+
+.PHONY : src/SDK/clean
+
+# Convenience name for "preinstall" pass in the directory.
+src/SDK/preinstall:
+
+.PHONY : src/SDK/preinstall
+
+#=============================================================================
+# Target rules for target src/SDK/CMakeFiles/clientAPI.dir
+
+# All Build rule for target.
+src/SDK/CMakeFiles/clientAPI.dir/all:
+	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/depend
+	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=7,8,9,10 "Built target clientAPI"
+.PHONY : src/SDK/CMakeFiles/clientAPI.dir/all
+
+# Include target in all.
+all: src/SDK/CMakeFiles/clientAPI.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+src/SDK/CMakeFiles/clientAPI.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jgb/c++/test/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 src/SDK/CMakeFiles/clientAPI.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jgb/c++/test/build/CMakeFiles 0
+.PHONY : src/SDK/CMakeFiles/clientAPI.dir/rule
+
+# Convenience name for target.
+clientAPI: src/SDK/CMakeFiles/clientAPI.dir/rule
+
+.PHONY : clientAPI
+
+# clean rule for target.
+src/SDK/CMakeFiles/clientAPI.dir/clean:
+	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/clean
+.PHONY : src/SDK/CMakeFiles/clientAPI.dir/clean
+
+# clean rule for target.
+clean: src/SDK/CMakeFiles/clientAPI.dir/clean
 
 .PHONY : clean
 

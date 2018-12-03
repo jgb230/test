@@ -4,7 +4,6 @@
 #include <string>
 #include <map>
 
-
 #define TESLOG(level,...) printf(__VA_ARGS__)
 
 #define CC_PROP_REFER(openType, varType, varName, funName, refer)\
@@ -13,14 +12,10 @@ public: inline varType refer get##funName(){ return this->m_##varName;}\
 public: inline void set##funName(varType refer var){ this->m_##varName = var;}\
 openType:
 
-
 #define CC_PROP(openType, varType, varName, funName)\
         CC_PROP_REFER(openType, varType, varName, funName,)
 
-
 std::map<std::string, void*> m_call;
-
-
 
 // 成员函数指针不能直接转换成void* ，原因 成员函数指针还包含类的一些信息
 // 所以增加转换函数
@@ -33,9 +28,7 @@ void * memfunccastvoid(F f)
     return p;
 }
 
-
 class externSYS{
-        
 
     public:
 
@@ -76,7 +69,6 @@ typedef void (externSYS::*FUN3)(std::string &);
 #define CALLP1(obj, FAG, pcall) (obj.*(*(FAG*)pcall))()
 #define CALLP2(obj, FAG, pcall, arg1) (obj.*(*(FAG*)pcall))(arg1)
 
-
 void loadAPI(){
 
     FUN1 f1 = &externSYS::printName;
@@ -92,8 +84,6 @@ void loadAPI(){
     m_call.insert(std::make_pair("age", i));
 
 }
-
-
 
 void testAPI(){
 

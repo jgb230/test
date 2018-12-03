@@ -171,11 +171,14 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Dependencies for the target
 C_LIB_DEPENDS:STATIC=general;A;
 
-//Value Computed by CMake
-jgbtest_BINARY_DIR:STATIC=/home/jgb/c++/test/build
+//Dependencies for target
+clientAPI_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
-jgbtest_SOURCE_DIR:STATIC=/home/jgb/c++/test
+jgbtest_BINARY_DIR:STATIC=/home/jgb/c++/test/build/src/SDK
+
+//Value Computed by CMake
+jgbtest_SOURCE_DIR:STATIC=/home/jgb/c++/test/src/SDK
 
 
 ########################
@@ -266,7 +269,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

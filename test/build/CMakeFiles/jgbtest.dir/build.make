@@ -92,6 +92,7 @@ jgbtest: CMakeFiles/jgbtest.dir/src/main.cpp.o
 jgbtest: CMakeFiles/jgbtest.dir/build.make
 jgbtest: libB.so
 jgbtest: libC.so
+jgbtest: src/SDK/libclientAPI.so
 jgbtest: libA.so
 jgbtest: CMakeFiles/jgbtest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable jgbtest"
