@@ -175,10 +175,10 @@ C_LIB_DEPENDS:STATIC=general;A;
 clientAPI_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
-jgbtest_BINARY_DIR:STATIC=/home/jgb/c++/test/build/src/SDK
+jgbtest_BINARY_DIR:STATIC=/home/jgb/c++/test/build
 
 //Value Computed by CMake
-jgbtest_SOURCE_DIR:STATIC=/home/jgb/c++/test/src/SDK
+jgbtest_SOURCE_DIR:STATIC=/home/jgb/c++/test
 
 
 ########################
