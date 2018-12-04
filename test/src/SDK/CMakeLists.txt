@@ -9,7 +9,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "${RCXX_FLAGS}  ")
 
 add_compile_options(-std=c++11)
 
-project(jgbtest)
 
 include_directories(include
 					include/rapidjson)
