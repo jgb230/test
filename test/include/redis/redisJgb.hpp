@@ -31,6 +31,9 @@ using namespace std;
 
 typedef vector<string> vecString;
 
+// 例: v = {"1","2","3"} 
+		//    执行catsVector(v, "'", "_", out)
+		//	  结果out = "'1'_'2'_'3'"
 bool catsVector(vecString &sVec , const string &edge, const string &Connector, string &result)
 {
     result = edge;
