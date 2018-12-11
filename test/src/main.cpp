@@ -97,7 +97,7 @@ int main(){
     LOG("====udi : %d" ,uid );
     GL::setRecvHandler(&GL::callback);
     for (int i = 0; i < 15; i++){
-        int ret = GL::sendMsg(uid, msg);
+        ret = GL::sendMsg(uid, msg);
         if (0 != ret){
             LOG("send mes error: %s errno : %d\n",strerror(ret),ret);
         }
