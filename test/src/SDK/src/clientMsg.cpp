@@ -4,34 +4,8 @@
 #include<ctype.h>
 namespace GL{
 
-    const  int         g_brokerPort = 2345;
-    const  char       *g_brokerIP = "172.16.0.27";
-    const  uint8_t     g_version = 0x01;
-    const  uint8_t     g_magic = '$'; 
 
     clientMsg::clientMsg(){
-
-#ifdef WIN32
-		WSADATA wsaData;
-		WSAStartup(MAKEWORD(2, 2), &wsaData);
-#endif
-        struct sockaddr_in sockaddr;
-        m_socket = socket(AF_INET, SOCK_STREAM, 0);
-        memset(&sockaddr, 0, sizeof(sockaddr));
-        sockaddr.sin_family = AF_INET;
-        sockaddr.sin_port = htons(g_brokerPort);
-#ifdef WIN32
-		sockaddr.sin_addr.s_addr = inet_addr(g_brokerIP);
-#else
-        inet_pton(AF_INET, g_brokerIP, &sockaddr.sin_addr);
-#endif
-		int ret = 0;
-        if((ret = connect(m_socket, (struct sockaddr*)&sockaddr, sizeof(sockaddr))) < 0 )
-        {
-            LOG("connect error %s errno: %d ret %d",strerror(errno),errno, ret);
-			return;
-        }
-        LOG("connect ");
 
 		m_ulock = new std::mutex();
 		m_ucond = new std::condition_variable();
@@ -39,6 +13,7 @@ namespace GL{
 		m_slock = new std::mutex();
 		m_scond = new std::condition_variable();
 
+		m_dlock = new std::mutex();
 #ifdef __linux__
 
         signal(SIGPIPE,SIG_IGN);
@@ -50,16 +25,48 @@ namespace GL{
         m_uid = 0;
     }
 
+	int clientMsg::init(clientInfo *ci) {
+		m_ci = ci;
+		int nTimeout = 10000;
+#ifdef WIN32
+		WSADATA wsaData;
+		WSAStartup(MAKEWORD(2, 2), &wsaData);
+#endif
+		struct sockaddr_in sockaddr;
+		m_socket = socket(AF_INET, SOCK_STREAM, 0);
+		memset(&sockaddr, 0, sizeof(sockaddr));
+		sockaddr.sin_family = AF_INET;
+		sockaddr.sin_port = htons(m_ci->port);
+#ifdef WIN32
+		sockaddr.sin_addr.s_addr = inet_addr(m_ci->ip.c_str());
+#else
+		inet_pton(AF_INET, m_ci->ip.c_str(), &sockaddr.sin_addr);
+#endif
+		if (SOCKET_ERROR == setsockopt(m_socket, SOL_SOCKET, SO_RCVTIMEO,
+			(char *)&nTimeout, sizeof(int)))
+		{
+			LOG("Set SO_RCVTIMEO error !\n");
+		}
+
+		int ret = 0;
+		if ((ret = connect(m_socket, (struct sockaddr*)&sockaddr, sizeof(sockaddr))) < 0)
+		{
+			LOG("connect error %s errno: %d ret %d", strerror(errno), errno, ret);
+		}
+		LOG("connect ");
+		return ret;
+	}
+
     int clientMsg::reconnect(){
         struct sockaddr_in sockaddr;
         m_socket = socket(AF_INET, SOCK_STREAM, 0);
         memset(&sockaddr, 0, sizeof(sockaddr));
         sockaddr.sin_family = AF_INET;
-        sockaddr.sin_port = htons(g_brokerPort);
+        sockaddr.sin_port = htons(m_ci->port);
 #ifdef WIN32
-		sockaddr.sin_addr.S_un.S_addr = inet_addr(g_brokerIP);
+		sockaddr.sin_addr.S_un.S_addr = inet_addr(m_ci->ip.c_str());
 #else
-		inet_pton(AF_INET, g_brokerIP, &sockaddr.sin_addr);
+		inet_pton(AF_INET, m_ci->ip.c_str(), &sockaddr.sin_addr);
 #endif
 		int time = 0;
         int ret = 0;
@@ -77,6 +84,14 @@ namespace GL{
             }
         }
 
+		std::unique_lock <std::mutex> dlck(*m_dlock);
+		std::map<int, std::string>::iterator iter = m_loginId.begin();
+		int uid = 0;
+		LOG("relogin ");
+		for (; iter != m_loginId.end(); iter++) {
+			login(m_ci->appId, iter->second, &uid);
+		}
+
         LOG(" reconnect !");
         return 0;
     }
@@ -90,8 +105,11 @@ namespace GL{
     }
 
     int clientMsg::heartBeat(){
-        m_heartTime = time(NULL);
-
+		time_t nowTime = time(NULL);
+		if (nowTime - m_heartTime < 30) {
+			return 0;
+		}
+		m_heartTime = nowTime;
         rapidjson::Document jsonDoc;
         rapidjson::Document::AllocatorType &allocator = jsonDoc.GetAllocator();
         jsonDoc.SetObject();
@@ -196,6 +214,8 @@ namespace GL{
 		m_ucond->wait(lck);
 		ret = m_result;
 		*uid = m_uid;
+		std::unique_lock <std::mutex> dlck(*m_dlock);
+		m_loginId.insert(std::make_pair(m_uid, proId));
         return ret == 1? 0:ret ;
     }
 
@@ -207,7 +227,7 @@ namespace GL{
         jsonDoc.AddMember("uid", uid, allocator);
         jsonDoc.AddMember("appid", appId, allocator);
         jsonDoc.AddMember("seq", proId, allocator);
-
+		m_loginId.erase(uid);
         int ret = sendMsg(4, jsonDoc);
         if (ret < 0){
             LOG("send mes error: %s errno : %d",strerror(ret),ret);
@@ -216,7 +236,11 @@ namespace GL{
             LOG("send socket close ");
             return -1;
         }
-        
+		std::unique_lock <std::mutex> dlck(*m_dlock);
+		std::map<int,std::string>::iterator iter = m_loginId.find(uid);
+		if (iter != m_loginId.end()) {
+			m_loginId.erase(iter);
+		}
         return 0;
     }
 
@@ -255,8 +279,8 @@ namespace GL{
         int len = strJson.length();
         HEAD *head = new HEAD;
         head->Command = commond;
-        head->Version = g_version;
-        head->Magic = g_magic;
+        head->Version = m_ci->version;
+        head->Magic = m_ci->magic;
         head->PkgLen = 10 + len;
         int ret = 0;
         if (m_socket){
@@ -268,7 +292,7 @@ namespace GL{
             ret = send(m_socket, buf, head->PkgLen + 4,0);
             if(ret < 0)
             {
-                LOG("send mes error: %s errno : %d",strerror(errno),errno);
+                LOG("send mes error: %s errno : %d ret: %d", strerror(errno), errno, ret);
                 return errno;
             }else if (ret == 0){
                 LOG("socket closed reconnect!");

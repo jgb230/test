@@ -1,9 +1,10 @@
 #ifndef CLIENT_MSG
 #define CLIENT_MSG
+
 #include "md5.h"
 #include <rapidjson_helper.h>
 
-#include <vector>
+#include <map>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
@@ -58,11 +59,22 @@ namespace GL{
         uint16_t Retcode;
     }HEAD,*PHEAD;
     #pragma pack(pop)
+	
+	typedef struct clientInfo {
+		std::string ip;
+		int port;
+		std::string appId;
+		std::string appKey;
+		int type;
+		uint8_t version;
+		uint8_t magic;
+	}clientInfo;
 
     class clientMsg{            
         public:
             clientMsg();
             ~clientMsg();
+			int init(clientInfo *ci);
             int heartBeat();
             int servLogin(const std::string &appId, int type);
             int servAuth(const std::string &appId,const std::string &appKey);
@@ -89,7 +101,11 @@ namespace GL{
 
 			std::mutex *m_slock; // 全局互斥锁.
 			std::condition_variable *m_scond; // 全局条件变量.
+			
+			clientInfo *m_ci;
 
+			std::mutex *m_dlock;
+			std::map<int,std::string>  m_loginId;
     };
     
 

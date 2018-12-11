@@ -13,60 +13,29 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(jgbtest)
 include_directories(include
-					../boost_1_64_0/
-					./redis/include/
-					~/mtsProject/ext/mts_outer/
-					src/SDK/include)
+					./src/SDK/include
+					./src/SDK/include/rapidjson)
 
 link_directories(../
-				lib/
-				../boost_1_64_0/stage/lib/
-				./redis/lib/
+				./build/src/SDK/Debug/
 				)
 
 
 #aux_source_directory(src DIR_SRCS)
 
 #add_subdirectory(mem)
-add_subdirectory(src/SDK)
+add_subdirectory(./src/SDK)
 
-################################ A.so
-set(ASRC src/A.cpp)
-add_library(A SHARED ${ASRC})
-
-################################ B.so
-set(ALIBS A
-	     )
-set(BSRC src/B.cpp)
-add_library(B SHARED ${BSRC})
-target_link_libraries(B ${ALIBS})
-
-################################ C.so
-
-set(CSRC src/C.cpp)
-add_library(C SHARED ${CSRC})
-target_link_libraries(C ${ALIBS})
-
-set(LIBS A
-	    B
-		C
-		dl
+set(LIBS
 		clientAPI
-		boost_system 
-		boost_thread
-		boost_filesystem
-		boost_program_options
-		hiredis_vip
-		crypto
 		)
 
 
 ################################# jgbtest
 
-
 MESSAGE(${PROJECT_SOURCE_DIR})
 
-set(SRC src/main.cpp)
+set(SRC main.cpp)
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})
 add_executable(${PROJECT_NAME} ${SRC})

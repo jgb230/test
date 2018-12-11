@@ -6,9 +6,7 @@ namespace GL{
     clientMsg *Client::m_clientMsg = new clientMsg();
 
     Client::Client(){
-        m_appId = "";
-        m_appKey = "";
-        m_type = 1;
+		m_ci = nullptr;
         m_callBack = nullptr;
 		m_pthread = nullptr;
         
@@ -18,18 +16,24 @@ namespace GL{
 
     }
 
-    int Client::initClient(const std::string &appId, const std::string &appKey, int type){
+    int Client::initClient(const clientInfo *ci, callBack *cb, GL::HDL hand){
 
         LOG("");
 
-        if (appId.empty() || appKey.empty()){
-            LOG("appId or appKey is empty, appId:%s appKey:%s", appId.c_str(), appKey.c_str());
+        if (ci->appId.empty() || ci->appKey.empty()){
+            LOG("appId or appKey is empty, appId:%s appKey:%s", ci->appId.c_str(), ci->appKey.c_str());
             return -1;
         }
 
-        m_appId = appId;
-        m_appKey = appKey;
-        m_type = type;
+		m_ci = new clientInfo;
+		memcpy(m_ci, ci, sizeof(clientInfo));
+
+		void *ptmp = malloc(sizeof(GL::HDL));
+		new(ptmp) GL::HDL(hand);
+		m_cbInstance = cb;
+		m_callBack = ptmp;
+
+		m_clientMsg->init(m_ci);
 
 		if (m_pthread == nullptr) {
 			m_pthread = new std::thread(Client::start);
@@ -38,20 +42,19 @@ namespace GL{
 				return -1;
 			}
 		}
-
-    
-        int ret = m_clientMsg->servLogin(m_appId, m_type);
+		
+        int ret = m_clientMsg->servLogin(m_ci->appId, m_ci->type);
         if (ret != 0){
             LOG("servLogin error! errno:%d", ret);
             return ret;
         }
-        ret = m_clientMsg->servAuth(m_appId, m_appKey);
+        ret = m_clientMsg->servAuth(m_ci->appId, m_ci->appKey);
         if (ret != 0){
             LOG("servAuth error! errno:%d", ret);
             return ret;
         }
+
         return 0;
-        //getRobotId(data);
 
     }
 
@@ -63,23 +66,15 @@ namespace GL{
     }
 
     int Client::sendMsg(int uid, const std::string &msg){
-        return m_clientMsg->aichat(uid, msg, m_appId);
+        return m_clientMsg->aichat(uid, msg, m_ci->appId);
     }
 
     int Client::login(const std::string &proId, int *uid){
-        return m_clientMsg->login(m_appId, proId, uid);
+        return m_clientMsg->login(m_ci->appId, proId, uid);
     }
 
     int Client::logout(const std::string &proId, int uid){
-        return m_clientMsg->logout(m_appId, proId, uid);
-    }
-
-    int Client::setRecvHandler(callBack *cb, GL::HDL hand){
-		void *ptmp = malloc(sizeof(GL::HDL));
-		new(ptmp) GL::HDL(hand);
-		m_cbInstance = cb;
-        m_callBack = ptmp;
-        return 0;
+        return m_clientMsg->logout(m_ci->appId, proId, uid);
     }
 
     void  Client::start(){
@@ -93,17 +88,24 @@ namespace GL{
         uint16_t commond = 0;
         bool head = true;
         for (;;){
-
+			m_clientMsg->heartBeat();
             n = recv(m_clientMsg->getSocket(), buff + right, left, 0);
             LOG("recv n:%d", n); 
-
             if (n < 0){
+
                 LOG("recv error %s errno: %d socket:%d\n",strerror(errno) ,errno, m_clientMsg->getSocket());
+				if (errno == EAGAIN) {
+					int ret = m_clientMsg->reconnect();
+					if (ret != 0) {
+						LOG("reconnect error!");
+					}
+				}
 #ifdef WIN32
                 Sleep(1000);
 #else
 				Sleep(1);
 #endif
+				n = 0;
             }
             left -= n;
             right += n;
@@ -227,6 +229,10 @@ namespace GL{
             LOG("msg: %s, result %d", document["msg"].GetString(), result); 
             return -1;
         }else {
+			if (m_cbInstance == nullptr) {
+				LOG("callBack instance is null");
+				return -1;
+			}
             ((*m_cbInstance).*(*(HDL*)m_callBack))(strJson.c_str());
             LOG("aichat result: %d", result);
         }

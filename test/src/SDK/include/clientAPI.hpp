@@ -20,28 +20,28 @@
 namespace GL{
 
     #define MAXLEN 65536
-	
-#define LEN32 32
+	#define LEN32 32
+
 	class DLL_PUBLIC callBack {
 		public:
 			virtual void callback(const char *) = 0;
 	};
-
 	typedef void (callBack::*HDL)(const char *);
+
 
 	class DLL_PUBLIC Client {
 	public:
 		Client();
 		~Client();
-		int initClient(const std::string &appId, const std::string &appKey, int type);
-		static Client *getInstance();
+		int initClient(const clientInfo *ci, callBack *cb, GL::HDL hand);
 		int login(const std::string &proId, int *uid);
 		int sendMsg(int uid, const std::string &msg);
 		int logout(const std::string &proId, int uid);
-		int setRecvHandler(callBack *cb, GL::HDL hand);
-		static void start();
+
+		static Client *getInstance();
 
 	private:
+		static void start();
 		int msg301(rapidjson::Document &document);
 		int msg302(rapidjson::Document &document);
 		int msg102(rapidjson::Document &document);
@@ -50,15 +50,13 @@ namespace GL{
 
 	private:
 		static Client *m_client;
-		std::string m_appId;
-		std::string m_appKey;
+		static clientMsg *m_clientMsg;
+
 		void*  m_callBack;
 		callBack *m_cbInstance;
-		static clientMsg *m_clientMsg;
-		int m_type;
 		std::thread *m_pthread;
+		clientInfo *m_ci;
 	};
-    
 	
 }
 
