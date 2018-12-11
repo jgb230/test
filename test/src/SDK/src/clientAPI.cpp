@@ -1,46 +1,6 @@
 #include "clientAPI.hpp"
-#include "clientMsg.hpp"
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string>
-#include <map>
-#include <thread>
 
 namespace GL{
-
-    typedef void * (*HDL)(const char *);
-    #define LEN32 32
-
-    class Client{
-        public:
-            Client();
-            ~Client();
-            int initClient(const std::string &appId, const std::string &appKey, int type);
-            static Client *getInstance();
-            int login(const std::string &proId, int *uid);
-            int sendMsg(int uid, const std::string &msg);
-            int logout(const std::string &proId, int uid);
-            int setRecvHandler(void * hand(const char *));
-            static void start();
-            HDL getCallBack(){return m_callBack? m_callBack: nullptr;}
-        
-        private:
-            int msg301(rapidjson::Document &document);
-            int msg302(rapidjson::Document &document);
-            int msg102(rapidjson::Document &document);
-            int msg104(rapidjson::Document &document);
-            int msg901(rapidjson::Document &document);
-
-        private:
-            static Client *m_client;
-            std::string m_appId;
-            std::string m_appKey;
-            HDL  m_callBack;
-            static clientMsg *m_clientMsg;
-            int m_type;
-			std::thread *m_pthread;
-    };
 
     Client * Client::m_client = new Client();
     clientMsg *Client::m_clientMsg = new clientMsg();
@@ -114,8 +74,11 @@ namespace GL{
         return m_clientMsg->logout(m_appId, proId, uid);
     }
 
-    int Client::setRecvHandler( HDL hand){
-        m_callBack = hand;
+    int Client::setRecvHandler(callBack *cb, GL::HDL hand){
+		void *ptmp = malloc(sizeof(GL::HDL));
+		new(ptmp) GL::HDL(hand);
+		m_cbInstance = cb;
+        m_callBack = ptmp;
         return 0;
     }
 
@@ -165,6 +128,7 @@ namespace GL{
                         case 102: Client::getInstance()->msg102(document); break;
                         case 104: Client::getInstance()->msg104(document); break;
                         case 901: Client::getInstance()->msg901(document); break;
+						case 9999:  break;
                         default: LOG("error commond %d", commond);
                     }
                     
@@ -263,42 +227,10 @@ namespace GL{
             LOG("msg: %s, result %d", document["msg"].GetString(), result); 
             return -1;
         }else {
-            (Client::getInstance()->getCallBack())(strJson.c_str());
+            ((*m_cbInstance).*(*(HDL*)m_callBack))(strJson.c_str());
             LOG("aichat result: %d", result);
         }
         return 0;
-    }
-
-
-    int initClient(const std::string &appId, const std::string &appKey ,int type){
-        return Client::getInstance()->initClient(appId, appKey, type);
-    }
-
-    int sendMsg(int uid, const std::string &msg){
-        LOG("uid %d, msg %s", uid, msg.c_str());
-        return Client::getInstance()->sendMsg(uid, msg);
-    }
-
-    int setRecvHandler( HDL hand){
-        return Client::getInstance()->setRecvHandler(hand);
-    }
-
-    int login(const std::string &proId, int *uid){
-
-        return Client::getInstance()->login(proId, uid);
-    }
-
-    int logout(const std::string &proId, int uid){
-        return Client::getInstance()->logout(proId, uid);
-    }
-
-    void *callback(const char *msg){
-        
-        rapidjson::Document document;  
-        document.Parse<0>(msg);
-        LOG("content %s, uid %d", document["content"].GetString(), document["uid"].GetInt());
-
-        return nullptr;
     }
 
 
