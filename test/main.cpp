@@ -1,6 +1,8 @@
 
 #include "clientAPI.hpp"
+#ifdef WIN32
 #include <windows.h>
+#endif
 #include <thread>
 #pragma comment(lib,"clientAPI.lib")
 

@@ -42,13 +42,13 @@ namespace GL{
 #else
 		inet_pton(AF_INET, m_ci->ip.c_str(), &sockaddr.sin_addr);
 #endif
-		if (SOCKET_ERROR == setsockopt(m_socket, SOL_SOCKET, SO_RCVTIMEO,
-			(char *)&nTimeout, sizeof(int)))
+		int ret = 0;
+		if (ret = setsockopt(m_socket, SOL_SOCKET, SO_RCVTIMEO,
+			(char *)&nTimeout, sizeof(int)) != 0)
 		{
-			LOG("Set SO_RCVTIMEO error !\n");
+			LOG("setsockopt error %s errno: %d ret %d", strerror(errno), errno, ret);
 		}
 
-		int ret = 0;
 		if ((ret = connect(m_socket, (struct sockaddr*)&sockaddr, sizeof(sockaddr))) < 0)
 		{
 			LOG("connect error %s errno: %d ret %d", strerror(errno), errno, ret);

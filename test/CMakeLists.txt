@@ -40,5 +40,10 @@ set(SRC main.cpp)
 #add_library(${PROJECT_NAME} SHARED ${SRC})
 add_executable(${PROJECT_NAME} ${SRC})
 #set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGs "-fPIC")
-target_link_libraries(${PROJECT_NAME} ${LIBS})
+IF (WIN32)
+	target_link_libraries(${PROJECT_NAME} ${LIBS} )
+ELSEIF (UNIX)
+	target_link_libraries(${PROJECT_NAME} ${LIBS} -lpthread)
+ENDIF ()
+
 
