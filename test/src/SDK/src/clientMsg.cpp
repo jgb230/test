@@ -6,14 +6,11 @@ namespace GL{
 
 
     clientMsg::clientMsg(){
-
-		m_ulock = new std::mutex();
-		m_ucond = new std::condition_variable();
+        rwlock = new WfirstRWLock();
 
 		m_slock = new std::mutex();
 		m_scond = new std::condition_variable();
 
-		m_dlock = new std::mutex();
 #ifdef __linux__
 
         signal(SIGPIPE,SIG_IGN);
@@ -84,7 +81,7 @@ namespace GL{
             }
         }
 
-		std::unique_lock <std::mutex> dlck(*m_dlock);
+        unique_readguard<WfirstRWLock> lc(*rwlock);
 		std::map<int, std::string>::iterator iter = m_loginId.begin();
 		int uid = 0;
 		LOG("relogin ");
@@ -210,13 +207,30 @@ namespace GL{
             LOG("send socket close ");
             return -1;
         }
-		std::unique_lock <std::mutex> lck(*m_ulock);
-		m_ucond->wait(lck);
-		ret = m_result;
-		*uid = m_uid;
-		std::unique_lock <std::mutex> dlck(*m_dlock);
-		m_loginId.insert(std::make_pair(m_uid, proId));
+
+        int tmpid = 0;
+
+		do{
+            rwlock->lock_read();
+            tmpid = recvedUid(proId);
+            ret = m_result;
+            rwlock->release_read();
+        }while ( tmpid == 0 );
+		
+		*uid = tmpid;
+        
+
         return ret == 1? 0:ret ;
+    }
+
+    int clientMsg::recvedUid(const std::string &proId){
+        
+        for (auto iter: m_loginId){
+            if(strcmp(iter.second.c_str(), proId.c_str()) == 0){
+                return iter.first;
+            }
+        }
+        return 0;
     }
 
     int clientMsg::logout(const std::string &appId,const std::string &proId, int uid){
@@ -236,7 +250,7 @@ namespace GL{
             LOG("send socket close ");
             return -1;
         }
-		std::unique_lock <std::mutex> dlck(*m_dlock);
+        unique_readguard<WfirstRWLock> lc(*rwlock);
 		std::map<int,std::string>::iterator iter = m_loginId.find(uid);
 		if (iter != m_loginId.end()) {
 			m_loginId.erase(iter);
@@ -244,11 +258,11 @@ namespace GL{
         return 0;
     }
 
-    void clientMsg::setUid(int uid, int result){
-		std::unique_lock <std::mutex> lck(*m_ulock);
-		m_uid = uid;
+    void clientMsg::setUid(int uid, int result, const std::string &proId){
+
+        unique_writeguard<WfirstRWLock> lc(*rwlock);
 		m_result = result;
-		m_ucond->notify_all();
+        m_loginId.insert(std::make_pair(uid, proId));
 
     }
 
@@ -257,7 +271,6 @@ namespace GL{
 		m_randomSeed = seed;
 		m_result = result;
 		m_scond->notify_all();
-
     }
 
     void clientMsg::setAuth(int result){

@@ -2,6 +2,7 @@
 #define CLIENT_MSG
 
 #include "md5.h"
+#include "RWLock.hpp"
 #include <rapidjson_helper.h>
 
 #include <map>
@@ -85,16 +86,17 @@ namespace GL{
 
             int reconnect();
             int getSocket(){return m_socket;}
-            void setUid(int uid, int result);
+            void setUid(int uid, int result, const std::string &proId);
             void setAuth(int result);
             void setSeed(const std::string seed, int result);
+
+            int recvedUid(const std::string &proId);
         private:
             long m_heartTime;
             int  m_socket;
 
             int m_uid;
-			std::mutex *m_ulock; // 全局互斥锁.
-			std::condition_variable *m_ucond; // 全局条件变量.
+
 
             std::string m_randomSeed;
             int m_result;
@@ -104,7 +106,7 @@ namespace GL{
 			
 			clientInfo *m_ci;
 
-			std::mutex *m_dlock;
+            WfirstRWLock *rwlock;
 			std::map<int,std::string>  m_loginId;
     };
     

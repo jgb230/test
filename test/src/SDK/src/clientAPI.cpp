@@ -182,15 +182,19 @@ namespace GL{
             result = document["result"].GetInt();
         }
         int uid = 0;
+        std::string proid;
         if (result != 1){
             LOG("msg: %s, result: %d", document["msg"].GetString(), result);
         }else {
             if (document.HasMember("uid") && document["uid"].IsInt()){
                 uid = document["uid"].GetInt();
             }
+            if (document.HasMember("seq") && document["seq"].IsString()){
+                proid = document["seq"].GetString();
+            }
             LOG("login uid: %d , result: %d", uid, result); 
         }
-        m_clientMsg->setUid(uid, result);
+        m_clientMsg->setUid(uid, result, proid);
         return 0;
     }
 
