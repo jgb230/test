@@ -80,12 +80,14 @@ namespace GL{
                 return -1;
             }
         }
-
+		std::string appId = "";
+		std::string appKey = "";
+		int type = 0;
 		for (auto iter = m_ci->appId_key.begin(); iter != m_ci->appId_key.end(); iter++) {
-			std::string appId = iter->appId;
-			std::string appKey = iter->appKey;
-			int type = iter->type;
-			int ret = servLogin(appId, type);
+			appId = iter->appId;
+			appKey = iter->appKey;
+			type = iter->type;
+			ret = servLogin(appId, type);
 			if (ret != 0) {
 				LOG("servLogin error! errno:%d", ret);
 				return ret;

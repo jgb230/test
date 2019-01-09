@@ -20,7 +20,7 @@ namespace GL{
 
         LOG("");
 
-        if (ci->appId_key.size == 0 || (ci->appId_key.begin()->appId.length == 0 || ci->appId_key.begin()->appKey.length == 0)){
+        if (ci->appId_key.size() == 0 || (ci->appId_key.begin()->appId.length() == 0 || ci->appId_key.begin()->appKey.length() == 0)){
             LOG("appId or appKey is empty,begin elu appId:%s appKey:%s", ci->appId_key.begin()->appId, ci->appId_key.begin()->appKey);
             return -1;
         }
@@ -42,11 +42,15 @@ namespace GL{
 				return -1;
 			}
 		}
+		std::string appId = "";
+		std::string appKey = "";
+		int type = 0;
+		int ret = 0;
 		for (auto iter = ci->appId_key.begin(); iter != ci->appId_key.end(); iter++) {
-			std::string appId = iter->appId;
-			std::string appKey = iter->appKey;
-			int type = iter->type;
-			int ret = m_clientMsg->servLogin(appId, type);
+			appId = iter->appId;
+			appKey = iter->appKey;
+			type = iter->type;
+			ret = m_clientMsg->servLogin(appId, type);
 			if (ret != 0) {
 				LOG("servLogin error! errno:%d", ret);
 				return ret;
