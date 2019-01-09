@@ -20,8 +20,8 @@ namespace GL{
 
         LOG("");
 
-        if (ci->appId.empty() || ci->appKey.empty()){
-            LOG("appId or appKey is empty, appId:%s appKey:%s", ci->appId.c_str(), ci->appKey.c_str());
+        if (ci->appId_key.size == 0 || (ci->appId_key.begin()->appId.length == 0 || ci->appId_key.begin()->appKey.length == 0)){
+            LOG("appId or appKey is empty,begin elu appId:%s appKey:%s", ci->appId_key.begin()->appId, ci->appId_key.begin()->appKey);
             return -1;
         }
 
@@ -42,17 +42,22 @@ namespace GL{
 				return -1;
 			}
 		}
-		
-        int ret = m_clientMsg->servLogin(m_ci->appId, m_ci->type);
-        if (ret != 0){
-            LOG("servLogin error! errno:%d", ret);
-            return ret;
-        }
-        ret = m_clientMsg->servAuth(m_ci->appId, m_ci->appKey);
-        if (ret != 0){
-            LOG("servAuth error! errno:%d", ret);
-            return ret;
-        }
+		for (auto iter = ci->appId_key.begin(); iter != ci->appId_key.end(); iter++) {
+			std::string appId = iter->appId;
+			std::string appKey = iter->appKey;
+			int type = iter->type;
+			int ret = m_clientMsg->servLogin(appId, type);
+			if (ret != 0) {
+				LOG("servLogin error! errno:%d", ret);
+				return ret;
+			}
+			ret = m_clientMsg->servAuth(appId, appKey);
+			if (ret != 0) {
+				LOG("servAuth error! errno:%d", ret);
+				return ret;
+			}
+		}
+        
 
         return 0;
 
@@ -65,16 +70,16 @@ namespace GL{
         return m_client;
     }
 
-    int Client::sendMsg(int uid, const std::string &msg){
-        return m_clientMsg->aichat(uid, msg, m_ci->appId);
+    int Client::sendMsg(std::string &appId, int uid, const std::string &msg){
+        return m_clientMsg->aichat(uid, msg, appId);
     }
 
-    int Client::login(const std::string &proId, int *uid){
-        return m_clientMsg->login(m_ci->appId, proId, uid);
+    int Client::login(const std::string &appId, const std::string &proId, int *uid){
+        return m_clientMsg->login(appId, proId, uid);
     }
 
-    int Client::logout(const std::string &proId, int uid){
-        return m_clientMsg->logout(m_ci->appId, proId, uid);
+    int Client::logout(const std::string &appId, const std::string &proId, int uid){
+        return m_clientMsg->logout(appId, proId, uid);
     }
 
     void  Client::start(){

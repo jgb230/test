@@ -2,8 +2,6 @@
 #include <stdio.h>  
 #include <stdlib.h>
 
-#include <regex.h>
-
 #include "clientAPI.hpp"
 #ifdef WIN32
 #include <windows.h>
@@ -34,66 +32,13 @@ class mycallBack : public GL::callBack {
 
 
 
-int main1(int argc,char **argv)
-{
-    int i,j=0;
-    char acErrBuf[256];
-    int iRet=-1;
-    regex_t tReg;    //定义一个正则实例
-    const char *strPattern = "aaa(?<=2000)Windows";//定义模式串
-    //profile-level-id=640020;profile-level-id=640021; 相同的,只能匹配前一个
-    char *pStrBuf = "aaa2000Windows";   //定义待匹配串
-    const size_t dwMatch = 5;    //定义匹配结果最大允许数        //表示允许几个匹配
-    regmatch_t atMatch[5];   //定义匹配结果在待匹配串中的下标范围    //存储匹配串位置的数组
-    //数组0单元存放主正则表达式位置，后边的单元依次存放子正则表达式位置
-
-
-
-    //REG_ICASE 匹配字母时忽略大小写。
-    iRet =regcomp(&tReg, strPattern, REG_EXTENDED);    //编译正则模式串
-    if(iRet != 0) 
-    {
-        regerror(iRet, &tReg, acErrBuf, sizeof(acErrBuf));
-        printf("Regex Error: %s\n", acErrBuf);
-    }
-    else
-    {
-        iRet = regexec(&tReg, pStrBuf, dwMatch, atMatch, 0); //匹配他
-        if (iRet == REG_NOMATCH)
-        { //如果没匹配上
-            printf("No Match\n");
-        }
-        else if (iRet == REG_NOERROR)
-        {  //如果匹配上了
-            printf("Match\n");
-            for(j=0;j<dwMatch;j++)
-            {
-                for (i= atMatch[j].rm_so; i < atMatch[j].rm_eo; i++)
-                { //遍历输出匹配范围的字符串
-                    printf("%c", pStrBuf[i]);
-                }
-                printf("\n");
-            }
-        }
-        else
-        {
-            printf("Unknow err:%d",iRet);
-        }
-        
-        regfree(&tReg);  //释放正则表达式
-    }
-    
-    return 0;
-}
-
-
-void login(int i){
+void login(std::string appId, int i){
     
     std::string proid = "jgbtest" + std::to_string(i);
 
     std::string msg = "清除肾炎标签1";
     int uid = 0;
-    int ret = GL::Client::getInstance()->login(proid, &uid);
+    int ret = GL::Client::getInstance()->login(appId, proid, &uid);
     if (ret != 0){
         LOG("login faile");
     }
@@ -101,29 +46,37 @@ void login(int i){
     LOG("====udi : %d proid, %s" ,uid , proid.c_str());
 	
     for (int i = 0; i < 15; i++){
-        int ret = GL::Client::getInstance()->sendMsg(uid, msg);
+        int ret = GL::Client::getInstance()->sendMsg(appId, uid, msg);
         if (0 != ret){
             LOG("send mes error: %s errno : %d\n",strerror(ret),ret);
         }
+
+		char a[4] = "";
+		if (i == 1) {
+			a[5] = 'a';
+			LOG(" ++++++%s", a[5]);
+	}
+		
 #ifdef WIN32
 		Sleep(1000);
 #else
 		Sleep(1);
 #endif
     }
-	GL::Client::getInstance()->logout(proid, uid);
+	GL::Client::getInstance()->logout(appId, proid, uid);
 
 }
 
 int main(){
  
-    
+	std::string appId = "4.00002";
+	std::string appKey = "!4j7oTLOXIKOFW@P";
+	int type = 1;
+
 	GL::clientInfo ci;
 	ci.ip = "172.16.0.27";
 	ci.port = 2345;
-	ci.appId = "4.00002";
-	ci.appKey = "!4j7oTLOXIKOFW@P";
-	ci.type = 1;
+	ci.appId_key.push_back(*(new GL::app(appId, appKey, type)));
 	ci.version = 0x01;
 	ci.magic = '$';
 
@@ -138,7 +91,7 @@ int main(){
 
     std::thread th[5];
     for (int i = 0; i < 5; ++i){
-        th[i] = std::thread(login, i);
+        th[i] = std::thread(login, appId, i);
     }
     
     for (int i = 0; i < 5; ++i){

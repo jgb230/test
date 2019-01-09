@@ -34,9 +34,9 @@ namespace GL{
 		Client();
 		~Client();
 		int initClient(const clientInfo *ci, callBack *cb, GL::HDL hand);
-		int login(const std::string &proId, int *uid);
-		int sendMsg(int uid, const std::string &msg);
-		int logout(const std::string &proId, int uid);
+		int login(const std::string &appId, const std::string &proId, int *uid);
+		int sendMsg(std::string &appId, int uid, const std::string &msg);
+		int logout(const std::string &appId, const std::string &proId, int uid);
 
 		static Client *getInstance();
 

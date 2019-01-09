@@ -61,12 +61,21 @@ namespace GL{
     }HEAD,*PHEAD;
     #pragma pack(pop)
 	
-	typedef struct clientInfo {
-		std::string ip;
-		int port;
+	typedef struct app {
 		std::string appId;
 		std::string appKey;
 		int type;
+		app(std::string &appid, std::string &appkey, int tp) {
+			appId = appid;
+			appKey = appkey;
+			type = tp;
+		}
+	};
+
+	typedef struct clientInfo {
+		std::string ip;
+		int port;
+		std::vector<app> appId_key;
 		uint8_t version;
 		uint8_t magic;
 	}clientInfo;

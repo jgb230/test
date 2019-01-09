@@ -81,12 +81,20 @@ namespace GL{
             }
         }
 
-        unique_readguard<WfirstRWLock> lc(*rwlock);
-		std::map<int, std::string>::iterator iter = m_loginId.begin();
-		int uid = 0;
-		LOG("relogin ");
-		for (; iter != m_loginId.end(); iter++) {
-			login(m_ci->appId, iter->second, &uid);
+		for (auto iter = m_ci->appId_key.begin(); iter != m_ci->appId_key.end(); iter++) {
+			std::string appId = iter->appId;
+			std::string appKey = iter->appKey;
+			int type = iter->type;
+			int ret = servLogin(appId, type);
+			if (ret != 0) {
+				LOG("servLogin error! errno:%d", ret);
+				return ret;
+			}
+			ret = servAuth(appId, appKey);
+			if (ret != 0) {
+				LOG("servAuth error! errno:%d", ret);
+				return ret;
+			}
 		}
 
         LOG(" reconnect !");
