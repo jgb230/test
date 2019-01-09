@@ -20,7 +20,7 @@ namespace GL{
 
         LOG("");
 
-        if (ci->appId_key.size == 0 || (ci->appId_key.begin()->appId.length == 0 || ci->appId_key.begin()->appKey.length == 0)){
+        if (ci->appId_key.size() == 0 || (ci->appId_key.begin()->appId.length() == 0 || ci->appId_key.begin()->appKey.length() == 0)){
             LOG("appId or appKey is empty,begin elu appId:%s appKey:%s", ci->appId_key.begin()->appId, ci->appId_key.begin()->appKey);
             return -1;
         }
