@@ -10,6 +10,10 @@ extern "C"{
 #include <time.h>
 #include <sys/time.h>
 #include <memory>
+#include <thread>
+
+#include <iostream>
+#include <sstream>
 
 #include "boost/algorithm/string/split.hpp"
 #include <boost/algorithm/string/classification.hpp>
@@ -61,7 +65,6 @@ char** convertToSds(const std::vector<std::string>& vecCammond)
     }
     return pSds;
 }
-
 
 bool incr(const char *pcKey, int &nOut, redisClusterContext* _context)
 {
@@ -159,6 +162,147 @@ bool zadd(const char* key,const int score, const char* value, redisClusterContex
     return true;
 }
 
+bool del(const char* key, redisClusterContext* _context)
+{
+    if(!key) return false;
+
+    char cmd[24 + strlen(key)] = { 0 };
+    sprintf(cmd, "del %s", key);
+    TESLOG(ERROR, "Execute cmd[%s]\n", cmd);
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected\n", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "del %s", key);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
+        return false;
+    }
+    freeReplyObject(reply);
+
+    return true;
+}
+
+bool Set(const char* key, const char* value, redisClusterContext* _context)
+{
+    if(!key) return false;
+
+    char cmd[24 + strlen(key) + strlen(value)] = { 0 };
+    sprintf(cmd, "set %s %s", key, value);
+    TESLOG(ERROR, "Execute cmd[%s]\n", cmd);
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected\n", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "set %s %s", key, value);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
+        return false;
+    }
+    freeReplyObject(reply);
+
+    return true;
+}
+
+bool get(const char* key, std::string &Out, redisClusterContext* _context)
+{
+    if(!key) return false;
+
+    char cmd[24 + strlen(key)] = { 0 };
+    sprintf(cmd, "get %s ", key);
+
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected\n", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "get %s", key);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
+        return false;
+    }
+    switch(reply->type)
+    {
+        case REDIS_REPLY_INTEGER:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%llu]\n", cmd, reply->integer);
+            break;
+        case REDIS_REPLY_STRING:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]\n", cmd, reply->str);
+            break;
+        case REDIS_REPLY_STATUS:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]\n", cmd, reply->str);
+            break;    
+        case REDIS_REPLY_NIL:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply Nil\n", cmd);
+            break;
+        default:
+            break;
+    }
+
+	Out = reply->str;
+    freeReplyObject(reply);
+    return true;
+}
+
+bool hgetall(const char *pcKey, std::map<std::string, std::string> &mapOut, redisClusterContext* _context){
+    if(!pcKey) return false;
+
+    char cmd[24 + strlen(pcKey)] = { 0 };
+    sprintf(cmd, "HGETALL %s", pcKey);
+
+    if(!_context) 
+    {
+        return false;
+    }
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "HGETALL %s", pcKey);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply", cmd);
+        return false;
+    }
+
+    switch(reply->type)
+    {
+        case REDIS_REPLY_INTEGER:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%llu]", cmd, reply->integer);
+            break;
+        case REDIS_REPLY_STRING:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]", cmd, reply->str);
+            break;
+        case REDIS_REPLY_ARRAY:
+            TESLOG(INFO, "Execute cmd[%s] -- Elements[%lu]", cmd, reply->elements);
+            break;
+        case REDIS_REPLY_STATUS:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]", cmd, reply->str);
+            break;
+        case REDIS_REPLY_NIL:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply Nil", cmd);
+            break;
+        default:
+            break;
+    }
+    if (mapOut.size() != 0){
+        mapOut.clear();
+    }
+    for (size_t i = 0; i < reply->elements; i+=2)
+    {
+        mapOut.insert(std::make_pair<std::string, std::string>(reply->element[i]->str, reply->element[i+1]->str));
+    }
+
+    freeReplyObject(reply);
+    return true;
+}
+
 void test(redisClusterContext* _context){
     TIMEBEGIN(1);
     //redis.call('del', KEYS[1], KEYS[2])
@@ -224,7 +368,6 @@ void test(redisClusterContext* _context){
     freeReplyObject(pReply);
     TIMEEND(1);
 }
-
 
 void test1(redisClusterContext* _context){
     TIMEBEGIN(1);
@@ -336,8 +479,6 @@ void test1(redisClusterContext* _context){
     TIMEEND(1);
 }
 
-
-
 void findIntersection(const std::string &strRobot, const std::map<std::string, std::string> &mapMemory,
                          std::set<std::string> &setTemp, redisClusterContext* 	_context)
 {
@@ -420,8 +561,6 @@ void findIntersection(const std::string &strRobot, const std::map<std::string, s
     TIMEEND(1);
 }
 
-
-
 void findIntersection1(const std::string &strRobot, const std::map<std::string, std::string> &mapMemory,
                          std::set<std::string> &setTemp, redisClusterContext* 	_context)
 {
@@ -489,6 +628,12 @@ const static string g_liftBracket = "{";
 const static string g_righeBracket = "}";
 const static string g_score = "score";
 const static string g_tilde = "~";
+const static std::string g_kstrPrimaryTableHeader	=	"mp_";
+const static std::string g_kstrIndexTableHeader		=	"mi_";
+const static std::string g_kstrMemoryId				=	"memory_id"; 
+const static std::string g_kstrLockName 			=	"distributed_lock";
+const static std::string g_kstrBeginTime			=	"BeginTime";
+const static std::string g_kstrEndTime				=	"EndTime";
 
 void add_test(const string &strRobot, const string &strKey, const std::vector<vecString> &vVecContent, redisClusterContext* 	_context)
 {
@@ -500,7 +645,14 @@ void add_test(const string &strRobot, const string &strKey, const std::vector<ve
     vector<string> vKeyMember;
     boost::split(vKeyMember, strKey, boost::is_any_of("_"), boost::token_compress_on);
 
-    int score = 2;
+    // 取出标记zadd的序列
+    int score = 0;
+    if (!incr(g_score.c_str(), score, _context))
+    {
+        TESLOG(ERROR, "incr %s %d fail!\n", g_score.c_str(), score);
+        TIMEEND(1);
+        return ;
+    }
 
     string strValue = "";
     vecString vecTmp;
@@ -512,13 +664,14 @@ void add_test(const string &strRobot, const string &strKey, const std::vector<ve
     }
     
     catsVector(vecTmp, "'", ",", strValue);
-    
+    // 拼接存入主表的内容
     string strLuaScript = boost::str(boost::format(" redis.call('sadd', KEYS[1], %1%) ") % strValue);
     vector<string> vKeys;
     int nI = 1;
     vKeys.push_back(strSetKey);
     
     string strTmpLua = "";
+    // 拼接索引表的Key, 并序列标记插入
     for (auto keyMember : vKeyMember)
     {
         strSublist = "{" + strRobot + "}" + "_"  + keyMember;
@@ -610,6 +763,568 @@ bool setMultiLatitude(const string &strRobot, const string &strKey, const std::v
     return true;
 }
 
+int splitMemoryId(const std::string &item)
+{
+    size_t stPos = item.find_last_of("_");
+    std::string	strMemoryId = item.substr(stPos+1); 
+    int nMemoryId = std::atoi(strMemoryId.c_str());
+    return nMemoryId;
+}
+
+void getMemory(const std::string &strRobot, const std::map<std::string, std::string> &mapCondition,
+    bool bFlag, std::vector<int> &vecMemoryId, redisClusterContext* _context)
+{
+    TIMEBEGIN(1);
+    vecMemoryId.clear();
+    
+    TESLOG(INFO, "getMemory, robot = %s, bflag = %d", strRobot.c_str(), bFlag);
+	std::map<std::string, std::string> mapMemory;
+	std::vector<std::string> vecNa;
+	std::vector<std::string> vecNb;
+    int nFieldNum = 0;
+    for(const auto &item : mapCondition)
+    {
+        TESLOG(INFO, "getMemory, key:%s, value:%s", item.first.c_str(), item.second.c_str());
+		if(item.second == "NA")
+		{
+			vecNa.push_back(item.first);
+		}
+		else if(item.second == "NB")
+		{
+			vecNb.push_back(item.first);
+            nFieldNum++;
+		}
+		else
+		{
+			mapMemory.insert(item);
+            nFieldNum++;
+		}
+    }
+
+    std::set<std::string> setTemp;
+    findIntersection(strRobot, mapMemory, setTemp, _context);
+    if(setTemp.empty())
+    {
+        TESLOG(INFO, "query condition is not exist");
+        TIMEEND(1);
+        return;
+    }
+    std::string cmd = "";
+    char ccmd[24 + cmd.length()] = { 0 };
+
+    if(bFlag)
+    {
+        std::string strKey;
+        std::map<std::string, std::string> mapOut;
+        for(const auto& item : setTemp)
+        {
+            strKey.clear();
+            mapOut.clear();
+            strKey = "mp_" + item;
+
+            if(hgetall(strKey.c_str(), mapOut, _context))
+            {
+				bool bFlag = true;
+				for(const auto & i : vecNa)
+				{
+					auto iter = mapOut.find(i);
+					if(iter != mapOut.end())
+					{
+						bFlag = false;
+						break;
+					}
+				}
+				if(!bFlag)
+				{
+					continue;
+				}
+				for(const auto & i : vecNb)
+				{
+					auto iter = mapOut.find(i);
+					if(iter == mapOut.end())
+					{
+						bFlag = false;
+						break;
+					}
+				}
+				if(!bFlag)
+				{
+					continue;
+				}
+
+                int nNum = 0;
+                for(const auto &item : mapOut)
+                {
+                    if((item.first == "BeginTime") || (item.first == "EndTime"))
+                    {
+                        continue;
+                    }
+                    ++nNum;
+                }
+                TESLOG(ERROR, "nNum: %d  nFieldNum: %d", nNum, nFieldNum);
+                if(nNum == nFieldNum)
+                {
+                    vecMemoryId.push_back(splitMemoryId(item));
+                }
+            }
+            else
+            {
+                TESLOG(ERROR, "hgetall %s failed", strKey.c_str());
+                TIMEEND(1);
+                return ;
+            }
+        }	
+    }
+    else
+    {
+		std::string strKey;
+        std::map<std::string, std::string> mapOut;
+        for(const auto& item : setTemp)
+        {
+            strKey.clear();
+            mapOut.clear();
+            strKey = "mp_" + item;
+
+            if(hgetall(strKey.c_str(), mapOut, _context))
+            {
+				bool bFlag = true;
+				for(const auto & i : vecNa)
+				{
+					auto iter = mapOut.find(i);
+					if(iter != mapOut.end())
+					{
+						bFlag = false;
+						break;
+					}
+				}
+				if(!bFlag)
+				{
+					continue;
+				}
+				for(const auto & i : vecNb)
+				{
+					auto iter = mapOut.find(i);
+					if(iter == mapOut.end())
+					{
+						bFlag = false;
+						break;
+					}
+				}
+				if(!bFlag)
+				{
+					continue;
+				}
+				vecMemoryId.push_back(splitMemoryId(item));
+			}
+		}
+    }
+    TIMEEND(1);
+}
+
+bool delMemoryAchieve(const std::string &strRobot, const std::multimap<std::string, std::pair<std::string, std::string>> &mapCondition, 
+                        bool bFlag, redisClusterContext* _context)
+{
+	TIMEBEGIN(1);
+	TESLOG(INFO, "delMemory, robot = %s, bFlag = %d", strRobot.c_str(), bFlag);
+	std::map<std::string, std::string> mapMemory;
+	for(const auto& item : mapCondition)
+	{
+		TESLOG(INFO, "operator: %s, 标签名:%s, 标签值:%s", item.first.c_str(), item.second.first.c_str(), item.second.second.c_str());
+		mapMemory.insert(item.second);
+	}
+	std::vector<int> vecMemoryId;
+
+	getMemory(strRobot, mapMemory, bFlag, vecMemoryId, _context);
+	if(vecMemoryId.empty())	
+	{
+		TESLOG(INFO, "the memory is not existed");
+		TIMEEND(1);
+		return true;
+	}
+	std::set<std::string> setTemp;
+	for(auto item : vecMemoryId)
+	{
+		setTemp.insert(boost::str(boost::format("{%1%}_%2%")% strRobot % item ));
+	}
+
+	std::vector<std::string> vecDelPrimaryTable;
+	std::vector<std::string> vecDelIndex;
+	std::map<std::string, std::vector<std::string>> mapIndexItem;
+	if(bFlag)
+	{
+		std::string strIndex;
+		for(const auto &item : mapMemory)
+		{
+			strIndex = g_kstrIndexTableHeader + "{" + strRobot + "}_" + item.first + "_" + item.second;
+			vecDelIndex.push_back(strIndex);
+		}	
+
+		std::string strKey;
+		std::map<std::string, std::string> mapOut;
+		for(const auto &item : setTemp)
+		{
+			strKey.clear();
+			mapOut.clear();
+			strKey = g_kstrPrimaryTableHeader + item;
+			if(hgetall(strKey.c_str(), mapOut, _context))
+			{
+				size_t sNum = 0;
+				for(const auto &item : mapOut)
+				{
+					if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+					{
+						continue;
+					}
+					++sNum;
+				}
+				if(sNum == mapMemory.size())
+				{
+					vecDelPrimaryTable.push_back(strKey);
+					mapIndexItem[item] = vecDelIndex;
+				}
+			}
+			else
+			{
+				TESLOG(ERROR, "hvals %s failed", strKey.c_str());
+				TIMEEND(1);
+				return false;
+			}
+		}
+		if(vecDelPrimaryTable.empty())
+		{
+			TESLOG(INFO, "complete matching is not existed");
+			TIMEEND(1);
+			return false;
+		}
+	}
+	else
+	{
+		std::string strKey;
+		std::map<std::string, std::string> mapOut;
+		for(const auto& item : setTemp)
+		{
+			strKey = g_kstrPrimaryTableHeader + item;
+			vecDelPrimaryTable.push_back(strKey);
+			mapOut.clear();
+            vecDelIndex.clear();
+			if(!hgetall(strKey.c_str(), mapOut, _context))
+			{
+				TESLOG(ERROR, "hgetall %s failed", strKey.c_str());
+				TIMEEND(1);
+				return false;
+			}
+			std::string strIndex;
+			for(const auto &item : mapOut)
+			{
+				if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+				{
+					continue;
+				}
+				strIndex = g_kstrIndexTableHeader + "{" + strRobot + "}_" + item.first + "_" + item.second;
+				vecDelIndex.push_back(strIndex);
+			}
+			mapIndexItem[item] = vecDelIndex;
+		}
+
+	}
+		
+	std::string strLuaScript = "redis.call('del' ";
+	int nI = 0;
+	for(const auto &item : vecDelPrimaryTable)
+	{
+		++nI;
+		strLuaScript += boost::str(boost::format(" ,KEYS[%1%]") % nI);	
+	}
+	strLuaScript += ") ";
+
+    int argNum = 0;
+	for(const auto &item : mapIndexItem)
+	{
+        ++argNum;
+		for(const auto &em : item.second)
+		{
+			++nI;
+			strLuaScript += boost::str(boost::format(" redis.call('srem' ,KEYS[%1%] ,'%2%')") % nI % item.first);
+		}
+	}
+
+	TESLOG(INFO, "del memory : %s", strLuaScript.c_str());
+
+	const sds sdsLuaScript = sdsnew(strLuaScript.c_str());
+	std::vector<std::string> vecCammond;
+	vecCammond.push_back("EVAL");
+	vecCammond.push_back(sdsLuaScript);
+	sdsfree(sdsLuaScript);
+	vecCammond.push_back(std::to_string(nI));
+	for(const auto &item : vecDelPrimaryTable)
+	{
+		vecCammond.push_back(item);
+	}
+
+	for(const auto &item : mapIndexItem)
+	{
+		for(const auto &em : item.second)
+		{
+			vecCammond.push_back(em);
+		}
+	}
+
+	char **pcArgv = convertToSds(vecCammond);
+	size_t stArgc = vecCammond.size();
+	//size_t *pstArgvlen = (size_t *)malloc(stArgc * sizeof(size_t));
+	std::unique_ptr<size_t[]> pArgvlen(new size_t[stArgc]);
+	for (int nJ = 0; nJ < stArgc; nJ++)
+	{
+		pArgvlen[nJ] = sdslen(pcArgv[nJ]);
+	}
+
+	redisReply *pReply = (redisReply *)redisClusterCommandArgv(_context, stArgc, (const char **)pcArgv, pArgvlen.get());
+	if(pReply == NULL)
+	{
+		sdsfreesplitres(pcArgv, stArgc);	
+		TESLOG(ERROR, "pReply == NULL");
+		TIMEEND(1);
+		return false;
+	}
+	sdsfreesplitres(pcArgv, stArgc);	
+	freeReplyObject(pReply);
+
+	TIMEEND(1);
+	return true;
+}
+
+bool delMemoryAchieve1(const std::string &strRobot, const std::multimap<std::string, std::pair<std::string, std::string>> &mapCondition, 
+                        bool bFlag, redisClusterContext* _context)
+{
+	TIMEBEGIN(1);
+	TESLOG(INFO, "delMemory, robot = %s, bFlag = %d", strRobot.c_str(), bFlag);
+	std::map<std::string, std::string> mapMemory;
+	for(const auto& item : mapCondition)
+	{
+		TESLOG(INFO, "operator: %s, 标签名:%s, 标签值:%s", item.first.c_str(), item.second.first.c_str(), item.second.second.c_str());
+		mapMemory.insert(item.second);
+	}
+	std::vector<int> vecMemoryId;
+
+	getMemory(strRobot, mapMemory, bFlag, vecMemoryId, _context);
+	if(vecMemoryId.empty())	
+	{
+		TESLOG(INFO, "the memory is not existed");
+		TIMEEND(1);
+		return true;
+	}
+	std::set<std::string> setTemp;
+	for(auto item : vecMemoryId)
+	{
+		setTemp.insert(boost::str(boost::format("{%1%}_%2%")% strRobot % item ));
+	}
+
+	std::vector<std::string> vecDelPrimaryTable;
+	std::vector<std::string> vecDelIndex;
+	std::map<std::string, std::vector<std::string>> mapIndexItem;
+	if(bFlag)
+	{
+		std::string strIndex;
+		for(const auto &item : mapMemory)
+		{
+			strIndex = g_kstrIndexTableHeader + "{" + strRobot + "}_" + item.first + "_" + item.second;
+			vecDelIndex.push_back(strIndex);
+		}	
+
+		std::string strKey;
+		std::map<std::string, std::string> mapOut;
+		for(const auto &item : setTemp)
+		{
+			strKey.clear();
+			mapOut.clear();
+			strKey = g_kstrPrimaryTableHeader + item;
+			if(hgetall(strKey.c_str(), mapOut, _context))
+			{
+				size_t sNum = 0;
+				for(const auto &item : mapOut)
+				{
+					if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+					{
+						continue;
+					}
+					++sNum;
+				}
+				if(sNum == mapMemory.size())
+				{
+					vecDelPrimaryTable.push_back(strKey);
+					mapIndexItem[item] = vecDelIndex;
+				}
+			}
+			else
+			{
+				TESLOG(ERROR, "hvals %s failed", strKey.c_str());
+				TIMEEND(1);
+				return false;
+			}
+		}
+		if(vecDelPrimaryTable.empty())
+		{
+			TESLOG(INFO, "complete matching is not existed");
+			TIMEEND(1);
+			return false;
+		}
+	}
+	else
+	{
+		std::string strKey;
+		std::map<std::string, std::string> mapOut;
+		for(const auto& item : setTemp)
+		{
+			strKey = g_kstrPrimaryTableHeader + item;
+			vecDelPrimaryTable.push_back(strKey);
+			mapOut.clear();
+            vecDelIndex.clear();
+			if(!hgetall(strKey.c_str(), mapOut, _context))
+			{
+				TESLOG(ERROR, "hgetall %s failed", strKey.c_str());
+				TIMEEND(1);
+				return false;
+			}
+			std::string strIndex;
+			for(const auto &item : mapOut)
+			{
+				if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+				{
+					continue;
+				}
+				strIndex = g_kstrIndexTableHeader + "{" + strRobot + "}_" + item.first + "_" + item.second;
+				vecDelIndex.push_back(strIndex);
+			}
+			mapIndexItem[item] = vecDelIndex;
+		}
+
+	}
+		
+	std::string strLuaScript = "redis.call('del' ";
+	int nI = 0;
+	for(const auto &item : vecDelPrimaryTable)
+	{
+		++nI;
+		strLuaScript += boost::str(boost::format(" ,KEYS[%1%]") % nI);	
+	}
+	strLuaScript += ") ";
+
+    int argNum = 0;
+	for(const auto &item : mapIndexItem)
+	{
+        ++argNum;
+		for(const auto &em : item.second)
+		{
+			++nI;
+			strLuaScript += boost::str(boost::format(" redis.call('srem' ,KEYS[%1%] ,ARGV[%2%])") % nI % argNum);
+		}
+	}
+
+	TESLOG(INFO, "del memory : %s", strLuaScript.c_str());
+
+	const sds sdsLuaScript = sdsnew(strLuaScript.c_str());
+	std::vector<std::string> vecCammond;
+	vecCammond.push_back("EVAL");
+	vecCammond.push_back(sdsLuaScript);
+	sdsfree(sdsLuaScript);
+	vecCammond.push_back(std::to_string(nI));
+	for(const auto &item : vecDelPrimaryTable)
+	{
+		vecCammond.push_back(item);
+	}
+
+	for(const auto &item : mapIndexItem)
+	{
+		for(const auto &em : item.second)
+		{
+			vecCammond.push_back(em);
+		}
+	}
+
+    for(const auto &item : mapIndexItem)
+	{
+        vecCammond.push_back(item.first);
+	}
+
+	char **pcArgv = convertToSds(vecCammond);
+	size_t stArgc = vecCammond.size();
+	//size_t *pstArgvlen = (size_t *)malloc(stArgc * sizeof(size_t));
+	std::unique_ptr<size_t[]> pArgvlen(new size_t[stArgc]);
+	for (int nJ = 0; nJ < stArgc; nJ++)
+	{
+		pArgvlen[nJ] = sdslen(pcArgv[nJ]);
+	}
+
+	redisReply *pReply = (redisReply *)redisClusterCommandArgv(_context, stArgc, (const char **)pcArgv, pArgvlen.get());
+	if(pReply == NULL)
+	{
+		sdsfreesplitres(pcArgv, stArgc);	
+		TESLOG(ERROR, "pReply == NULL");
+		TIMEEND(1);
+		return false;
+	}
+	sdsfreesplitres(pcArgv, stArgc);	
+	freeReplyObject(pReply);
+
+	TIMEEND(1);
+	return true;
+}
+
+bool run(std::string key){
+    redisClusterContext* 	_context;
+    std::string 			_addr = "172.16.0.23:7000";
+    int flags = HIRCLUSTER_FLAG_NULL;
+    struct timeval timeout = { 1, 500000 }; // 1.5 seconds
+    _context = redisClusterConnectWithTimeout(_addr.c_str(), timeout, flags);
+    if(_context == NULL || _context->err)
+    {
+        if (_context) 
+        {
+            TESLOG(ERROR, "Redis Connection Error[%s]\n", _context->errstr);
+            redisClusterFree(_context);
+        } 
+        else 
+        {
+            TESLOG(ERROR, "Redis Connection Error[can't allocate redis context]\n");
+        }
+        _context = NULL;
+    }
+    TESLOG(INFO, "Redis Connect to addr[%s] Success\n", _addr.c_str());
+
+    Set(key.c_str(), "123", _context);
+    std::string out;
+    get(key.c_str(), out, _context);
+    TESLOG(INFO, "key %s, out %s\n", key.c_str(), out.c_str());
+    del(key.c_str(), _context);
+    sleep(10);
+    if(_context)
+    {
+        TESLOG(ERROR, "Disconnect From Redis Server[%s]\n", _addr.c_str());
+        redisClusterFree(_context);
+    }
+}
+
+bool thread_run(int num){
+
+    std::string key = "jgbtest";
+    char k[100]= {0};
+    std::thread *p[num];
+    for(int i = 0; i < num; i++){
+        sprintf(k, "%s%d", key.c_str(), i);
+        std::string keys = k;
+        TESLOG(INFO, "keys %s\n", keys.c_str());
+        p[i] = new std::thread(run, keys);
+        if (p[i] == nullptr) {
+            TESLOG(INFO, "create pthread error!\n");
+            return -1;
+        }
+        
+    }
+    for(int i = 0; i < num; i++){
+        p[i]->join();
+    }
+}
+
 void redis_test(){
     redisClusterContext* 	_context;
     std::string 			_addr = "172.16.0.23:7000";
@@ -637,59 +1352,34 @@ void redis_test(){
 // mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
 // mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
 // mi_{181026033809ffdc196c965aRI000004}_症状_咳嗽
-    mapMemory.insert(make_pair("需提醒","是"));
-    mapMemory.insert(make_pair("程度","剧烈"));
+    mapMemory.insert(make_pair("习惯行为","下班"));
+    mapMemory.insert(make_pair("主语","1812111752213087b6fe75a7RI003706"));
+    mapMemory.insert(make_pair("日期","NA"));
+    mapMemory.insert(make_pair("分钟","NA"));
     //mapMemory.insert(make_pair("类型","刺痛"));
 
-    std::set<std::string> setTemp;
+    std::vector<int> setTemp;
 
     TESLOG(INFO, "fun\n");
-    findIntersection("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
+    getMemory("1812111752213087b6fe75a7RI003706", mapMemory, false, setTemp, _context);
     for (auto &iter: setTemp){
-        TESLOG(INFO, "%s\n", iter.c_str());
+        TESLOG(INFO, "%d\n", iter);
     }
-    TESLOG(INFO, "fun1\n");
-    findIntersection1("181026033809ffdc196c965aRI000004", mapMemory, setTemp, _context);
-    for (auto &iter: setTemp){
-        TESLOG(INFO, "%s\n", iter.c_str());
-    }
-    // TESLOG(INFO, "test\n");
-    // test(_context);
-    // TESLOG(INFO, "test1\n");
-    // test1(_context);
+    
 #endif
 
-    std::vector<vecString> vVecContent;
-    vecString temp;
-    temp.push_back("1");
-    temp.push_back("2");
-    temp.push_back("3");
-    vVecContent.push_back(temp);
-    temp.clear();
-
-
-    temp.push_back("4");
-    temp.push_back("5");
-    temp.push_back("6");
-    vVecContent.push_back(temp);
-    temp.clear();
-
-    temp.push_back("7");
-    temp.push_back("8");
-    temp.push_back("9");
-    vVecContent.push_back(temp);
-    temp.clear();
-
-    add_test("999999999", "xxx_yyy_zzz", vVecContent, _context);
-
-    setMultiLatitude("999999999", "xxx_yyy_zzz", vVecContent, _context);
-
+#if 0
+    std::multimap<std::string, std::pair<std::string, std::string>> mapCondition;
+    mapCondition.emplace(std::make_pair("=",std::make_pair("姓名","江冠斌")));
+    mapCondition.emplace(std::make_pair("=",std::make_pair("年龄","23")));
+    delMemoryAchieve("000000000000000000000000RI000000", mapCondition, true, _context);
+#endif
+#if 1
+    thread_run(1000);
+#endif
     if(_context)
     {
         TESLOG(ERROR, "Disconnect From Redis Server[%s]\n", _addr.c_str());
         redisClusterFree(_context);
     }
 }
-
-
-

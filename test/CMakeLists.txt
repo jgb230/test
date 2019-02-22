@@ -12,12 +12,17 @@ add_compile_options(-std=c++11)
 set(CMAKE_BUILD_TYPE Debug)
 
 project(jgbtest)
-include_directories(include
+include_directories(./
+					include
+					./redis/include
+					../boost_1_64_0
 					./src/SDK/include
 					./src/SDK/include/rapidjson)
 
 link_directories(../
 				./build/src/SDK/Debug/
+				./redis/lib
+				../boost_1_64_0/stage/lib
 				)
 
 
@@ -26,8 +31,10 @@ link_directories(../
 #add_subdirectory(mem)
 add_subdirectory(./src/SDK)
 
-set(LIBS
+set(LIBS curl
 		clientAPI
+		boost_program_options
+		hiredis_vip
 		)
 
 

@@ -2,6 +2,8 @@
 #include <stdio.h>  
 #include <stdlib.h>
 
+#include <redis/redisJgb.hpp>
+#include <http/httpTest.hpp>
 #include "clientAPI.hpp"
 #ifdef WIN32
 #include <windows.h>
@@ -50,12 +52,6 @@ void login(std::string appId, int i){
         if (0 != ret){
             LOG("send mes error: %s errno : %d\n",strerror(ret),ret);
         }
-
-		char a[4] = "";
-		if (i == 1) {
-			a[5] = 'a';
-			LOG(" ++++++%s", a[5]);
-	}
 		
 #ifdef WIN32
 		Sleep(1000);
@@ -67,7 +63,7 @@ void login(std::string appId, int i){
 
 }
 
-int main(){
+int main_app(){
  
 	std::string appId = "4.00002";
 	std::string appKey = "!4j7oTLOXIKOFW@P";
@@ -117,4 +113,19 @@ void _printTime(const char *func, long int line) {
 	strftime(strTime, 29, "%Y-%m-%d %H:%M:%S", &tm);
 	printf("%d %s.%ld %-20s %-6d ", getpid(), strTime, tv.tv_usec, func, line);
 #endif
+}
+
+
+
+int main_redis(){
+	redis_test();
+}
+
+int main_http(){
+	httpTest();
+}
+
+
+int main(){
+	main_http();
 }
