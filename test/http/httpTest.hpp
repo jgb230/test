@@ -39,8 +39,8 @@ size_t req_reply(void* ptr, size_t size, size_t nmemb, void* stream)
 *******************************************************/
 int getTencentAnswer()
 {
-    string appid = "2112077926";
-    string userid = "WDiV59cd47G9qAaV";
+    string appid = "2108193805";
+    string userid = "NjIjKPbqCKi7f1bs";
     string strUrl = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat";
     // get third party answer
     std::string strResponse = "", strValue = "";
@@ -57,7 +57,7 @@ int getTencentAnswer()
         mapParam.insert(std::make_pair("time_stamp", to_string(time)));
         mapParam.insert(std::make_pair("nonce_str", to_string(time)));
         mapParam.insert(std::make_pair("session", "9999999999"));
-        mapParam.insert(std::make_pair("question", "你好"));
+        mapParam.insert(std::make_pair("question", "你叫什么"));
 
         CXXUrl::SimpleForm *sfParam = new CXXUrl::SimpleForm();
         for (auto iter: mapParam){
