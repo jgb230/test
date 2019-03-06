@@ -5,6 +5,7 @@
 #include <redis/redisJgb.hpp>
 #include <http/httpTest.hpp>
 #include "clientAPI.hpp"
+#include "http/websocket.hpp"
 #ifdef WIN32
 #include <windows.h>
 #endif
@@ -125,7 +126,10 @@ int main_http(){
 	httpTest();
 }
 
+int main_websocket(){
+	websocketTest();
+}
 
 int main(){
-	main_http();
+	main_websocket();
 }

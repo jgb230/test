@@ -66,6 +66,102 @@ char** convertToSds(const std::vector<std::string>& vecCammond)
     return pSds;
 }
 
+
+bool zinterstore(const char* robot, const char** key, const int number, std::string &strOut, redisClusterContext* _context)
+{
+    if(!key) return false;
+
+    char interstore[1024] = { 0 };
+
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute interstore[%s] Failed, No Connected", interstore);
+        return false;
+    }
+
+    int count = number + 3;
+    const char *keys[count];
+    char inter[64] = {0};
+    sprintf(inter, "{%s}:out:jgbtest", robot);
+    TESLOG(ERROR, "inter %s \n", inter);
+    char num[64] = {0};
+    sprintf(num, "%d", number);
+    TESLOG(ERROR, "num %s \n", num);
+    keys[0] = "ZINTERSTORE";
+    keys[1] = inter;
+    keys[2] = num;
+
+    for (int i = 0; i < number; i++){
+        keys[i + 3] = key[i];
+        TESLOG(ERROR, "keys %s \n", keys[i + 3]);
+    }
+
+
+    redisReply* reply = (redisReply*)redisClusterCommandArgv(_context, count, keys, nullptr );
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute interstore Failed, No Reply cc->type[%d], cc->errstr[%s]\n", 
+                                _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){ //　连接被关闭，重新执行命令
+            reply = (redisReply*)redisClusterCommandArgv(_context, count, keys, nullptr );
+            if (reply == NULL ){
+                TESLOG(ERROR, "reply == NULL, No Reply ,cc->type[%d], cc->errstr[%s]", 
+                                _context->err, _context->errstr);
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    char out[128] = { 0 };
+    sprintf(out, "ZRANGE {%s}:out:jgbtest -1 -1", robot);
+    TESLOG(ERROR, "out %s \n", out);
+    reply = (redisReply*)redisClusterCommand(_context, "ZRANGE {%s}:out:jgbtest -1 -1", robot);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute out[%s] Failed, No Reply  cc->type[%d], cc->errstr[%s]\n", 
+                                _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){ //　连接被关闭，重新执行命令
+            reply = (redisReply*)redisClusterCommand(_context, "ZRANGE {%s}:out:jgbtest -1 -1", robot);
+            if (reply == NULL ){
+                TESLOG(ERROR, "reply == NULL, No Reply ,cc->type[%d], cc->errstr[%s]", 
+                                _context->err, _context->errstr);
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    TESLOG(ERROR, "reply %d\n", reply->type);
+    switch(reply->type)
+    {
+    case REDIS_REPLY_INTEGER:
+        TESLOG(INFO, "Execute out[%s] -- Reply[%llu]", out, reply->integer);
+        break;
+    case REDIS_REPLY_STRING:
+        TESLOG(INFO, "Execute out[%s] -- Reply[%s]", out, reply->str);
+        break;
+    case REDIS_REPLY_STATUS:
+        TESLOG(INFO, "Execute out[%s] -- Reply[%s]", out, reply->str);
+        break;
+    case REDIS_REPLY_NIL:
+        TESLOG(INFO, "Execute out[%s] -- Reply Nil", out);
+        break;
+    default:
+        break;
+    }
+    TESLOG(ERROR, "element %p\n", reply->element);
+    TESLOG(ERROR, "str %s\n", (*reply->element)->str);
+    if ((reply->element) != NULL)
+    	strOut = (*reply->element)->str == NULL ? "" : (*reply->element)->str;
+
+    freeReplyObject(reply);
+
+    return strOut == "" ? false : true;
+
+}
+
 bool incr(const char *pcKey, int &nOut, redisClusterContext* _context)
 {
 	nOut = 0;
@@ -177,7 +273,7 @@ bool del(const char* key, redisClusterContext* _context)
     redisReply* reply =  (redisReply*)redisClusterCommand(_context, "del %s", key);
     if(reply == NULL)
     {
-        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s]\n", cmd, _context->err, _context->errstr);
         return false;
     }
     freeReplyObject(reply);
@@ -200,7 +296,7 @@ bool Set(const char* key, const char* value, redisClusterContext* _context)
     redisReply* reply =  (redisReply*)redisClusterCommand(_context, "set %s %s", key, value);
     if(reply == NULL)
     {
-        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s]\n", cmd, _context->err, _context->errstr);
         return false;
     }
     freeReplyObject(reply);
@@ -223,8 +319,14 @@ bool get(const char* key, std::string &Out, redisClusterContext* _context)
     redisReply* reply =  (redisReply*)redisClusterCommand(_context, "get %s", key);
     if(reply == NULL)
     {
-        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply\n", cmd);
-        return false;
+        TESLOG(INFO, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s], retry:\n", cmd, _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){
+            reply =  (redisReply*)redisClusterCommand(_context, "get %s", key);
+            if (reply == NULL ){
+                TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s]\n", cmd, _context->err, _context->errstr);
+                return false;
+            }
+        }
     }
     switch(reply->type)
     {
@@ -1293,6 +1395,7 @@ bool run(std::string key){
 
     Set(key.c_str(), "123", _context);
     std::string out;
+    sleep(120);
     get(key.c_str(), out, _context);
     TESLOG(INFO, "key %s, out %s\n", key.c_str(), out.c_str());
     del(key.c_str(), _context);
@@ -1327,7 +1430,7 @@ bool thread_run(int num){
 
 void redis_test(){
     redisClusterContext* 	_context;
-    std::string 			_addr = "172.16.0.23:7000";
+    std::string 			_addr = "172.16.0.19:7003";
     int flags = HIRCLUSTER_FLAG_NULL;
     struct timeval timeout = { 1, 500000 }; // 1.5 seconds
     _context = redisClusterConnectWithTimeout(_addr.c_str(), timeout, flags);
@@ -1374,12 +1477,21 @@ void redis_test(){
     mapCondition.emplace(std::make_pair("=",std::make_pair("年龄","23")));
     delMemoryAchieve("000000000000000000000000RI000000", mapCondition, true, _context);
 #endif
-#if 1
-    thread_run(1000);
+#if 0
+    thread_run(1);
 #endif
+    const char *keys[2];
+    std::string key1 = "1.00002_{1901241905133087b6fe75a7RI000002}_rrrrrrr21";
+    keys[0] = key1.c_str();
+    std::string key2 = "1.00002_{1901241905133087b6fe75a7RI000002}_rrrrrrr19";
+    keys[1] = key2.c_str();
+    std::string out = "";
+    zinterstore("1901241905133087b6fe75a7RI000002", keys, 2, out, _context);
+    TESLOG(ERROR, "{1901241905133087b6fe75a7RI000002}:out:test  : %s\n", out.c_str());
     if(_context)
     {
         TESLOG(ERROR, "Disconnect From Redis Server[%s]\n", _addr.c_str());
         redisClusterFree(_context);
     }
 }
+

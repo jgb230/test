@@ -34,7 +34,10 @@ add_subdirectory(./src/SDK)
 set(LIBS curl
 		clientAPI
 		boost_program_options
+		boost_system
 		hiredis_vip
+		ssl
+		crypto
 		)
 
 

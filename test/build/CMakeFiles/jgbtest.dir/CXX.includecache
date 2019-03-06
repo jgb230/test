@@ -8400,6 +8400,26 @@ sys/poll.h
 
 ../include/typecheck-gcc.h
 
+/home/jgb/c++/test/http/websocket.hpp
+websocketpp/config/asio_client.hpp
+-
+websocketpp/client.hpp
+-
+iostream
+-
+websocketpp/common/thread.hpp
+-
+websocketpp/common/memory.hpp
+-
+cstdlib
+-
+map
+-
+string
+-
+sstream
+-
+
 /home/jgb/c++/test/main.cpp
 stdio.h
 -
@@ -8411,6 +8431,8 @@ http/httpTest.hpp
 -
 clientAPI.hpp
 /home/jgb/c++/test/clientAPI.hpp
+http/websocket.hpp
+/home/jgb/c++/test/http/websocket.hpp
 windows.h
 -
 thread
