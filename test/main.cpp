@@ -2,6 +2,7 @@
 #include <stdio.h>  
 #include <stdlib.h>
 
+
 #include <redis/redisJgb.hpp>
 #include <http/httpTest.hpp>
 #include "clientAPI.hpp"
@@ -13,6 +14,18 @@
 #pragma comment(lib,"clientAPI.lib")
 
 using namespace std;
+
+#define TIMEBEGIN(num)  struct timeval tv##num;\
+                     struct timezone tz##num;\
+                     gettimeofday(&tv##num,&tz##num);\
+                     long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
+                     printf("微妙，beginTime: %ld\n",beginTime##num);
+
+#define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
+                     long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
+                     printf("微妙，endTime: %ld; 微妙，runTime:%ld\n",\
+                            endTime##num, endTime##num - beginTime##num);
+
 
 #define LOG(format, ...) do {\
 					 _printTime( __func__, __LINE__);\
@@ -112,7 +125,7 @@ void _printTime(const char *func, long int line) {
 	struct tm tm = *localtime((time_t *)&tv.tv_sec);
 	char strTime[30];
 	strftime(strTime, 29, "%Y-%m-%d %H:%M:%S", &tm);
-	printf("%d %s.%ld %-20s %-6d ", getpid(), strTime, tv.tv_usec, func, line);
+	printf("%d %s.%ld %-20s %-6d ", std::this_thread::get_id(), strTime, tv.tv_usec, func, line);
 #endif
 }
 
@@ -122,14 +135,38 @@ int main_redis(){
 	redis_test();
 }
 
-int main_http(){
-	httpTest();
+int main_http(int count){
+	TIMEBEGIN(0);
+	httpTest(count);
+	TIMEEND(0);
 }
 
 int main_websocket(){
 	websocketTest();
 }
 
-int main(){
-	main_websocket();
+int main(int argc, char** argv){
+	int num = 30;
+	int count = 30;
+	if(argc > 1){
+		LOG("%s",argv[1]);
+		num = atoi(argv[1]);
+	}
+	
+	if(argc > 2){
+		LOG("%s",argv[2]);
+		count = atoi(argv[2]);
+	}
+
+	std::thread th[num];
+    for (int i = 0; i < num; ++i){
+        th[i] = std::thread(main_http, (int)count/num);
+    }
+    
+    for (int i = 0; i < num; ++i){
+        th[i].join();
+    }
+
+	getchar();
+    return 0;
 }

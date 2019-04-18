@@ -17,7 +17,8 @@ include_directories(./
 					./redis/include
 					../boost_1_64_0
 					./src/SDK/include
-					./src/SDK/include/rapidjson)
+					./src/SDK/include/rapidjson
+					../rapidjson)
 
 link_directories(../
 				./build/src/SDK/Debug/
