@@ -6,6 +6,7 @@
 #include <redis/redisJgb.hpp>
 #include <http/httpTest.hpp>
 #include "clientAPI.hpp"
+#include "mongoTest.hpp"
 #include "http/websocket.hpp"
 #ifdef WIN32
 #include <windows.h>
@@ -132,20 +133,17 @@ void _printTime(const char *func, long int line) {
 
 
 int main_redis(){
+
 	redis_test();
 }
 
-int main_http(int count){
+int main_http_run(int count, int thread){
 	TIMEBEGIN(0);
-	httpTest(count);
+	httpTest(count, thread);
 	TIMEEND(0);
 }
 
-int main_websocket(){
-	websocketTest();
-}
-
-int main(int argc, char** argv){
+int main_http(int argc, char** argv){
 	int num = 30;
 	int count = 30;
 	if(argc > 1){
@@ -160,7 +158,7 @@ int main(int argc, char** argv){
 
 	std::thread th[num];
     for (int i = 0; i < num; ++i){
-        th[i] = std::thread(main_http, (int)count/num);
+        th[i] = std::thread(main_http_run, (int)count/num, i);
     }
     
     for (int i = 0; i < num; ++i){
@@ -169,4 +167,31 @@ int main(int argc, char** argv){
 
 	getchar();
     return 0;
+}
+
+int main_websocket(){
+	websocketTest();
+}
+
+int main_mongoTest(){
+	mongoTest();
+}
+
+int main(int argc, char** argv){
+	//main_http(argc, argv);
+	int type = 0;
+	if (argc == 2){
+		type = atoi(argv[1]);
+		LOG(" %d ", type);
+	}
+	switch(type){
+		case 0:
+			main_mongoTest();
+			break;
+		case 1:
+			main_redis();
+			break;
+	}
+	
+	//
 }

@@ -13,12 +13,15 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(jgbtest)
 include_directories(./
-					include
+					./include
 					./redis/include
 					../boost_1_64_0
 					./src/SDK/include
 					./src/SDK/include/rapidjson
-					../rapidjson)
+					../rapidjson
+					./src/mongodb
+					/usr/local/include/bsoncxx/v_noabi/
+					/usr/local/include/mongocxx/v_noabi/)
 
 link_directories(../
 				./build/src/SDK/Debug/
@@ -39,6 +42,8 @@ set(LIBS curl
 		hiredis_vip
 		ssl
 		crypto
+		mongocxx
+		bsoncxx
 		)
 
 

@@ -1,3 +1,6 @@
+#ifndef __REDIS_H
+#define __REDIS_H
+
 extern "C"{
 #include <hiredis-vip/hiredis.h>
 #include <hiredis-vip/sds.h>
@@ -17,6 +20,8 @@ extern "C"{
 
 #include "boost/algorithm/string/split.hpp"
 #include <boost/algorithm/string/classification.hpp>
+
+#include "common.hpp"
 
 using namespace std;
 
@@ -348,6 +353,53 @@ bool get(const char* key, std::string &Out, redisClusterContext* _context)
 
 	Out = reply->str;
     freeReplyObject(reply);
+    return true;
+}
+
+bool hmset(redisClusterContext* _context, const char* key, const char* format, ...)
+{
+    if(!format) return false;
+
+    va_list ap;
+    char filedValues[1024] = { 0 };  
+    va_start(ap, format);
+    int res = vsnprintf(filedValues, 1024, format, ap);
+    va_end(ap);
+
+    if(res == -1)
+    {
+        TESLOG(ERROR, "Redis cmd Truncated (And Not Execute) For Format[%s]", format);
+        return false;          
+    }
+
+    char cmd[24 + strlen(key) + strlen(filedValues)] = { 0 };
+    sprintf(cmd, "hmset %s %s", key, filedValues);
+
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "hmset %s %s", key, filedValues);
+    if(reply == NULL)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply , cc->type[%d], cc->errstr[%s]", cmd, _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){ //　连接被关闭，重新执行命令
+            reply =  (redisReply*)redisClusterCommand(_context, "hmset %s %s", key, filedValues);
+            if (reply == NULL ){
+                TESLOG(ERROR, "reply == NULL, No Reply ,cc->type[%d], cc->errstr[%s]", 
+                                _context->err, _context->errstr);
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+
+
+    freeReplyObject(reply);
+
     return true;
 }
 
@@ -1372,6 +1424,137 @@ bool delMemoryAchieve1(const std::string &strRobot, const std::multimap<std::str
 	return true;
 }
 
+
+std::string makeTableForAddMemory(const std::string &strRobot, int nMemoryId, const std::map<std::string, std::string> &mapHashTable)
+{
+    std::string strMemoryId = std::to_string(nMemoryId);
+    std::string strIndexContent = "{" + strRobot + "}_" + strMemoryId;
+    std::string strPrimaryTable = "redis.call('hmset', KEYS[1]";
+    std::string strIndexTable;
+    int nI = 1;
+    for(const auto& item : mapHashTable)
+    {
+        strPrimaryTable += boost::str(boost::format(", '%1%', '%2%'") % item.first % item.second);
+        if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+        {
+            continue;
+        }
+        ++nI;
+        strIndexTable += boost::str(boost::format("redis.call('sadd', KEYS[%1%], ") % nI);
+        strIndexTable += "'" + strIndexContent;
+        strIndexTable += "') ";
+    }
+
+    strPrimaryTable += ") ";
+    strPrimaryTable += strIndexTable;
+    return strPrimaryTable;
+}
+
+bool addMemoryAchieve(const std::string &strRobot, const std::map<std::string, std::string> &mapMemory, redisClusterContext* _context)
+{
+    TIMEBEGIN(0);
+
+    std::map<std::string, std::string> mapTime;
+    std::map<std::string, std::string> mapNoTime;
+    for(const auto & item : mapMemory)
+    {
+        TESLOG(INFO, "add memory, key: %s, value: %s", item.first.c_str(), item.second.c_str());
+        if((item.first == g_kstrBeginTime) || (item.first == g_kstrEndTime))
+        {
+            mapTime.insert(std::pair<std::string, std::string>(item.first, item.second));
+        }
+        else
+        {
+            mapNoTime.insert(std::pair<std::string, std::string>(item.first, item.second));
+        }
+    }
+
+    std::vector<int> vecMemoryId;
+    getMemory(strRobot, mapNoTime, true, vecMemoryId, _context);
+    if(!vecMemoryId.empty())
+    {
+        for(const auto & item : vecMemoryId)
+        {
+            std::string strKey = g_kstrPrimaryTableHeader + "{" + strRobot + "}_" + std::to_string(item);
+            TESLOG(WARNING, "add memory fail, and update the time of the memory: %d, primary key: %s", item, strKey.c_str());
+            bool ret = hmset(_context, strKey.c_str(), "%s %s %s %s", g_kstrBeginTime.c_str(), mapTime[g_kstrBeginTime].c_str(), g_kstrEndTime.c_str(), mapTime[g_kstrEndTime].c_str());
+            if (!ret)
+            {
+                TESLOG(ERROR, "hmset %s fail", strKey.c_str());	
+                TIMEEND(0);
+                return false;
+            }
+        }
+        TIMEEND(0);
+        return true;
+    }
+
+    int nMemoryId = 0;
+    if(!incr(g_kstrMemoryId.c_str(), nMemoryId, _context))
+    {
+        TESLOG(ERROR, "can not get zhe memory id");
+        TIMEEND(0);
+        return false;
+    }
+    std::string strLuaScript = makeTableForAddMemory(strRobot, nMemoryId, mapMemory);
+    TESLOG(INFO, "add memory ,strLuaScript = %s", strLuaScript.c_str());
+    std::string strMemoryPrimary = "mp_{" + strRobot + "}_" + std::to_string(nMemoryId);
+    const sds sdsLuaScript = sdsnew(strLuaScript.c_str());
+    std::vector<std::string> vecCammond;
+    vecCammond.push_back("EVAL");
+    vecCammond.push_back(sdsLuaScript);
+    sdsfree(sdsLuaScript);
+    std::string strKeyNum = std::to_string(mapNoTime.size()+1);
+    vecCammond.push_back(strKeyNum);
+    vecCammond.push_back(strMemoryPrimary);
+    std::string strIndex;
+    for(const auto& item : mapNoTime)
+    {
+        strIndex.clear();
+        strIndex = "mi_{" + strRobot + "}_" + item.first + "_" + item.second;
+        vecCammond.push_back(strIndex);
+    }
+
+    for(auto &item : vecCammond)
+    {
+        TESLOG(INFO, "cammond: %s", item.c_str());
+    }
+    
+    char **pcArgv = convertToSds(vecCammond);
+    size_t stArgc = vecCammond.size();
+    //size_t *pstArgvlen = (size_t *)malloc(stArgc * sizeof(size_t));
+    std::unique_ptr<size_t[]> pArgvlen(new size_t[stArgc]);
+    for (int nJ = 0; nJ < stArgc; nJ++)
+    {
+        pArgvlen[nJ] = sdslen(pcArgv[nJ]);
+    }
+
+    redisReply *pReply = (redisReply *)redisClusterCommandArgv(_context, stArgc, (const char **)pcArgv, pArgvlen.get());
+    if(pReply == NULL)
+    {
+        TESLOG(INFO, "pReply == NULL, No Reply ,cc->type[%d], cc->errstr[%s], retry:", 
+                     _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){ //　连接被关闭，重新执行命令
+            pReply = (redisReply *)redisClusterCommandArgv(_context, stArgc, (const char **)pcArgv, pArgvlen.get());
+            if (pReply == NULL ){
+                sdsfreesplitres(pcArgv, stArgc);
+                TESLOG(ERROR, "pReply == NULL, No Reply ,cc->type[%d], cc->errstr[%s]", 
+                                _context->err, _context->errstr);
+                TIMEEND(0);
+                return false;
+            }
+        }else{
+            sdsfreesplitres(pcArgv, stArgc);	
+            TIMEEND(0);
+            return false;
+        }
+    }
+    sdsfreesplitres(pcArgv, stArgc);	
+    freeReplyObject(pReply);
+    TIMEEND(0);
+    return true;
+}
+
 bool run(std::string key){
     redisClusterContext* 	_context;
     std::string 			_addr = "172.16.0.23:7000";
@@ -1429,6 +1612,9 @@ bool thread_run(int num){
 }
 
 void redis_test(){
+    int preType = -1;
+    int count = 1000;
+    int type =1;
     redisClusterContext* 	_context;
     std::string 			_addr = "172.16.0.19:7003";
     int flags = HIRCLUSTER_FLAG_NULL;
@@ -1448,28 +1634,105 @@ void redis_test(){
         _context = NULL;
     }
     TESLOG(INFO, "Redis Connect to addr[%s] Success\n", _addr.c_str());
-
-#if 0
     std::map<std::string, std::string> mapMemory;
-// mi_{181026033809ffdc196c965aRI000004}_需提醒_是
-// mi_{181026033809ffdc196c965aRI000004}_程度_剧烈
-// mi_{181026033809ffdc196c965aRI000004}_类型_刺痛
-// mi_{181026033809ffdc196c965aRI000004}_症状_咳嗽
-    mapMemory.insert(make_pair("习惯行为","下班"));
-    mapMemory.insert(make_pair("主语","1812111752213087b6fe75a7RI003706"));
-    mapMemory.insert(make_pair("日期","NA"));
-    mapMemory.insert(make_pair("分钟","NA"));
-    //mapMemory.insert(make_pair("类型","刺痛"));
-
-    std::vector<int> setTemp;
-
-    TESLOG(INFO, "fun\n");
-    getMemory("1812111752213087b6fe75a7RI003706", mapMemory, false, setTemp, _context);
-    for (auto &iter: setTemp){
-        TESLOG(INFO, "%d\n", iter);
-    }
+    while ((type = getChar(&preType)) != 9){
+        switch(type){
+            case 0:{
+                TESLOG(INFO, "\n");
+                count = getChar(&preType);
+                TIMEBEGIN(0);
+                for (int i = 0; i < count; i++){
+                    mapMemory.insert(make_pair("习惯行为","下班"));
+                    mapMemory.insert(make_pair("主语","1812111752213087b6fe75a7RI003706"));
+                    mapMemory.insert(make_pair("日期","100"));
+                    mapMemory.insert(make_pair("分钟",std::to_string(i)));
+                    addMemoryAchieve("1812111752213087b6fe75a7RI003706",  mapMemory, _context);
+                    mapMemory.clear();
+                }
+                TESLOG(INFO, "\n");
+                TIMEEND(0);
+                break;
+            }
+            case 1:{
+                std::vector<int> setTemp;
+                TESLOG(INFO, "\n");
+                TIMEBEGIN(0);
+                mapMemory.insert(make_pair("习惯行为","下班"));
+                mapMemory.insert(make_pair("主语","1812111752213087b6fe75a7RI003706"));
+                mapMemory.insert(make_pair("日期","100"));
+                mapMemory.insert(make_pair("分钟",std::to_string(500)));
+                getMemory("1812111752213087b6fe75a7RI003706", mapMemory, false, setTemp, _context);
+                std::string key = "mp_{1812111752213087b6fe75a7RI003706}_";
+                std::map<std::string, std::string> mapOut;
+                for (auto &iter: setTemp){
+                    TESLOG(INFO, "%d\n", iter);
+                    key += std::to_string(iter);
+                    if(hgetall(key.c_str(), mapOut, _context))
+                    {
+                        for(const auto &item : mapOut)
+                        {
+                            TESLOG(INFO, "%s %s\n", item.first.c_str(), item.second.c_str());
+                        }
+                    }
+                    key = "mp_{1812111752213087b6fe75a7RI003706}_";
+                }
+                TESLOG(INFO, "\n");
+                TIMEEND(0);
+                break;
+            }
+            case 2:{
+                TESLOG(INFO, "\n");
+                count = getChar(&preType);
+                TIMEBEGIN(0);
+                std::multimap<std::string, std::pair<std::string, std::string>> mapCondition;
+                for (int i = 0; i < count; i++){
+                    mapCondition.emplace(std::make_pair("=",std::make_pair("习惯行为","下班")));
+                    mapCondition.emplace(std::make_pair("=",std::make_pair("主语","1812111752213087b6fe75a7RI003706")));
+                    mapCondition.emplace(std::make_pair("=",std::make_pair("日期","100")));
+                    mapCondition.emplace(std::make_pair("=",std::make_pair("分钟",std::to_string(i))));
+                    delMemoryAchieve("1812111752213087b6fe75a7RI003706",  mapCondition, true, _context);
+                    mapCondition.clear();
+                }
+                
+                TESLOG(INFO, "\n");
+                TIMEEND(0);
+                break;
+            }
+            case 3:{
+                TESLOG(INFO, "\n");
+                TIMEBEGIN(0);
+                mapMemory.clear();
+                mapMemory.insert(make_pair("习惯行为","下班"));
+                mapMemory.insert(make_pair("主语","1812111752213087b6fe75a7RI003706"));
+                mapMemory.insert(make_pair("日期","100"));
+                mapMemory.insert(make_pair("分钟","1001"));
+                addMemoryAchieve("1812111752213087b6fe75a7RI003706",  mapMemory, _context);
+                mapMemory.clear();
+                TESLOG(INFO, "\n");
+                TIMEEND(0);
+                break;
+            }
+            case 4:{
+                TESLOG(INFO, "\n");
+                TIMEBEGIN(0);
+                std::multimap<std::string, std::pair<std::string, std::string>> mapCondition;
+                mapCondition.emplace(std::make_pair("=",std::make_pair("习惯行为","下班")));
+                mapCondition.emplace(std::make_pair("=",std::make_pair("主语","1812111752213087b6fe75a7RI003706")));
+                mapCondition.emplace(std::make_pair("=",std::make_pair("日期","100")));
+                mapCondition.emplace(std::make_pair("=",std::make_pair("分钟","1001")));
+                delMemoryAchieve("1812111752213087b6fe75a7RI003706",  mapCondition, true, _context);
+                mapCondition.clear();
+                
+                TESLOG(INFO, "\n");
+                TIMEEND(0);
+                break;
+            }
+        }
     
-#endif
+    }
+
+    
+    
 
 #if 0
     std::multimap<std::string, std::pair<std::string, std::string>> mapCondition;
@@ -1479,7 +1742,7 @@ void redis_test(){
 #endif
 #if 0
     thread_run(1);
-#endif
+
     const char *keys[2];
     std::string key1 = "1.00002_{1901241905133087b6fe75a7RI000002}_rrrrrrr21";
     keys[0] = key1.c_str();
@@ -1493,5 +1756,7 @@ void redis_test(){
         TESLOG(ERROR, "Disconnect From Redis Server[%s]\n", _addr.c_str());
         redisClusterFree(_context);
     }
+    #endif
 }
 
+#endif

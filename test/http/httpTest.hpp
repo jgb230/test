@@ -51,7 +51,6 @@ using namespace rapidjson;
                             endTime##num, endTime##num - beginTime##num);
 
 
-
 #define TESLOG(level,...) printf(__VA_ARGS__)
 
 size_t req_reply(void* ptr, size_t size, size_t nmemb, void* stream)
@@ -131,9 +130,8 @@ int getThirdPartyAnswer()
 * 参数:
 * 返回值:            0 - success, other failed
 *******************************************************/
-int getThirdPartyAnswerTuling()
+int getThirdPartyAnswerTuling(std::string content)
 {
-
     string strUrl = "http://openapi.tuling123.com/openapi/api/v2";
     Document document;
     document.SetObject();
@@ -142,13 +140,13 @@ int getThirdPartyAnswerTuling()
     Value perception(rapidjson::kObjectType);
 
     Value inputText(rapidjson::kObjectType);
-    inputText.AddMember("text", "你好", allocator);
+    inputText.AddMember("text", rapidjson::StringRef(content.c_str()), allocator);
     perception.AddMember("inputText", inputText, allocator);
 
     document.AddMember("perception", perception, allocator);
 
     Value userInfo(rapidjson::kObjectType);
-    userInfo.AddMember("apiKey", "bfac447327974025b6ae3103346edd68", allocator);
+    userInfo.AddMember("apiKey", "94ebcabaf1d14d628cd4acce4f376ab9", allocator);
     userInfo.AddMember("userId", "00000000000000000000", allocator);
 
     document.AddMember("userInfo", userInfo, allocator);
@@ -213,11 +211,15 @@ int getThirdPartyAnswerTuling()
 * 参数:
 * 返回值:            0 - success, other failed
 *******************************************************/
-int getTencentAnswer()
+
+int getTencentAnswer(std::string content, int i)
 {
-    string appid = "2115245050";
-    string userid = "c0YzelN03a1b4BxH";
+    string appid[] = {"2115245050", "2112077926"};
+    string userid[] = {"c0YzelN03a1b4BxH", "WDiV59cd47G9qAaV"};
     string strUrl = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat";
+
+    TESLOG(ERROR, "账号%d\n", i%2);
+
     // get third party answer
     std::string strResponse = "", strValue = "";
     // init curl
@@ -229,18 +231,18 @@ int getTencentAnswer()
         // set params
         std::map<std::string, std::string> mapParam ;
         time_t time = std::time(0);
-        mapParam.insert(std::make_pair("app_id", appid));
+        mapParam.insert(std::make_pair("app_id", appid[i%2]));
         mapParam.insert(std::make_pair("time_stamp", to_string(time)));
         mapParam.insert(std::make_pair("nonce_str", to_string(time)));
         mapParam.insert(std::make_pair("session", "9999999999"));
-        mapParam.insert(std::make_pair("question", "香蕉"));
+        mapParam.insert(std::make_pair("question", content));
 
         CXXUrl::SimpleForm *sfParam = new CXXUrl::SimpleForm();
         for (auto iter: mapParam){
             sfParam->add(iter.first, iter.second);
         }
         std::string strParam = sfParam->getData();
-        strParam = strParam + "&app_key=" + userid;
+        strParam = strParam + "&app_key=" + userid[i%2];
         sfParam->add("sign", boost::algorithm::to_upper_copy(md5(strParam)));
         strParam = sfParam->getData();
         std::cout << "getTencentAnswer param:" << strParam << std::endl;
@@ -294,13 +296,11 @@ int getErTong()
     document.AddMember("sign", "775a68e6ac20013495bdabc01c196a77", allocator);
     document.AddMember("timestamp", 1555384874, allocator);
 
-
     StringBuffer buffer;
     Writer<StringBuffer> writer(buffer);
     document.Accept(writer);
     string str = buffer.GetString();
     cout << str << endl;
-
 
     TESLOG(WARNING, "getErTong %s\n", str.c_str());
 
@@ -347,11 +347,22 @@ int getErTong()
 
     return 0;
 }
-int httpTest(int count){
+
+std::string getContent(){
+    std::string  contents[] = {"茄子","黄瓜", "土豆", "我去上学", "我是不是个好人", "你是不是个机器人"};
+    TIMEBEGIN(2);
+    srand(beginTime2);
+    int seed = rand()%6;
+    return contents[seed];
+}
+
+int httpTest(int count, int thread){
+    std::string content = "";
+
     for (int i = 0; i < count; i++){
         TIMEBEGIN(1);
-        getTencentAnswer();
+        content = getContent();
+        getTencentAnswer(content, 1);
         TIMEEND(1);
-        usleep(50 * 1000);
     }
 }
