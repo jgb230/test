@@ -1,5 +1,5 @@
 #include "clientMsg.hpp"
-#include "md5.h"
+#include "md5_jgb.h"
 
 #include<ctype.h>
 namespace GL{

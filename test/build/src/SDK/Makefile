@@ -179,32 +179,32 @@ src/clientMsg.cpp.s:
 	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.s
 .PHONY : src/clientMsg.cpp.s
 
-src/md5.o: src/md5.cpp.o
+src/md5_jgb.o: src/md5_jgb.cpp.o
 
-.PHONY : src/md5.o
+.PHONY : src/md5_jgb.o
 
 # target to build an object file
-src/md5.cpp.o:
-	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o
-.PHONY : src/md5.cpp.o
+src/md5_jgb.cpp.o:
+	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o
+.PHONY : src/md5_jgb.cpp.o
 
-src/md5.i: src/md5.cpp.i
+src/md5_jgb.i: src/md5_jgb.cpp.i
 
-.PHONY : src/md5.i
+.PHONY : src/md5_jgb.i
 
 # target to preprocess a source file
-src/md5.cpp.i:
-	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.i
-.PHONY : src/md5.cpp.i
+src/md5_jgb.cpp.i:
+	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.i
+.PHONY : src/md5_jgb.cpp.i
 
-src/md5.s: src/md5.cpp.s
+src/md5_jgb.s: src/md5_jgb.cpp.s
 
-.PHONY : src/md5.s
+.PHONY : src/md5_jgb.s
 
 # target to generate assembly for a file
-src/md5.cpp.s:
-	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.s
-.PHONY : src/md5.cpp.s
+src/md5_jgb.cpp.s:
+	cd /home/jgb/c++/test/build && $(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.s
+.PHONY : src/md5_jgb.cpp.s
 
 # Help Target
 help:
@@ -221,9 +221,9 @@ help:
 	@echo "... src/clientMsg.o"
 	@echo "... src/clientMsg.i"
 	@echo "... src/clientMsg.s"
-	@echo "... src/md5.o"
-	@echo "... src/md5.i"
-	@echo "... src/md5.s"
+	@echo "... src/md5_jgb.o"
+	@echo "... src/md5_jgb.i"
+	@echo "... src/md5_jgb.s"
 .PHONY : help
 
 

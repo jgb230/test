@@ -25,6 +25,6 @@ set(LIBS
 
 set(CSRAPI src/clientAPI.cpp
 			src/clientMsg.cpp
-			src/md5.cpp)
+			src/md5_jgb.cpp)
 add_library(clientAPI SHARED ${CSRAPI})
 #target_link_libraries(clientAPI ${LIBS})

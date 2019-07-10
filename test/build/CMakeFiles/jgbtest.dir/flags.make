@@ -6,5 +6,5 @@ CXX_FLAGS =  -Wall -std=c++11 -o0 -g -ggdb -DDEBUG   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jgb/c++/test/. -I/home/jgb/c++/test/include -I/home/jgb/c++/test/./redis/include -I/home/jgb/c++/test/../boost_1_64_0 -I/home/jgb/c++/test/./src/SDK/include -I/home/jgb/c++/test/./src/SDK/include/rapidjson 
+CXX_INCLUDES = -I/home/jgb/c++/test/. -I/home/jgb/c++/test/./include -I/home/jgb/c++/test/./include/tool -I/home/jgb/c++/test/./redis/include -I/home/jgb/c++/test/../boost_1_64_0 -I/home/jgb/c++/test/./src/SDK/include -I/home/jgb/c++/test/./src/SDK/include/rapidjson -I/home/jgb/c++/test/../rapidjson -I/home/jgb/c++/test/./src/mongodb -I/usr/local/include/bsoncxx/v_noabi -I/usr/local/include/mongocxx/v_noabi 
 

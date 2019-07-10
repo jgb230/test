@@ -1,10 +1,10 @@
 #ifndef CLIENT_MSG
 #define CLIENT_MSG
 
-#include "md5.h"
+#include "md5_jgb.h"
 #include "RWLock.hpp"
 #include <rapidjson_helper.h>
-
+#include <thread>
 #include <map>
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,7 +34,7 @@
 namespace GL{
 
     #define LOG(format, ...) do {\
-					 printTime( __func__, __LINE__);\
+					 printTime_( __func__, __LINE__);\
                      printf(format"\n", ##__VA_ARGS__);\
                     } while (0)
 
@@ -42,11 +42,11 @@ namespace GL{
                      struct timezone tz##num;\
                      gettimeofday(&tv##num,&tz##num);\
                      long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，beginTime: %ld\n",beginTime##num);
+                     printf("-%lu 微妙，beginTime: %ld\n",std::this_thread::get_id(),beginTime##num);
 
     #define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
                      long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，endTime: %ld; 微妙，runTime:%ld\n",\
+                     printf("-%lu 微妙，endTime: %ld; 微妙，runTime:%ld\n",std::this_thread::get_id(),\
                             endTime##num, endTime##num - beginTime##num);
 
     #pragma pack(push,1)//一字节对齐

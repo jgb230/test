@@ -32,26 +32,26 @@
 #include "stringbuffer.h"
 #include "writer.h"
 #include "memorystream.h"
-
+#include "common.hpp"
 using rapidjson::Document;
 using rapidjson::StringBuffer;
 using rapidjson::Writer;
 using namespace rapidjson;
 
 
-#define TIMEBEGIN(num)  struct timeval tv##num;\
-                     struct timezone tz##num;\
-                     gettimeofday(&tv##num,&tz##num);\
-                     long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，beginTime: %ld\n",beginTime##num);
+// #define TIMEBEGIN(num)  struct timeval tv##num;\
+//                      struct timezone tz##num;\
+//                      gettimeofday(&tv##num,&tz##num);\
+//                      long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
+//                      printf("微妙，beginTime: %ld\n",beginTime##num);
 
-#define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
-                     long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，endTime: %ld; 微妙，runTime11:%ld\n", \
-                            endTime##num, endTime##num - beginTime##num);
+// #define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
+//                      long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
+//                      printf("微妙，endTime: %ld; 微妙，runTime11:%ld\n", \
+//                             endTime##num, endTime##num - beginTime##num);
 
 
-#define TESLOG(level,...) printf(__VA_ARGS__)
+// #define TESLOG(level,...) printf(__VA_ARGS__)
 
 size_t req_reply(void* ptr, size_t size, size_t nmemb, void* stream)
 {

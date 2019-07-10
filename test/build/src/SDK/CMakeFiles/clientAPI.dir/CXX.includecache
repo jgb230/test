@@ -6,6 +6,42 @@
 
 #IncludeRegexTransform: 
 
+.././rapidjson/error/error.h
+../rapidjson.h
+.././rapidjson/rapidjson.h
+
+.././rapidjson/reader.h
+allocators.h
+.././rapidjson/allocators.h
+stream.h
+.././rapidjson/stream.h
+encodedstream.h
+.././rapidjson/encodedstream.h
+internal/meta.h
+.././rapidjson/internal/meta.h
+internal/stack.h
+.././rapidjson/internal/stack.h
+internal/strtod.h
+.././rapidjson/internal/strtod.h
+limits
+-
+intrin.h
+-
+nmmintrin.h
+-
+emmintrin.h
+-
+arm_neon.h
+-
+stdexcept
+-
+rapidjson/error/error.h
+.././rapidjson/rapidjson/error/error.h
+rapidjson/reader.h
+.././rapidjson/rapidjson/reader.h
+error/error.h
+.././rapidjson/error/error.h
+
 .././src/SDK/include/RWLock.hpp
 mutex
 -
@@ -29,11 +65,13 @@ thread
 -
 
 .././src/SDK/include/clientMsg.hpp
-md5.h
-.././src/SDK/include/md5.h
+md5_jgb.h
+.././src/SDK/include/md5_jgb.h
 RWLock.hpp
 .././src/SDK/include/RWLock.hpp
 rapidjson_helper.h
+-
+thread
 -
 map
 -
@@ -74,7 +112,7 @@ mutex
 condition_variable
 -
 
-.././src/SDK/include/md5.h
+.././src/SDK/include/md5_jgb.h
 string
 -
 cstring
@@ -361,14 +399,14 @@ clientAPI.hpp
 /home/jgb/c++/test/src/SDK/src/clientMsg.cpp
 clientMsg.hpp
 /home/jgb/c++/test/src/SDK/src/clientMsg.hpp
-md5.h
-/home/jgb/c++/test/src/SDK/src/md5.h
+md5_jgb.h
+/home/jgb/c++/test/src/SDK/src/md5_jgb.h
 ctype.h
 -
 
-/home/jgb/c++/test/src/SDK/src/md5.cpp
-md5.h
-/home/jgb/c++/test/src/SDK/src/md5.h
+/home/jgb/c++/test/src/SDK/src/md5_jgb.cpp
+md5_jgb.h
+/home/jgb/c++/test/src/SDK/src/md5_jgb.h
 thread
 -
 

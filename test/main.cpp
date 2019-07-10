@@ -12,31 +12,40 @@
 #include <windows.h>
 #endif
 #include <thread>
+#include "common.hpp"
+#include "md5_jgb.h"
+#include "toolUtl.hpp"
 #pragma comment(lib,"clientAPI.lib")
 
 using namespace std;
 
-#define TIMEBEGIN(num)  struct timeval tv##num;\
-                     struct timezone tz##num;\
-                     gettimeofday(&tv##num,&tz##num);\
-                     long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，beginTime: %ld\n",beginTime##num);
+class GL::Client;
+class GL::callBack;
 
-#define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
-                     long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("微妙，endTime: %ld; 微妙，runTime:%ld\n",\
-                            endTime##num, endTime##num - beginTime##num);
 
+void _printTime(const char *func, long int line) {
+#ifdef WIN32
+	SYSTEMTIME sys;
+	GetLocalTime(&sys);
+	printf("%lu %4d-%02d-%02d %02d:%02d:%02d.%ld  %-20s %-6d",
+		std::this_thread::get_id(), sys.wYear, sys.wMonth, sys.wDay, sys.wHour, sys.wMinute, sys.wSecond, sys.wMilliseconds, func, line);
+#else
+	struct timeval tv;
+	struct timezone tz;
+	gettimeofday(&tv, &tz);
+	struct tm tm = *localtime((time_t *)&tv.tv_sec);
+	char strTime[30];
+	strftime(strTime, 29, "%Y-%m-%d %H:%M:%S", &tm);
+	printf("%lu %s.%ld %-20s %-6d ", std::this_thread::get_id(), strTime, tv.tv_usec, func, line);
+#endif
+}
 
 #define LOG(format, ...) do {\
 					 _printTime( __func__, __LINE__);\
                      printf(format"\n", ##__VA_ARGS__);\
                     } while (0)
 
-class GL::Client;
-class GL::callBack;
 
-void _printTime(const char *func, long int line);
 
 class mycallBack : public GL::callBack {
 	public:
@@ -113,28 +122,10 @@ int main_app(){
     return 0;
 }
 
-void _printTime(const char *func, long int line) {
-#ifdef WIN32
-	SYSTEMTIME sys;
-	GetLocalTime(&sys);
-	printf("%d %4d-%02d-%02d %02d:%02d:%02d.%ld  %-20s %-6d",
-		std::this_thread::get_id(), sys.wYear, sys.wMonth, sys.wDay, sys.wHour, sys.wMinute, sys.wSecond, sys.wMilliseconds, func, line);
-#else
-	struct timeval tv;
-	struct timezone tz;
-	gettimeofday(&tv, &tz);
-	struct tm tm = *localtime((time_t *)&tv.tv_sec);
-	char strTime[30];
-	strftime(strTime, 29, "%Y-%m-%d %H:%M:%S", &tm);
-	printf("%d %s.%ld %-20s %-6d ", std::this_thread::get_id(), strTime, tv.tv_usec, func, line);
-#endif
-}
+int main_redis(int num, std::string file, int choice){
 
-
-
-int main_redis(){
-
-	redis_test();
+	//redis_test();
+	redis_thread(num, file.c_str(), choice);
 }
 
 int main_http_run(int count, int thread){
@@ -173,23 +164,35 @@ int main_websocket(){
 	websocketTest();
 }
 
-int main_mongoTest(){
-	mongoTest();
+int main_mongoTest(int num, std::string file, int choice){
+	//mongoTest();
+	mongo_thread(num, file.c_str(), choice);
 }
 
 int main(int argc, char** argv){
 	//main_http(argc, argv);
+	std::string test = "  jgb \t\n";
+	LOG("=====%s====",trim(test).c_str());
 	int type = 0;
-	if (argc == 2){
+	int num = 2;
+	int choice = 0;
+	std::string file = "/home/jgb/Downloads/publicMemory";
+	if (argc == 5){
 		type = atoi(argv[1]);
 		LOG(" %d ", type);
+		num = atoi(argv[2]);
+		LOG(" %d ", num);
+		file = argv[3];
+		LOG(" %s ", file.c_str());
+		choice = atoi(argv[4]);
+		LOG(" %d ", choice);
 	}
 	switch(type){
 		case 0:
-			main_mongoTest();
+			main_mongoTest(num, file, choice);
 			break;
 		case 1:
-			main_redis();
+			main_redis(num, file, choice);
 			break;
 	}
 	

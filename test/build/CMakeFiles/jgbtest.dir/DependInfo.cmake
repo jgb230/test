@@ -11,11 +11,16 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."
-  "../include"
+  ".././include"
+  ".././include/tool"
   ".././redis/include"
   "../../boost_1_64_0"
   ".././src/SDK/include"
   ".././src/SDK/include/rapidjson"
+  "../../rapidjson"
+  ".././src/mongodb"
+  "/usr/local/include/bsoncxx/v_noabi"
+  "/usr/local/include/mongocxx/v_noabi"
   )
 
 # Targets to which this target links.

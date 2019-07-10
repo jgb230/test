@@ -14,6 +14,7 @@ set(CMAKE_BUILD_TYPE Debug)
 project(jgbtest)
 include_directories(./
 					./include
+					./include/tool/
 					./redis/include
 					../boost_1_64_0
 					./src/SDK/include

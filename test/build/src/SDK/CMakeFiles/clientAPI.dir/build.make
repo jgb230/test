@@ -105,42 +105,42 @@ src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o.provides: src/SDK/CMakeFile
 src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o.provides.build: src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o
 
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o: src/SDK/CMakeFiles/clientAPI.dir/flags.make
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o: ../src/SDK/src/md5.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o"
-	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/clientAPI.dir/src/md5.cpp.o -c /home/jgb/c++/test/src/SDK/src/md5.cpp
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o: src/SDK/CMakeFiles/clientAPI.dir/flags.make
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o: ../src/SDK/src/md5_jgb.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o"
+	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o -c /home/jgb/c++/test/src/SDK/src/md5_jgb.cpp
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clientAPI.dir/src/md5.cpp.i"
-	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/src/SDK/src/md5.cpp > CMakeFiles/clientAPI.dir/src/md5.cpp.i
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.i"
+	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/src/SDK/src/md5_jgb.cpp > CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.i
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clientAPI.dir/src/md5.cpp.s"
-	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/src/SDK/src/md5.cpp -o CMakeFiles/clientAPI.dir/src/md5.cpp.s
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.s"
+	cd /home/jgb/c++/test/build/src/SDK && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/src/SDK/src/md5_jgb.cpp -o CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.s
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.requires:
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.requires:
 
-.PHONY : src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.requires
+.PHONY : src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.requires
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.provides: src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.requires
-	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.provides.build
-.PHONY : src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.provides
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.provides: src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.requires
+	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.provides.build
+.PHONY : src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.provides
 
-src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.provides.build: src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o
+src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.provides.build: src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o
 
 
 # Object files for target clientAPI
 clientAPI_OBJECTS = \
 "CMakeFiles/clientAPI.dir/src/clientAPI.cpp.o" \
 "CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o" \
-"CMakeFiles/clientAPI.dir/src/md5.cpp.o"
+"CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o"
 
 # External object files for target clientAPI
 clientAPI_EXTERNAL_OBJECTS =
 
 src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/src/clientAPI.cpp.o
 src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o
-src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o
+src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o
 src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/build.make
 src/SDK/libclientAPI.so: src/SDK/CMakeFiles/clientAPI.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libclientAPI.so"
@@ -153,7 +153,7 @@ src/SDK/CMakeFiles/clientAPI.dir/build: src/SDK/libclientAPI.so
 
 src/SDK/CMakeFiles/clientAPI.dir/requires: src/SDK/CMakeFiles/clientAPI.dir/src/clientAPI.cpp.o.requires
 src/SDK/CMakeFiles/clientAPI.dir/requires: src/SDK/CMakeFiles/clientAPI.dir/src/clientMsg.cpp.o.requires
-src/SDK/CMakeFiles/clientAPI.dir/requires: src/SDK/CMakeFiles/clientAPI.dir/src/md5.cpp.o.requires
+src/SDK/CMakeFiles/clientAPI.dir/requires: src/SDK/CMakeFiles/clientAPI.dir/src/md5_jgb.cpp.o.requires
 
 .PHONY : src/SDK/CMakeFiles/clientAPI.dir/requires
 
