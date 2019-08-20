@@ -15,7 +15,7 @@
 #include <algorithm>
 #include <boost/format.hpp>
 #include <boost/noncopyable.hpp>
-
+#include "cJSON.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -42,8 +42,7 @@ using namespace rapidjson;
 // #define TIMEBEGIN(num)  struct timeval tv##num;\
 //                      struct timezone tz##num;\
 //                      gettimeofday(&tv##num,&tz##num);\
-//                      long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-//                      printf("微妙，beginTime: %ld\n",beginTime##num);
+//                      long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;
 
 // #define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
 //                      long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
@@ -133,6 +132,7 @@ int getThirdPartyAnswer()
 int getThirdPartyAnswerTuling(std::string content)
 {
     string strUrl = "http://openapi.tuling123.com/openapi/api/v2";
+    bool hasRet = false;
     Document document;
     document.SetObject();
     Document::AllocatorType& allocator = document.GetAllocator();
@@ -146,7 +146,7 @@ int getThirdPartyAnswerTuling(std::string content)
     document.AddMember("perception", perception, allocator);
 
     Value userInfo(rapidjson::kObjectType);
-    userInfo.AddMember("apiKey", "94ebcabaf1d14d628cd4acce4f376ab9", allocator);
+    userInfo.AddMember("apiKey", "9f6b23ea51e64949809be4bbe7054647", allocator);
     userInfo.AddMember("userId", "00000000000000000000", allocator);
 
     document.AddMember("userInfo", userInfo, allocator);
@@ -199,8 +199,45 @@ int getThirdPartyAnswerTuling(std::string content)
     {
         TESLOG(ERROR, "Curl Post Failed, ret[%d]\n", res);
          return -1;
+    }else{
+        TESLOG(INFO, "Curl Post success, ret[%d]\n", res);
+
+        cJSON* pJson = cJSON_Parse(strResponse.c_str());
+        std::string strAnswer = "";
+        std::string strSession = "";
+        if (pJson)
+        {
+            cJSON* pIntent = cJSON_GetObjectItem(pJson, "intent");
+            cJSON* pCode = cJSON_GetObjectItem(pIntent, "code");
+            TESLOG(INFO, "JpCode:%d\n", pCode->valueint);
+            cJSON* pResults = cJSON_GetObjectItem(pJson, "results");
+            if (pResults)
+            {   
+                if (cJSON_Array == pResults->type){
+                    for(int i = 0; i < cJSON_GetArraySize(pResults); ++i){
+                        cJSON* pArrayValue = cJSON_GetArrayItem(pResults, i);
+                        cJSON* pValue = cJSON_GetObjectItem(pArrayValue, "values");
+                        cJSON* pText = cJSON_GetObjectItem(pValue, "text");
+                        if(pText){
+                            strAnswer = pText->valuestring;
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            if (strAnswer.empty()){
+                TESLOG(ERROR, "strValue is empty!");
+            }else{
+                hasRet = true;
+            }
+        }
+        if(hasRet){ 
+            std::cout << strAnswer << std::endl;
+        }
+        
+        cJSON_Delete(pJson);
     }
-    TESLOG(INFO, "strResponse[%s]\n", strResponse.c_str());
 
     return 0;
 }
@@ -351,7 +388,7 @@ int getErTong()
 std::string getContent(){
     std::string  contents[] = {"茄子","黄瓜", "土豆", "我去上学", "我是不是个好人", "你是不是个机器人"};
     TIMEBEGIN(2);
-    srand(beginTime2);
+    srand(0);
     int seed = rand()%6;
     return contents[seed];
 }
@@ -362,7 +399,7 @@ int httpTest(int count, int thread){
     for (int i = 0; i < count; i++){
         TIMEBEGIN(1);
         content = getContent();
-        getTencentAnswer(content, 1);
+        getThirdPartyAnswerTuling(content);
         TIMEEND(1);
     }
 }

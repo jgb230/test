@@ -22,12 +22,18 @@ include_directories(./
 					../rapidjson
 					./src/mongodb
 					/usr/local/include/bsoncxx/v_noabi/
-					/usr/local/include/mongocxx/v_noabi/)
+					/usr/local/include/mongocxx/v_noabi/
+					/home/jgb/mts_outer/cjson/include/
+					./calendar/
+					./mysql/
+					/home/jgb/mts_outer/mysql/include)
 
 link_directories(../
 				./build/src/SDK/Debug/
 				./redis/lib
 				../boost_1_64_0/stage/lib
+				/home/jgb/mts_outer/cjson/lib
+				/home/jgb/mts_outer/mysql/lib/
 				)
 
 
@@ -45,6 +51,8 @@ set(LIBS curl
 		crypto
 		mongocxx
 		bsoncxx
+		cjson
+		mysqlclient
 		)
 
 
@@ -52,7 +60,10 @@ set(LIBS curl
 
 MESSAGE(${PROJECT_SOURCE_DIR})
 
-set(SRC main.cpp)
+set(SRC main.cpp
+		./calendar/calendar.cpp
+		./mysql/DBTimer.cpp
+		./mysql/DBMySql.cpp)
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})
 add_executable(${PROJECT_NAME} ${SRC})

@@ -15,6 +15,8 @@
 #include "common.hpp"
 #include "md5_jgb.h"
 #include "toolUtl.hpp"
+#include "myTime.hpp"
+#include "mySql.hpp"
 #pragma comment(lib,"clientAPI.lib")
 
 using namespace std;
@@ -135,8 +137,8 @@ int main_http_run(int count, int thread){
 }
 
 int main_http(int argc, char** argv){
-	int num = 30;
-	int count = 30;
+	int num = 1;
+	int count = 10;
 	if(argc > 1){
 		LOG("%s",argv[1]);
 		num = atoi(argv[1]);
@@ -169,7 +171,7 @@ int main_mongoTest(int num, std::string file, int choice){
 	mongo_thread(num, file.c_str(), choice);
 }
 
-int main(int argc, char** argv){
+int mainM(int argc, char** argv){
 	//main_http(argc, argv);
 	std::string test = "  jgb \t\n";
 	LOG("=====%s====",trim(test).c_str());
@@ -197,4 +199,16 @@ int main(int argc, char** argv){
 	}
 	
 	//
+}
+
+int main_time(){
+	timeTest();
+}
+
+int main_TimerDB(){
+	TestTimerDB();
+}
+
+int main(int argc, char** argv){
+	main_TimerDB();
 }
