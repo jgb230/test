@@ -22,6 +22,11 @@ Calendar::Calendar(){
     for (int i = 0; i < FIELDMAX; ++i){
         m_values[i]   = _TIMEMIN[i];
     }
+    m_offset = 0;
+    m_time = 0;
+    m_offValue = 0;
+    m_offType = SECOND;
+    m_reset = true;
 }
 
 bool Calendar::isLeap(const int year){
@@ -190,11 +195,11 @@ void Calendar::getValuesByTime(time_t mTm, int *nTm){
     return ;
 }
 
-void Calendar::stepTime(FIELD field, int step, int *nTm){
+bool Calendar::stepTime(FIELD field, int step, int *nTm){
     // 单位为年 直接加步长
     if (YEAR == field){
         nTm[YEAR] += step;
-        return;
+        return true;
     }
 
     int max = _TIMEMAX[field];
@@ -216,9 +221,18 @@ void Calendar::stepTime(FIELD field, int step, int *nTm){
     }else{
         // 增加步长后超过最大值，设置为余数，下一个单位加1
         nTm[field] = (nTm[field] + step + initV - 1) % max; 
-        stepTime(FIELD(field - 1), 1, nTm);
+        int fieldTmp = field - 1;
+        while(fieldTmp >= 0 && m_values[fieldTmp] >= 0 ) --fieldTmp; //找到前一个可变单位，即小于0的
+        if(fieldTmp < 0){
+            std::cout << " 增加步长后超出时间范围" ;
+            return false;
+        }else{
+            if(fieldTmp + 1 != field) nTm[field] = _TIMEMIN[field]; //　相隔超过一个单位的进位，本次操作单位设为单位对应最小值
+            return stepTime(FIELD(fieldTmp), abs(m_values[fieldTmp]), nTm);
+        }
+        
     }
-
+    return true;
 }
 
 /*
@@ -248,7 +262,7 @@ int Calendar::cmpTime(int *nextTm, int *nowTm){
 /*
 获取最近符合 星期 参数的日期
 */
-void Calendar::findNearestWeekDay(int *nextTm, int *nowTm){
+bool Calendar::findNearestWeekDay(int *nextTm, int *nowTm){
     // 比较next的 年月 与当前大小,因为设置nextTm 年月 时已经保证大于等于今天 年月，所以不会小于
     int ret = cmpTime(nextTm, nowTm);
     if(ret == 0){
@@ -264,13 +278,18 @@ void Calendar::findNearestWeekDay(int *nextTm, int *nowTm){
     int step = 0;
     step = m_values[WEEK]%7 - tmTmp->tm_wday;
     if (step < 0) step += 7;
-    if(step > 0){
-        stepTime(DAY, step, nextTm);
-    }
+    return stepTime(DAY, step, nextTm);
+    
 }
 
 void Calendar::calulateTime(time_t now, bool bNextTime){
-    if(!checkAllValue()) return; // 参数检查不通过
+    std::cout << "now:" << now << std::endl;
+    printAllTimeValue(m_values);
+    if(!checkAllValue()) {
+        // 参数检查不通过
+        m_time = 0;
+        return; // 参数检查不通过
+    }
 
     //time_t now = time(0);
     int iNowTm[6] = {0};
@@ -278,6 +297,7 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
 
     if(m_values[YEAR] > 0 && m_values[YEAR] < iNowTm[YEAR]){
         std::cout << " 年 参数值:" << m_values[YEAR] << ",小于今年" << iNowTm[YEAR];
+        m_time = 0;
         return;
     }
     int nextTime[6] = {-1, -1, -1, -1, -1, -1};
@@ -287,8 +307,12 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
     for (int i = YEAR ; i < WEEK; ++i){
         if(i == DAY && m_values[WEEK] != 0){
             // 找到最近符合时间参数的日期
-            findNearestWeekDay(nextTime, iNowTm);
-            continue;
+            if(findNearestWeekDay(nextTime, iNowTm)){
+                continue;
+            }else {
+                m_time = 0;
+                return;
+            }
         }
         if(m_values[i] < 0){
             ret = cmpTime(nextTime, iNowTm);
@@ -312,6 +336,7 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
                 printAllTimeValue(iNowTm);
                 std::cout << " next: " ;
                 printAllTimeValue(nextTime);
+                m_time = 0;
                 return;
             }else{
                 if (preCType == DAY && m_values[WEEK] != 0){
@@ -320,11 +345,14 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
                 }else{
                     step = abs(m_values[preCType]);
                 }
-                stepTime(FIELD(preCType), step, nextTime);
+                if(!stepTime(FIELD(preCType), step, nextTime)){
+                    m_time = 0;
+                    return;
+                }
             }
         }
     }
-    
+    std::cout << "m_offset:" << m_offset << std::endl;
     m_time = getTimeByValuesA(nextTime) + m_offset;
 }
 

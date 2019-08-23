@@ -41,8 +41,8 @@ namespace GL{
     #define TIMEBEGIN(num)  struct timeval tv##num;\
                      struct timezone tz##num;\
                      gettimeofday(&tv##num,&tz##num);\
-                     long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\
-                     printf("-%lu 微妙，beginTime: %ld\n",std::this_thread::get_id(),beginTime##num);
+                     long int beginTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;
+                     //printf("-%lu 微妙，beginTime: %ld\n",std::this_thread::get_id(),beginTime##num);
 
     #define TIMEEND(num) gettimeofday(&tv##num,&tz##num);\
                      long int endTime##num =  tv##num.tv_sec*1000000 + tv##num.tv_usec;\

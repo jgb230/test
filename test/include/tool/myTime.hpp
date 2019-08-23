@@ -332,7 +332,7 @@ void testCalulate(){
         }
         cl->printAllTimeValue(cl->m_values);
         std::cout << std::endl;
-        cl->add(MINUTE, -10);
+        cl->add(MINUTE, 1);
 
         int nowTm[7] = {2019, 9, 5, 14, 50, 0, 0};
         time_t t = cl->getTimeByValuesA(nowTm);
@@ -432,7 +432,127 @@ void testCalulate(){
                 << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
     
     }
+    {
+        int checkV[7] = {2019, 8, 22, 10, -1, 0, 0}; // 2019年9月20号15点１０分０秒
+        for (int i = 0; i < FIELDMAX; ++i){
+            cl->m_values[i]   = checkV[i];
+        }
+        cl->printAllTimeValue(cl->m_values);
+        std::cout << std::endl;
+        cl->add(MINUTE, 0);
+        int nowTm[7] = {2019, 8, 22, 10, 43, 0, 0};
+        time_t t = cl->getTimeByValuesA(nowTm);
+        cl->calulateTime(t, true);
+        int tmpTm[6] = {-1, -1, -1, -1, -1, -1};
+        cl->getValuesByTime(cl->m_time, tmpTm);
+        std::cout << std::endl << cl->m_time << std::endl << tmpTm[YEAR] << "年" << tmpTm[MONTH] << "月" << tmpTm[DAY] << "日" 
+                << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
+    
+    }
 
+    {
+        int checkV[7] = {2019, 8, 22, 10, -1, 0, 0}; // 2019年9月20号15点１０分０秒
+        for (int i = 0; i < FIELDMAX; ++i){
+            cl->m_values[i]   = checkV[i];
+        }
+        cl->printAllTimeValue(cl->m_values);
+        std::cout << std::endl;
+        cl->add(MINUTE, 0);
+        int nowTm[7] = {2019, 8, 22, 10, 43, 0, 0};
+        time_t t = cl->getTimeByValuesA(nowTm);
+        cl->calulateTime(t, true);
+        int tmpTm[6] = {-1, -1, -1, -1, -1, -1};
+        cl->getValuesByTime(cl->m_time, tmpTm);
+        std::cout << std::endl << cl->m_time << std::endl << tmpTm[YEAR] << "年" << tmpTm[MONTH] << "月" << tmpTm[DAY] << "日" 
+                << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
+    
+    }
+
+    {
+        cl->set(YEAR, 2019);
+        cl->set(MONTH, 8);
+        cl->set(HOUR, 11);
+        cl->set(MINUTE, -1);
+        cl->set(SECOND, 20);
+        cl->set(DAY, 22);
+        cl->printAllTimeValue(cl->m_values);
+        std::cout << std::endl;
+        cl->add(MINUTE, 0);
+        // int nowTm[7] = {2019, 8, 22, 10, 43, 0, 0};
+        // time_t t = cl->getTimeByValuesA(nowTm);
+        time_t ret = cl->getTime(false);
+        int tmpTm1[6] = {-1, -1, -1, -1, -1, -1};
+        std::cout << "m_time:" << ret << std::endl;
+        cl->getValuesByTime(ret, tmpTm1);
+        std::cout << std::endl << ret << std::endl << tmpTm1[YEAR] << "年" << tmpTm1[MONTH] << "月" << tmpTm1[DAY] << "日" 
+                << tmpTm1[HOUR] << "时" << tmpTm1[MINUTE] << "分" << tmpTm1[SECOND] << "秒" << std::endl;
+    
+        cl->set(YEAR, 2019);
+        cl->set(MONTH, 8);
+        cl->set(HOUR, 11);
+        cl->set(MINUTE, -1);
+        cl->set(SECOND, 20);
+        cl->set(DAY, 22);
+        cl->printAllTimeValue(cl->m_values);
+        ret = cl->getTime(true);
+        int tmpTm[6] = {-1, -1, -1, -1, -1, -1};
+        std::cout << "m_time:" << ret << std::endl;
+        cl->getValuesByTime(ret, tmpTm);
+        std::cout << std::endl << ret << std::endl << tmpTm[YEAR] << "年" << tmpTm[MONTH] << "月" << tmpTm[DAY] << "日" 
+                << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
+    
+        cl->set(YEAR, 2019);
+        cl->set(MONTH, 8);
+        cl->set(HOUR, 11);
+        cl->set(MINUTE, -1);
+        cl->set(SECOND, 21);
+        cl->set(DAY, 22);
+        cl->printAllTimeValue(cl->m_values);
+        ret = cl->getTime(false);
+        int tmpTm2[6] = {-1, -1, -1, -1, -1, -1};
+        std::cout << "m_time:" << ret << std::endl;
+        cl->getValuesByTime(ret, tmpTm2);
+        std::cout << std::endl << ret << std::endl << tmpTm2[YEAR] << "年" << tmpTm2[MONTH] << "月" << tmpTm2[DAY] << "日" 
+                << tmpTm2[HOUR] << "时" << tmpTm2[MINUTE] << "分" << tmpTm2[SECOND] << "秒" << std::endl;
+
+    }
+
+    {
+        int checkV[7] = {2019, 9, 5, 15, -4, 0, 0}; // 2019年9月5号15点每4分
+        for (int i = 0; i < FIELDMAX; ++i){
+            cl->m_values[i]   = checkV[i];
+        }
+        cl->printAllTimeValue(cl->m_values);
+        std::cout << std::endl;
+        cl->add(MINUTE, 0);
+
+        int nowTm[7] = {2019, 9, 5, 15, 58, 0, 0};
+        time_t t = cl->getTimeByValuesA(nowTm);
+        cl->calulateTime(t, true);
+        int tmpTm[6] = {-1, -1, -1, -1, -1, -1};
+        cl->getValuesByTime(cl->m_time, tmpTm);
+        std::cout << std::endl << cl->m_time << std::endl << tmpTm[YEAR] << "年" << tmpTm[MONTH] << "月" << tmpTm[DAY] << "日" 
+                << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
+    
+    }
+    {
+        int checkV[7] = {2019, 9, -1, 15, -4, 0, 0}; // 2019年9月每天15点每４分
+        for (int i = 0; i < FIELDMAX; ++i){
+            cl->m_values[i]   = checkV[i];
+        }
+        cl->printAllTimeValue(cl->m_values);
+        std::cout << std::endl;
+        cl->add(MINUTE, 0);
+
+        int nowTm[7] = {2019, 9, 5, 15, 58, 0, 0};
+        time_t t = cl->getTimeByValuesA(nowTm);
+        cl->calulateTime(t, true);
+        int tmpTm[6] = {-1, -1, -1, -1, -1, -1};
+        cl->getValuesByTime(cl->m_time, tmpTm);
+        std::cout << std::endl << cl->m_time << std::endl << tmpTm[YEAR] << "年" << tmpTm[MONTH] << "月" << tmpTm[DAY] << "日" 
+                << tmpTm[HOUR] << "时" << tmpTm[MINUTE] << "分" << tmpTm[SECOND] << "秒" << std::endl;
+    
+    }
 }
 
 void timeTest(){

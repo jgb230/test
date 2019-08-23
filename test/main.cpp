@@ -210,5 +210,5 @@ int main_TimerDB(){
 }
 
 int main(int argc, char** argv){
-	main_TimerDB();
+	main_time();
 }

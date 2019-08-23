@@ -30,6 +30,27 @@ namespace mts_timer
         _FIELD_MAX
     };
 
+    struct TimerInfo{
+        long int m_tm_id;
+        long int m_tm_uid;
+        std::string m_tm_appid;
+        std::string m_tm_timerid;
+        int m_tm_year;
+        int m_tm_month;
+        int m_tm_day;
+        int m_tm_weekly;
+        int m_tm_hour;
+        int m_tm_min;
+        int m_tm_sec;
+        std::string m_tm_class;
+        std::string m_tm_type;
+        std::string m_tm_content;
+        int m_tm_actinve;
+        time_t m_tm_expire_time;
+        std::string m_tm_offset;
+
+    };
+
     class DBTimer{
         public:
             DBTimer();
