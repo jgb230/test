@@ -3,6 +3,7 @@
 
 extern "C"{
 #include <hiredis-vip/hiredis.h>
+#include <hiredis-vip/adlist.h>
 #include <hiredis-vip/sds.h>
 #include <hiredis-vip/hircluster.h>
 }
@@ -295,6 +296,56 @@ bool Set(const char* key, const char* value, redisClusterContext* _context)
     }
     freeReplyObject(reply);
 
+    return true;
+}
+
+
+bool clusterSlots(std::string &Out, redisClusterContext* _context)
+{
+
+    char cmd[24] = { 0 };
+    sprintf(cmd, "cluster slots");
+
+    if(!_context)
+    {
+        TESLOG(ERROR, "Execute cmd[%s] Failed, No Connected\n", cmd);
+        return false;
+    }
+    redisReply* reply =  (redisReply*)redisClusterCommand(_context, "cluster slots");
+    if(reply == NULL)
+    {
+        TESLOG(INFO, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s], retry:\n", cmd, _context->err, _context->errstr);
+        if (REDIS_ERR_EOF == _context->err){
+            reply =  (redisReply*)redisClusterCommand(_context, "cluster slots");
+            if (reply == NULL ){
+                TESLOG(ERROR, "Execute cmd[%s] Failed, No Reply ,cc->type[%d], cc->errstr[%s]\n", cmd, _context->err, _context->errstr);
+                return false;
+            }
+        }
+    }
+    switch(reply->type)
+    {
+        case REDIS_REPLY_INTEGER:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%llu]\n", cmd, reply->integer);
+            break;
+        case REDIS_REPLY_STRING:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]\n", cmd, reply->str);
+            break;
+        case REDIS_REPLY_STATUS:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply[%s]\n", cmd, reply->str);
+            break;    
+        case REDIS_REPLY_NIL:
+            TESLOG(INFO, "Execute cmd[%s] -- Reply Nil\n", cmd);
+            break;
+        case REDIS_REPLY_ARRAY:
+            TESLOG(INFO, "Execute cmd[%s] -- Elements[%lu]", cmd, reply->elements);
+            break;
+        default:
+            break;
+    }
+
+	Out = reply->str;
+    freeReplyObject(reply);
     return true;
 }
 
@@ -1729,7 +1780,7 @@ std::multimap<std::string, std::pair<std::string, std::string>> makeDelDocument(
 
 redisClusterContext* getContext(){
     redisClusterContext* 	_context;
-    std::string 			_addr = "172.16.0.19:7000";
+    std::string 			_addr = "172.16.0.23:7000";
     int flags = HIRCLUSTER_FLAG_NULL;
     struct timeval timeout = { 1, 500000 }; // 1.5 seconds
     _context = redisClusterConnectWithTimeout(_addr.c_str(), timeout, flags);
@@ -2150,6 +2201,20 @@ bool redis_thread(int num,const char *file, int choice){
     }
 }
 
+void redis_all_slots(){
+    redisClusterContext* 	_context = getContext();
+    int nodes = 0;
+    do{
+        TESLOG(INFO, "cluster end: %d\n", nodes);
+        nodes = ((cluster_slot *)(_context->table[nodes]->slots->head->value))->end + 1;
+    }while(nodes != REDIS_CLUSTER_SLOTS);
+}
 
+bool redis_base_test(){
+    std::string out = "";
+    redisClusterContext* 	_context = getContext();
+    clusterSlots(out, _context);
+
+}
 
 #endif

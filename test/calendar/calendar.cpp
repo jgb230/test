@@ -10,7 +10,7 @@ using namespace mts_timer;
 
 static         int    _MPDAYS[13]  = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 365}; //非闰年每个月天数
 static         int    _MLDAYS[13]  = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 366}; //  闰年每个月天数
-static         int    _TIMEMAX[7]  = {9999, 12, 31, 23, 59, 59, 7};                    //分别对应年、月、日、时、分、秒、星期 对应可设置最大值
+static         int    _TIMEMAX[7]  = {2199, 12, 31, 23, 59, 59, 7};                    //分别对应年、月、日、时、分、秒、星期 对应可设置最大值
 static         int    _TIMEMIN[7]  = {1970,  1,  0,  0,  0,  0, 0};                    //分别对应年、月、日、时、分、秒、星期 对应可设置最小值
 static std::string _TIMEFIELDS[7]  = {"年", "月", "日", "时", "分", "秒", "星期"};        //分别对应年、月、日、时、分、秒、星期 对应中文，日志输出用
 
@@ -36,6 +36,25 @@ bool Calendar::isLeap(const int year){
         return false;
 }
 
+bool Calendar::checkDay(const int nValue, int *time){
+    bool bLeap = false;
+    int  monDays = _TIMEMAX[DAY];
+    if(time[YEAR] > 0 && time[MONTH] > 0){
+        bLeap = isLeap(time[YEAR]);
+        monDays = bLeap ? _MLDAYS[time[MONTH] - 1] : _MPDAYS[time[MONTH] - 1];
+    }else if (time[YEAR] < 0 && time[MONTH] > 0){
+        monDays = _MLDAYS[time[MONTH] - 1];
+    }else if (time[YEAR] < 0 && time[MONTH] < 0){
+        monDays = _MLDAYS[0];
+    }
+    if(nValue >= 0 && (nValue < _TIMEMIN[DAY] || nValue > monDays)){
+        std::cout << time[YEAR] << "年" << time[MONTH] << "月最多有" << monDays 
+                                    << "天，但是 " << _TIMEFIELDS[DAY] << " 参数为" <<  nValue << std::endl;
+        return false;
+    }
+    return true;
+}
+
 bool Calendar::checkValue(FIELD field, const int nValue){
     /*  支持参数 负数表示重复,正数表示具体 如: 年 -1:每年 -2:每两年 2019:2019年 其他FILED如是; 
     *   日和星期不能同时为0，必须有一个不为0; 
@@ -51,32 +70,21 @@ bool Calendar::checkValue(FIELD field, const int nValue){
         {
             if(nValue >= 0 && (nValue < _TIMEMIN[field] || nValue > _TIMEMAX[field])){
                 std::cout << " " << _TIMEFIELDS[field] << " 参数为" << nValue << "不在" 
-                                                << _TIMEMIN[field] << "到" << _TIMEMAX[field] << " 之间!" ;
+                          << _TIMEMIN[field] << "到" << _TIMEMAX[field] << " 之间!" << std::endl;
                 return false;
-            }else if(field == WEEK){
-                std::cout << " " << _TIMEFIELDS[field] << " 参数为" << nValue;
+            }else if(field == WEEK && nValue < 0){
+                std::cout << " " << _TIMEFIELDS[field] << " 参数为" << nValue << std::endl;
                 return false;
             }
             return true;
         }
         case DAY:
         {
-            bool bLeap = false;
-            int  monDays = _TIMEMAX[field];
-            if(m_values[YEAR] > 0 && m_values[MONTH] > 0){
-                bLeap = isLeap(m_values[YEAR]);
-                monDays = bLeap ? _MLDAYS[m_values[MONTH] - 1] : _MPDAYS[m_values[MONTH] - 1];
-            }
-            if(nValue >= 0 && (nValue < _TIMEMIN[field] || nValue > monDays)){
-                std::cout << m_values[YEAR] << "年" << m_values[MONTH] << "月有" << monDays 
-                                          << "天，但是 " << _TIMEFIELDS[field] << " 参数为" <<  nValue;
-                return false;
-            }
-            return true;
+            return checkDay(nValue, m_values);
         }
         default:
         {
-            std::cout << "checkValue field error!" ;
+            std::cout << "checkValue field error!" << std::endl;
             return false;
         }
     }
@@ -91,7 +99,7 @@ bool Calendar::set(FIELD field, const int nValue){
         return false;
     }
     m_values[field] = nValue;
-    std::cout << "设置参数 " << _TIMEFIELDS[field] << " " << nValue ;
+    std::cout << "设置参数 " << _TIMEFIELDS[field] << " " << nValue << std::endl;
     return true;
 }
 
@@ -99,20 +107,20 @@ bool Calendar::add(FIELD field, int nValue){
     // 一年＝365天 一月＝30天 
     m_reset = true; // 需要重新计算时间
     if(field >= FIELDMAX){
-        std::cout << "field 参数错误! field:" << field ;
+        std::cout << "field 参数错误! field:" << field << std::endl;
         return false;
     }
-    m_offset = nValue * _TIMEHEX[field];
-    std::cout << "设置参数 " << _TIMEFIELDS[field] << " " << nValue << "为:" <<  m_offset;
+    m_offset += nValue * _TIMEHEX[field];
+    std::cout << "设置参数 " << _TIMEFIELDS[field] << " " << nValue << "为:" <<  m_offset<< std::endl;
     return true;
 }
 
 void Calendar::printAllTimeValue(int *nTm){
-    std::cout << "-------时间--------\n";
+    std::cout << "-------时间--------"<< std::endl;
     for(int i = 0; i < FIELDMAX; ++i){
-        std::cout << _TIMEFIELDS[i] << " : " << nTm[i] << "\n";
+        std::cout << _TIMEFIELDS[i] << " : " << nTm[i] << ""<< std::endl;
     }
-    std::cout << "-------时间--------\n";
+    std::cout << "-------时间--------"<< std::endl;
 }
 
 /*
@@ -123,11 +131,11 @@ bool Calendar::checkAllValue(){
 
     // 日、星期不能全为0，或全不为0
     if(0 == m_values[DAY] && 0 == m_values[WEEK]){
-        std::cout << "日、星期参数全为0！";
+        std::cout << "日、星期参数全为0！"<< std::endl;
         return false;
     }
     if(0 != m_values[DAY] && 0 != m_values[WEEK]){
-        std::cout << "日、星期参数全不为0！";
+        std::cout << "日、星期参数全不为0！"<< std::endl;
         return false;
     }
 
@@ -141,7 +149,12 @@ bool Calendar::checkAllValue(){
         if(m_values[i] < -1) ++nMinC;
     }
     if(nMinC > 1){ 
-        std::cout << "参数存在两个及以上值小于-1！";
+        std::cout << "参数存在两个及以上值小于-1！"<< std::endl;
+        printAllTimeValue(m_values);
+        return false;
+    }
+    if(0 != m_values[WEEK] && nMinT < DAY && nMinC >= 1){
+        std::cout << "星期不为0，但　" << _TIMEFIELDS[nMinT] << " 参数值:" << m_values[nMinT]<< std::endl;
         printAllTimeValue(m_values);
         return false;
     }
@@ -154,12 +167,13 @@ bool Calendar::checkAllValue(){
             }
             if(m_values[i] < cmpValue) {
                 std::cout << _TIMEFIELDS[nMinT] << " 参数值:" << m_values[nMinT] << ",但是 " 
-                                              << _TIMEFIELDS[i] << " 参数值:" << m_values[i] << ",";
+                                              << _TIMEFIELDS[i] << " 参数值:" << m_values[i] << ","<< std::endl;
                 return false;
             }
         }
         
     }
+    
 
     return true;
 }
@@ -184,6 +198,7 @@ time_t Calendar::getTimeByValuesA(const int nTm[6]){
     return t_;
 }
 
+
 void Calendar::getValuesByTime(time_t mTm, int *nTm){
     tm *tmTmp = localtime(&mTm);
     nTm[YEAR] = tmTmp->tm_year + 1900;
@@ -196,9 +211,20 @@ void Calendar::getValuesByTime(time_t mTm, int *nTm){
 }
 
 bool Calendar::stepTime(FIELD field, int step, int *nTm){
+    if(field < YEAR || field >= FIELDMAX){
+        return false;
+    }
+    if(step == 0){
+        return true;
+    }
+    
     // 单位为年 直接加步长
     if (YEAR == field){
         nTm[YEAR] += step;
+        if(nTm[YEAR] >= _TIMEMAX[YEAR]){
+
+            return false;
+        }
         return true;
     }
 
@@ -220,18 +246,31 @@ bool Calendar::stepTime(FIELD field, int step, int *nTm){
         nTm[field] += step;
     }else{
         // 增加步长后超过最大值，设置为余数，下一个单位加1
-        nTm[field] = (nTm[field] + step + initV - 1) % max; 
+        /*
+        *1、日、星期不能全为0，或全不为0
+        *2、当一个单位值小于-1时，粒度比当前小的单位的值不能小于0，大的单位的值不能小于-1
+        */
+        int leftStep = nTm[field] + step + initV - 1 - max;
+        nTm[field] = leftStep; 
         int fieldTmp = field - 1;
         while(fieldTmp >= 0 && m_values[fieldTmp] >= 0 ) --fieldTmp; //找到前一个可变单位，即小于0的
         if(fieldTmp < 0){
-            std::cout << " 增加步长后超出时间范围" ;
+            std::cout << " 增加步长后超出时间范围" << std::endl;
             return false;
         }else{
-            if(fieldTmp + 1 != field) nTm[field] = _TIMEMIN[field]; //　相隔超过一个单位的进位，本次操作单位设为单位对应最小值
-            return stepTime(FIELD(fieldTmp), abs(m_values[fieldTmp]), nTm);
+            nTm[field] = initV;//　对应最小值
+            // 前一个可变单位增加步长
+            if (!stepTime(FIELD(fieldTmp), abs(m_values[fieldTmp]), nTm)) 
+                    return false;
+            // 如果相隔只有一个单位继续增加剩余步长
+            if (fieldTmp + 1 == field){
+                if (!stepTime(FIELD(field), leftStep-1, nTm)) 
+                    return false;
+            }
         }
         
     }
+    
     return true;
 }
 
@@ -278,82 +317,148 @@ bool Calendar::findNearestWeekDay(int *nextTm, int *nowTm){
     int step = 0;
     step = m_values[WEEK]%7 - tmTmp->tm_wday;
     if (step < 0) step += 7;
-    return stepTime(DAY, step, nextTm);
-    
+    std::cout << " step :" << step << std::endl;
+    printAllTimeValue(nextTm);
+    if (!stepTime(DAY, step, nextTm)){
+        return false;
+    }else{
+        // 星期进位可能发生跳年,日会设置会1，要重新找到跳年后第一个准确星期
+        // 根据nextTm 年月日 获取 星期
+        printAllTimeValue(nextTm);
+        nextT = getTimeByValuesD(nextTm);
+        tmTmp = localtime(&nextT);
+        step = 0;
+        step = m_values[WEEK]%7 - tmTmp->tm_wday;
+        if (step < 0) step += 7;
+        std::cout << " step :" << step << std::endl;
+        return stepTime(DAY, step, nextTm);
+    }
 }
 
 void Calendar::calulateTime(time_t now, bool bNextTime){
     std::cout << "now:" << now << std::endl;
+    std::cout << "bNextTime:" << bNextTime << std::endl;
     printAllTimeValue(m_values);
+
     if(!checkAllValue()) {
         // 参数检查不通过
         m_time = 0;
-        return; // 参数检查不通过
+        return;
     }
-
     //time_t now = time(0);
     int iNowTm[6] = {0};
     getValuesByTime(now, iNowTm);
-
+    // 年是否过期
+    bool lastTime = false;
     if(m_values[YEAR] > 0 && m_values[YEAR] < iNowTm[YEAR]){
-        std::cout << " 年 参数值:" << m_values[YEAR] << ",小于今年" << iNowTm[YEAR];
-        m_time = 0;
-        return;
+        std::cout << " 年 参数值:" << m_values[YEAR] << ",小于今年" << iNowTm[YEAR]<< std::endl;
+        lastTime = true;
     }
     int nextTime[6] = {-1, -1, -1, -1, -1, -1};
     int preCType = -1;
     int ret = 0;
     int step = 0;
     for (int i = YEAR ; i < WEEK; ++i){
-        if(i == DAY && m_values[WEEK] != 0){
-            // 找到最近符合时间参数的日期
+        if (i == DAY && m_values[WEEK] != 0){
+            // 找到最近符合星期参数的日期
             if(findNearestWeekDay(nextTime, iNowTm)){
+                preCType = i;
+                step = 7;
                 continue;
             }else {
                 m_time = 0;
                 return;
             }
-        }
-        if(m_values[i] < 0){
+        }else if(m_values[i] < 0){
             ret = cmpTime(nextTime, iNowTm);
             if(ret == 0){
+                //相等，设置当前时间
                 nextTime[i] = iNowTm[i];
             }else if (ret > 0){
+                // 大于当前时间，设为单位最小
                 nextTime[i] = _TIMEMIN[i];
                 if(i == DAY){
                     nextTime[i] = 1;
                 }
+            }else{
+                // 小于当前，设为单位最大
+                nextTime[i] = _TIMEMAX[i];
             }
             preCType = i;
+            step = abs(m_values[preCType]);
+
         }else{
             nextTime[i] = m_values[i];            
         }
-        if(cmpTime(nextTime, iNowTm) < 0 || 
-            (bNextTime && i == SECOND && getTimeByValuesA(nextTime) + m_offset == now)){
-            if(-1 == preCType){
-                std::cout << " 根据参数计算出时间小于当前时间:" ;
-                std::cout << " now: " ;
-                printAllTimeValue(iNowTm);
-                std::cout << " next: " ;
-                printAllTimeValue(nextTime);
+        
+        // 如果设置的日的值，检查合法性,并找到合法日期
+        if (i == DAY ){
+            if(!checkDay(nextTime[DAY], nextTime)){
+                
                 m_time = 0;
+                std::cout << " 没有找到合法的日期！" << std::endl;
                 return;
+        
+            }
+        }
+        // 过期时间不涉及进位
+        // 如果nextTime小于当前时间，上一个周期单位增加周期
+        if( lastTime == false &&  cmpTime(nextTime, iNowTm) < 0 ){
+            if(-1 == preCType){
+                std::cout << " preCType:" <<  preCType<< std::endl;
+                lastTime = true;
             }else{
-                if (preCType == DAY && m_values[WEEK] != 0){
-                    // 星期步长7
-                    step = 7;
-                }else{
-                    step = abs(m_values[preCType]);
-                }
+                
                 if(!stepTime(FIELD(preCType), step, nextTime)){
                     m_time = 0;
                     return;
                 }
+                // 星期进位可能发生跳年，找到跳年后第一个准确星期
+                if(preCType == DAY && m_values[WEEK] != 0){
+                    findNearestWeekDay(nextTime, iNowTm);
+                }
             }
         }
+        
     }
-    std::cout << "m_offset:" << m_offset << std::endl;
-    m_time = getTimeByValuesA(nextTime) + m_offset;
+    time_t nTime = getTimeByValuesA(nextTime);
+    // 如果不是过期时间，bNextTime==true即取下一次，且时间与当前时间相同，上一个周期单位增加周期
+    std::cout << " now:" <<  now << " nTime:" << nTime << " m_offset:" << m_offset<<  std::endl;
+    if(bNextTime && nTime + m_offset == now){
+        std::cout << " 在当前时间已经执行过，计算下一次可执行时间, now:" << now << " " << _TIMEFIELDS[preCType] << " step:" << step << std::endl;
+        if(!stepTime(FIELD(preCType), step, nextTime)){
+            m_time = 0;
+            return;
+        }
+    }
+    nTime = getTimeByValuesA(nextTime);
+    if (nTime + m_offset < now){
+        if(preCType != -1){
+            while(nTime + m_offset < now) {
+                if(!stepTime(FIELD(preCType), step, nextTime)){
+                    m_time = 0;
+                    return;
+                }
+                nTime = getTimeByValuesA(nextTime);
+            }
+            std::cout << " now:" <<  now << " nTime:" << nTime << " m_offset:" << m_offset<<  std::endl;
+            if(bNextTime && nTime + m_offset == now){
+                std::cout << " 在当前时间已经执行过，计算下一次可执行时间, now:" << now << " " << _TIMEFIELDS[preCType] << " step:" << step << std::endl;
+                if(!stepTime(FIELD(preCType), step, nextTime)){
+                    m_time = 0;
+                    return;
+                }
+                nTime = getTimeByValuesA(nextTime);
+            }
+        }else{
+            m_time = 0;
+            return;
+        }
+        
+    }
+    std::cout << " 可执行时间 nTime:" << nTime << std::endl;
+    m_time = nTime + m_offset;
+    std::cout << " 偏移后可执行时间　m_time:" << m_time << std::endl;
 }
 
 time_t Calendar::getTime(bool bNextTime){

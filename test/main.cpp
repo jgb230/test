@@ -17,6 +17,7 @@
 #include "toolUtl.hpp"
 #include "myTime.hpp"
 #include "mySql.hpp"
+#include "redis/slot.hpp"
 #pragma comment(lib,"clientAPI.lib")
 
 using namespace std;
@@ -127,7 +128,8 @@ int main_app(){
 int main_redis(int num, std::string file, int choice){
 
 	//redis_test();
-	redis_thread(num, file.c_str(), choice);
+	//redis_thread(num, file.c_str(), choice);
+	redis_base_test();
 }
 
 int main_http_run(int count, int thread){
