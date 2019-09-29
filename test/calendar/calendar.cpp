@@ -253,17 +253,31 @@ bool Calendar::stepTime(FIELD field, int step, int *nTm){
         int leftStep = nTm[field] + step + initV - 1 - max;
         nTm[field] = leftStep; 
         int fieldTmp = field - 1;
-        while(fieldTmp >= 0 && m_values[fieldTmp] >= 0 ) --fieldTmp; //找到前一个可变单位，即小于0的
+        int step = 0;
+        bool isWeek = false;
+        //找到前一个可变单位，即小于0的
+        while(fieldTmp >= 0  ){
+            if(fieldTmp == DAY && m_values[WEEK] != 0){
+                step = 7;
+                isWeek = true;
+                break;
+            }else if (m_values[fieldTmp] < 0){
+                step =  abs(m_values[fieldTmp]);
+                break;
+            }
+            
+            --fieldTmp;
+        }  
         if(fieldTmp < 0){
             std::cout << " 增加步长后超出时间范围" << std::endl;
             return false;
         }else{
             nTm[field] = initV;//　对应最小值
             // 前一个可变单位增加步长
-            if (!stepTime(FIELD(fieldTmp), abs(m_values[fieldTmp]), nTm)) 
+            if (!stepTime(FIELD(fieldTmp), step, nTm)) 
                     return false;
             // 如果相隔只有一个单位继续增加剩余步长
-            if (fieldTmp + 1 == field){
+            if (fieldTmp + 1 == field && !isWeek){
                 if (!stepTime(FIELD(field), leftStep-1, nTm)) 
                     return false;
             }
@@ -335,20 +349,10 @@ bool Calendar::findNearestWeekDay(int *nextTm, int *nowTm){
     }
 }
 
-void Calendar::calulateTime(time_t now, bool bNextTime){
-    std::cout << "now:" << now << std::endl;
-    std::cout << "bNextTime:" << bNextTime << std::endl;
-    printAllTimeValue(m_values);
-
-    if(!checkAllValue()) {
-        // 参数检查不通过
-        m_time = 0;
-        return;
-    }
-    //time_t now = time(0);
+void Calendar::firstTime(time_t now){
     int iNowTm[6] = {0};
     getValuesByTime(now, iNowTm);
-    // 年是否过期
+    // 是否是过期时间
     bool lastTime = false;
     if(m_values[YEAR] > 0 && m_values[YEAR] < iNowTm[YEAR]){
         std::cout << " 年 参数值:" << m_values[YEAR] << ",小于今年" << iNowTm[YEAR]<< std::endl;
@@ -422,15 +426,7 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
         
     }
     time_t nTime = getTimeByValuesA(nextTime);
-    // 如果不是过期时间，bNextTime==true即取下一次，且时间与当前时间相同，上一个周期单位增加周期
-    std::cout << " now:" <<  now << " nTime:" << nTime << " m_offset:" << m_offset<<  std::endl;
-    if(bNextTime && nTime + m_offset == now){
-        std::cout << " 在当前时间已经执行过，计算下一次可执行时间, now:" << now << " " << _TIMEFIELDS[preCType] << " step:" << step << std::endl;
-        if(!stepTime(FIELD(preCType), step, nextTime)){
-            m_time = 0;
-            return;
-        }
-    }
+
     nTime = getTimeByValuesA(nextTime);
     if (nTime + m_offset < now){
         if(preCType != -1){
@@ -441,15 +437,7 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
                 }
                 nTime = getTimeByValuesA(nextTime);
             }
-            std::cout << " now:" <<  now << " nTime:" << nTime << " m_offset:" << m_offset<<  std::endl;
-            if(bNextTime && nTime + m_offset == now){
-                std::cout << " 在当前时间已经执行过，计算下一次可执行时间, now:" << now << " " << _TIMEFIELDS[preCType] << " step:" << step << std::endl;
-                if(!stepTime(FIELD(preCType), step, nextTime)){
-                    m_time = 0;
-                    return;
-                }
-                nTime = getTimeByValuesA(nextTime);
-            }
+            
         }else{
             m_time = 0;
             return;
@@ -458,7 +446,58 @@ void Calendar::calulateTime(time_t now, bool bNextTime){
     }
     std::cout << " 可执行时间 nTime:" << nTime << std::endl;
     m_time = nTime + m_offset;
-    std::cout << " 偏移后可执行时间　m_time:" << m_time << std::endl;
+    std::cout << " 偏移后可执行时间　m_time:" << m_time ;
+}
+void Calendar::afterTime(time_t now){
+    int iNowTm[6] = {-1, -1, -1, -1, -1, -1};
+    getValuesByTime(now, iNowTm);
+    int fieldTmp = WEEK - 1;
+    int step = 0;
+    bool isWeek = false;
+    //找到循环任务最小间隔
+    while(fieldTmp >= 0  ){
+        if(fieldTmp == DAY && m_values[WEEK] != 0){
+            step = 7;
+            isWeek = true;
+            break;
+        }else if (m_values[fieldTmp] < 0){
+            step =  abs(m_values[fieldTmp]);
+            break;
+        }
+        
+        --fieldTmp;
+    }  
+    if(fieldTmp < 0){
+        std::cout << " 不是循环任务" ;
+        m_time = 0;
+        return;
+    }else{
+        // 增加步长
+        if(!stepTime(FIELD(fieldTmp), step, iNowTm)){
+            m_time = 0;
+            return;
+        } 
+    }
+    m_time = getTimeByValuesA(iNowTm);
+}
+void Calendar::calulateTime(time_t now, bool bNextTime){
+    std::cout << "now:" << now << std::endl;
+    std::cout << "m_offset:" << m_offset << std::endl;
+    std::cout << "bNextTime:" << bNextTime << std::endl;
+    printAllTimeValue(m_values);
+
+    if(!checkAllValue()) {
+        // 参数检查不通过
+        m_time = 0;
+        return;
+    }
+    if(!bNextTime){
+        firstTime(now);
+    }else{
+        afterTime(now);
+    }
+    
+    
 }
 
 time_t Calendar::getTime(bool bNextTime){
