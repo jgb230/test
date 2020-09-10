@@ -21,12 +21,14 @@ include_directories(./
 					./src/SDK/include/rapidjson
 					../rapidjson
 					./src/mongodb
+					
 					/usr/local/include/bsoncxx/v_noabi/
 					/usr/local/include/mongocxx/v_noabi/
 					/home/jgb/mts_outer/cjson/include/
 					./calendar/
 					./mysql/
-					/home/jgb/mts_outer/mysql/include)
+					/home/jgb/mts_outer/mysql/include
+					./src/leetCode/)
 
 link_directories(../
 				./build/src/SDK/Debug/
@@ -63,7 +65,9 @@ MESSAGE(${PROJECT_SOURCE_DIR})
 set(SRC main.cpp
 		./calendar/calendar.cpp
 		./mysql/DBTimer.cpp
-		./mysql/DBMySql.cpp)
+		./mysql/DBMySql.cpp
+		./src/common/md5/my_md5.cpp
+		./src/leetCode/leetCodeEasy.cpp)
 
 #add_library(${PROJECT_NAME} SHARED ${SRC})
 add_executable(${PROJECT_NAME} ${SRC})

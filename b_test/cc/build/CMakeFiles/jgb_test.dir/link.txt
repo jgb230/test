@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall -std=c++11 -o0 -g -ggdb -DDEBUG   CMakeFiles/jgb_test.dir/src/test.cpp.o  -o jgb_test  -L/home/jgb/b_test/cc/..  -L/home/jgb/mts_outer/boost_1_64_0/stage/lib -lboost_thread -lboost_system -lboost_filesystem -Wl,-rpath,/home/jgb/b_test/cc/..:/home/jgb/mts_outer/boost_1_64_0/stage/lib 

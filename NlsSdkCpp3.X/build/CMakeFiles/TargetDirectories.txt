@@ -1,0 +1,6 @@
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/edit_cache.dir
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/srDemo.dir
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/syLongDemo.dir
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/rebuild_cache.dir
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/syDemo.dir
+/home/jgb/c++/NlsSdkCpp3.X/build/CMakeFiles/stDemo.dir

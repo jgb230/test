@@ -81,18 +81,148 @@ CMakeFiles/jgbtest.dir/main.cpp.o.provides: CMakeFiles/jgbtest.dir/main.cpp.o.re
 CMakeFiles/jgbtest.dir/main.cpp.o.provides.build: CMakeFiles/jgbtest.dir/main.cpp.o
 
 
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o: CMakeFiles/jgbtest.dir/flags.make
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o: ../calendar/calendar.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o -c /home/jgb/c++/test/calendar/calendar.cpp
+
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jgbtest.dir/calendar/calendar.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/calendar/calendar.cpp > CMakeFiles/jgbtest.dir/calendar/calendar.cpp.i
+
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jgbtest.dir/calendar/calendar.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/calendar/calendar.cpp -o CMakeFiles/jgbtest.dir/calendar/calendar.cpp.s
+
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.requires:
+
+.PHONY : CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.requires
+
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.provides: CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.requires
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.provides.build
+.PHONY : CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.provides
+
+CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.provides.build: CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o
+
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o: CMakeFiles/jgbtest.dir/flags.make
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o: ../mysql/DBTimer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o -c /home/jgb/c++/test/mysql/DBTimer.cpp
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/mysql/DBTimer.cpp > CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.i
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/mysql/DBTimer.cpp -o CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.s
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.requires:
+
+.PHONY : CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.requires
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.provides: CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.provides.build
+.PHONY : CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.provides
+
+CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.provides.build: CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o
+
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o: CMakeFiles/jgbtest.dir/flags.make
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o: ../mysql/DBMySql.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o -c /home/jgb/c++/test/mysql/DBMySql.cpp
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/mysql/DBMySql.cpp > CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.i
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/mysql/DBMySql.cpp -o CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.s
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.requires:
+
+.PHONY : CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.requires
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.provides: CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.requires
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.provides.build
+.PHONY : CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.provides
+
+CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.provides.build: CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o
+
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o: CMakeFiles/jgbtest.dir/flags.make
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o: ../src/common/md5/my_md5.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o -c /home/jgb/c++/test/src/common/md5/my_md5.cpp
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/src/common/md5/my_md5.cpp > CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.i
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/src/common/md5/my_md5.cpp -o CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.s
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.requires:
+
+.PHONY : CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.requires
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.provides: CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.requires
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.provides.build
+.PHONY : CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.provides
+
+CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.provides.build: CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o
+
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o: CMakeFiles/jgbtest.dir/flags.make
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o: ../src/leetCode/leetCodeEasy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o -c /home/jgb/c++/test/src/leetCode/leetCodeEasy.cpp
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jgb/c++/test/src/leetCode/leetCodeEasy.cpp > CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.i
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jgb/c++/test/src/leetCode/leetCodeEasy.cpp -o CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.s
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.requires:
+
+.PHONY : CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.requires
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.provides: CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.requires
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.provides.build
+.PHONY : CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.provides
+
+CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.provides.build: CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o
+
+
 # Object files for target jgbtest
 jgbtest_OBJECTS = \
-"CMakeFiles/jgbtest.dir/main.cpp.o"
+"CMakeFiles/jgbtest.dir/main.cpp.o" \
+"CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o" \
+"CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o" \
+"CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o" \
+"CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o" \
+"CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o"
 
 # External object files for target jgbtest
 jgbtest_EXTERNAL_OBJECTS =
 
 jgbtest: CMakeFiles/jgbtest.dir/main.cpp.o
+jgbtest: CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o
+jgbtest: CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o
+jgbtest: CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o
+jgbtest: CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o
+jgbtest: CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o
 jgbtest: CMakeFiles/jgbtest.dir/build.make
 jgbtest: src/SDK/libclientAPI.so
 jgbtest: CMakeFiles/jgbtest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable jgbtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jgb/c++/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable jgbtest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/jgbtest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -101,6 +231,11 @@ CMakeFiles/jgbtest.dir/build: jgbtest
 .PHONY : CMakeFiles/jgbtest.dir/build
 
 CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/main.cpp.o.requires
+CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o.requires
+CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o.requires
+CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o.requires
+CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o.requires
+CMakeFiles/jgbtest.dir/requires: CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o.requires
 
 .PHONY : CMakeFiles/jgbtest.dir/requires
 

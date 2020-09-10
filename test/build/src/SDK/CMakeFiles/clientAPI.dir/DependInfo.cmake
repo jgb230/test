@@ -23,6 +23,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   ".././src/mongodb"
   "/usr/local/include/bsoncxx/v_noabi"
   "/usr/local/include/mongocxx/v_noabi"
+  "/home/jgb/mts_outer/cjson/include"
+  ".././calendar"
+  ".././mysql"
+  "/home/jgb/mts_outer/mysql/include"
+  ".././src/leetCode"
   "../src/SDK/include"
   "../src/SDK/include/rapidjson"
   )

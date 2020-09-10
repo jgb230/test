@@ -1,0 +1,165 @@
+2020-09-08 15:57:30,539: DEBUG alibabaNlsLog: [ID:140197823702848][initEventNetWork:81]evthread_use_pthreads.
+2020-09-08 15:57:30,540: DEBUG alibabaNlsLog: [ID:140197823702848][initEventNetWork:111]Work threads number: 4
+2020-09-08 15:57:30,540: DEBUG alibabaNlsLog: [ID:140197823702848][WorkThread:60]Create WorkThread.
+2020-09-08 15:57:30,541: INFO alibabaNlsLog: [ID:140197823702848][WorkThread:136]WorkThread start working.
+2020-09-08 15:57:30,541: DEBUG alibabaNlsLog: [ID:140197823702848][WorkThread:60]Create WorkThread.
+2020-09-08 15:57:30,542: INFO alibabaNlsLog: [ID:140197823702848][WorkThread:136]WorkThread start working.
+2020-09-08 15:57:30,542: DEBUG alibabaNlsLog: [ID:140197823702848][WorkThread:60]Create WorkThread.
+2020-09-08 15:57:30,542: INFO alibabaNlsLog: [ID:140197823702848][WorkThread:136]WorkThread start working.
+2020-09-08 15:57:30,542: DEBUG alibabaNlsLog: [ID:140197823702848][WorkThread:60]Create WorkThread.
+2020-09-08 15:57:30,543: INFO alibabaNlsLog: [ID:140197823702848][WorkThread:136]WorkThread start working.
+2020-09-08 15:57:30,543: INFO alibabaNlsLog: [ID:140197823702848][initEventNetWork:117]Init ClientNetWork done.
+2020-09-08 15:57:30,612: INFO alibabaNlsLog: [ID:140197754787584][WebSocketTcp:51]create WebSocket.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197754787584][ConnectNode:99]Create ConnectNode done.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197754787584][SpeechSynthesizerRequest:130]Create SpeechSynthesizerRequest.
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][setOnSynthesisCompleted:74]setOnSynthesisCompleted callback
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][setOnChannelClosed:85]setOnChannelClosed callback
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][setOnTaskFailed:52]setOnTaskFailed callback
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][setOnBinaryDataReceived:96]setOnBinaryDataReceived callback
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][setOnMetaInfo:107]setOnMetaInfo callback
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][selectThreadNumber:153]Select NO.0
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197754787584][selectThreadNumber:159]Next NO.1 , Total:4.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197754787584][start:186]Node:0x7f8250005460 Select NO.0 thread.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197788358400][notifyEventCallback:618]work Thread receive: 'c' from main thread.
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197788358400][notifyEventCallback:624]Node:0x7f8250005460 begin dnsprocess.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197788358400][parseUrlInformation:330]Node:0x7f8250005460 Address:wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197788358400][parseUrlInformation:363]Node:0x7f8250005460 Type:wss, Host:nls-gateway.cn-shanghai.aliyuncs.com, Port:443, Path:ws/v1.
+2020-09-08 15:57:30,613: ERROR alibabaNlsLog: [ID:140197788358400][dnsProcess:1359]Node:0x7f8250005460 _url._isSsl is True.
+2020-09-08 15:57:30,613: INFO alibabaNlsLog: [ID:140197788358400][dnsProcess:1374]Node:0x7f8250005460 Dns URL:wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1.
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Sending request for nls-gateway.cn-shanghai.aliyuncs.com on ipv4 as 0x7f8250006380
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Resolve requested for nls-gateway.cn-shanghai.aliyuncs.com
+2020-09-08 15:57:30,613: DEBUG alibabaNlsLog: [ID:140197823702848][releaseInstance:99]release NlsClient.
+2020-09-08 15:57:30,614: INFO alibabaNlsLog: [ID:140197823702848][destroyEventNetWork:124]destroy NlsEventClientNetWork begin.
+2020-09-08 15:57:30,614: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Setting timeout for request 0x7f82500066b0, sent to nameserver 0x1897320
+2020-09-08 15:57:30,614: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Sending request for nls-gateway.cn-shanghai.aliyuncs.com on ipv6 as 0x7f8250006390
+2020-09-08 15:57:30,614: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Resolve requested for nls-gateway.cn-shanghai.aliyuncs.com
+2020-09-08 15:57:30,614: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Setting timeout for request 0x7f8250006530, sent to nameserver 0x1897320
+2020-09-08 15:57:30,616: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Removing timeout for request 0x7f82500066b0
+2020-09-08 15:57:30,617: DEBUG alibabaNlsLog: [ID:140197788358400][DnsLogCb:71]Removing timeout for request 0x7f8250006530
+2020-09-08 15:57:30,617: INFO alibabaNlsLog: [ID:140197788358400][dnsEventCallback:532]Node:0x7f8250005460 ai_canonname: nls-gateway.cn-shanghai.aliyuncs.com.gds.alibabadns.cOM
+2020-09-08 15:57:30,617: INFO alibabaNlsLog: [ID:140197788358400][dnsEventCallback:543]Node:0x7f8250005460 IpV4:139.196.67.5
+2020-09-08 15:57:30,617: INFO alibabaNlsLog: [ID:140197788358400][connectProcess:1432]Node:0x7f8250005460 new Socket ip:139.196.67.5 port:443  Fd:33.
+2020-09-08 15:57:30,617: DEBUG alibabaNlsLog: [ID:140197788358400][socketConnect:1497]Node:0x7f8250005460 connect would block:115.
+2020-09-08 15:57:30,624: INFO alibabaNlsLog: [ID:140197788358400][connectEventCallback:382]Node:0x7f8250005460 connect return ev_write, check ok.
+2020-09-08 15:57:30,624: INFO alibabaNlsLog: [ID:140197823702848][~WorkThread:202]Destroy WorkThread done.
+2020-09-08 15:57:30,635: ERROR alibabaNlsLog: [ID:140197771572992][notifyEventCallback:615]work Thread recv() failed:0.
+2020-09-08 15:57:30,635: INFO alibabaNlsLog: [ID:140197823702848][~WorkThread:202]Destroy WorkThread done.
+2020-09-08 15:57:30,646: INFO alibabaNlsLog: [ID:140197823702848][~WorkThread:202]Destroy WorkThread done.
+2020-09-08 15:57:30,649: DEBUG alibabaNlsLog: [ID:140197788358400][sslHandshake:246]sslHandshake success.
+2020-09-08 15:57:30,649: INFO alibabaNlsLog: [ID:140197788358400][connectEventCallback:395]Node:0x7f8250005460 Begin gateway request process.
+2020-09-08 15:57:30,649: DEBUG alibabaNlsLog: [ID:140197788358400][nodeRequestProcess:650]Node:0x7f8250005460 workStatus 3.
+
+2020-09-08 15:57:30,649: INFO alibabaNlsLog: [ID:140197788358400][requestPackage:99]Http Request:GET /ws/v1 HTTP/1.1
+Host: nls-gateway.cn-shanghai.aliyuncs.com:443
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Version: 13
+X-NLS-Token: 6e5349a54ea6465682226040e43232b4
+
+
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 4.
+
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][responsePackage:146]Http response:HTTP/1.1 101 Switching Protocols
+Date: Tue, 08 Sep 2020 07:57:30 GMT
+Connection: upgrade
+upgrade: websocket
+sec-websocket-accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+
+
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][getTargetLen:131]Position: 12 9  Switching Protocols
+Date: Tue, 08 Sep 2020 07:57:30 GMT
+Connection: upgrade
+upgrade: websocket
+sec-websocket-accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+
+
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][getTargetLen:134]tmpCode: 101
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][addCmdDataBuffer:628]Node:0x7f8250005460 Get Cmd Type:0
+2020-09-08 15:57:30,683: DEBUG alibabaNlsLog: [ID:140197788358400][getStartCommand:162]TaskId:1b2d4dcd79204fe99b2a9f3fd6e96675
+2020-09-08 15:57:30,683: INFO alibabaNlsLog: [ID:140197788358400][getStartCommand:172]START:{"context":{"sdk":{"language":"C++","name":"nls-sdk-linux","version":"3.0.9"}},"header":{"appkey":"1Bdk9uwPpds0tBnj","message_id":"92bc60ab1896453d93447b88095ae6a8","name":"StartSynthesis","namespace":"SpeechSynthesizer","task_id":"1b2d4dcd79204fe99b2a9f3fd6e96675"},"payload":{"format":"wav","pitch_rate":0,"sample_rate":8000,"speech_rate":0,"text":"今天天气很棒，适合去户外旅行.","voice":"siqi","volume":50}}
+
+2020-09-08 15:57:30,683: INFO alibabaNlsLog: [ID:140197788358400][addCmdDataBuffer:655]Node:0x7f8250005460 Get Cmd:{"context":{"sdk":{"language":"C++","name":"nls-sdk-linux","version":"3.0.9"}},"header":{"appkey":"1Bdk9uwPpds0tBnj","message_id":"92bc60ab1896453d93447b88095ae6a8","name":"StartSynthesis","namespace":"SpeechSynthesizer","task_id":"1b2d4dcd79204fe99b2a9f3fd6e96675"},"payload":{"format":"wav","pitch_rate":0,"sample_rate":8000,"speech_rate":0,"text":"今天天气很棒，适合去户外旅行.","voice":"siqi","volume":50}}
+
+2020-09-08 15:57:30,683: INFO alibabaNlsLog: [ID:140197788358400][addCmdDataBuffer:661]Node:0x7f8250005460 WebSocket Size:433
+2020-09-08 15:57:30,865: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:30,865: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 6896 
+2020-09-08 15:57:30,865: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:6896 | 6900
+2020-09-08 15:57:30,865: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:6896.
+2020-09-08 15:57:30,865: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:30,865: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:30,865: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:30,951: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:30,952: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 7828 
+2020-09-08 15:57:30,952: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:7828 | 7832
+2020-09-08 15:57:30,952: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:7828.
+2020-09-08 15:57:30,952: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:30,952: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:30,952: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,038: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:31,039: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 7830 
+2020-09-08 15:57:31,039: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:7830 | 7834
+2020-09-08 15:57:31,039: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:7830.
+2020-09-08 15:57:31,039: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:31,039: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,039: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,125: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:31,125: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 7830 
+2020-09-08 15:57:31,125: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:7830 | 7834
+2020-09-08 15:57:31,126: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:7830.
+2020-09-08 15:57:31,126: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:31,126: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,126: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,233: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:31,233: DEBUG alibabaNlsLog: [ID:140197788358400][nodeResponseProcess:711]Node:0x7f8250005460 workStatus 5.
+
+2020-09-08 15:57:31,234: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 8000 
+2020-09-08 15:57:31,234: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:8000 | 8760
+2020-09-08 15:57:31,234: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:8000.
+2020-09-08 15:57:31,234: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:31,234: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,234: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,234: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:857]Node:0x7f8250005460 Parse continue.
+2020-09-08 15:57:31,238: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 8000 
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:8000 | 8476
+2020-09-08 15:57:31,238: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:8000.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:857]Node:0x7f8250005460 Parse continue.
+2020-09-08 15:57:31,238: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:330]Decoder Receive Data: 950 
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:950 | 1182
+2020-09-08 15:57:31,238: DEBUG alibabaNlsLog: [ID:140197788358400][NlsEvent:378]Binary data event:950.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:13, 0.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,238: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:857]Node:0x7f8250005460 Parse continue.
+2020-09-08 15:57:31,239: DEBUG alibabaNlsLog: [ID:140197788358400][decodeFrameBodyWebSocketFrame:328]Receive TEXT Data: 224 | {"header":{"namespace":"SpeechSynthesizer","name":"SynthesisCompleted","status":20000000,"message_id":"835295c832af4798961e2dbd7e1fbdba","task_id":"1b2d4dcd79204fe99b2a9f3fd6e96675","status_text":"Gateway:SUCCESS:Success."}}
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][webSocketResponse:850]Node:0x7f8250005460 Parse Ws frame:224 | 228
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][convertResult:979]Node:0x7f8250005460 Response: {"header":{"namespace":"SpeechSynthesizer","name":"SynthesisCompleted","status":20000000,"message_id":"835295c832af4798961e2dbd7e1fbdba","task_id":"1b2d4dcd79204fe99b2a9f3fd6e96675","status_text":"Gateway:SUCCESS:Success."}}
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1033]Node:0x7f8250005460 parseFrame MsgType:12, 0.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1041]Node:0x7f8250005460 Begin HandlerFrame:0.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][parseFrame:1043]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,239: DEBUG alibabaNlsLog: [ID:140197788358400][handlerEvent:1092]Node:0x7f8250005460 's Exit Status:0.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][handlerEvent:1101]Node:0x7f8250005460 Begin HandlerFrame.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][handlerEvent:1103]Node:0x7f8250005460 End HandlerFrame.
+2020-09-08 15:57:31,239: DEBUG alibabaNlsLog: [ID:140197788358400][closeConnectNode:411]Node:0x7f8250005460 closeConnectNode Begin.
+2020-09-08 15:57:31,239: DEBUG alibabaNlsLog: [ID:140197788358400][sslClose:321]ssl connect close.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][closeConnectNode:433]Node:0x7f8250005460 closeConnectNode done.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][destroyConnectNode:286]Node:0x7f8250005460 FreeConnectNode begin.
+2020-09-08 15:57:31,239: DEBUG alibabaNlsLog: [ID:140197788358400][freeListNode:269]List requests :0.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][destroyConnectNode:289]Node:0x7f8250005460 DestroyConnectNode done.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][~ConnectNode:104]Destroy ConnectNode begin.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][~ConnectNode:128]Destroy ConnectNode done.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][~WebSocketTcp:55]Destroy WebSocket.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][~SpeechSynthesizerRequest:146]Destroy SpeechSynthesizerRequest.
+2020-09-08 15:57:31,239: INFO alibabaNlsLog: [ID:140197788358400][destroyConnectNode:295]Node:0x7f8250005460 FreeConnectNode done.
+2020-09-08 15:57:31,241: INFO alibabaNlsLog: [ID:140197823702848][~WorkThread:202]Destroy WorkThread done.
+2020-09-08 15:57:31,241: INFO alibabaNlsLog: [ID:140197823702848][destroyEventNetWork:131]destroy NlsEventClientNetWork done.
+2020-09-08 15:57:31,241: DEBUG alibabaNlsLog: [ID:140197823702848][releaseInstance:107]delete NlsClient release ssl.
+2020-09-08 15:57:31,241: DEBUG alibabaNlsLog: [ID:140197823702848][destroy:172]SslConnect::destroy() done.

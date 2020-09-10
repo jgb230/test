@@ -4,6 +4,7 @@
 
 
 #include <redis/redisJgb.hpp>
+#include <redis/redisTest.hpp>
 #include <http/httpTest.hpp>
 #include "clientAPI.hpp"
 #include "mongoTest.hpp"
@@ -19,6 +20,8 @@
 #include "mySql.hpp"
 #include "redis/slot.hpp"
 #pragma comment(lib,"clientAPI.lib")
+#include "src/common/md5/my_md5.hpp"
+#include "leetCodeEasy.h"
 
 using namespace std;
 
@@ -125,14 +128,18 @@ int main_app(){
     return 0;
 }
 
-int main_redis(int num, std::string file, int choice){
+void main_redis(int num, std::string file, int choice){
 
 	//redis_test();
 	//redis_thread(num, file.c_str(), choice);
 	redis_base_test();
 }
 
-int main_http_run(int count, int thread){
+void main_redis_test(){
+	redisTest000();
+}
+
+void main_http_run(int count, int thread){
 	TIMEBEGIN(0);
 	httpTest(count, thread);
 	TIMEEND(0);
@@ -164,16 +171,16 @@ int main_http(int argc, char** argv){
     return 0;
 }
 
-int main_websocket(){
+void main_websocket(){
 	websocketTest();
 }
 
-int main_mongoTest(int num, std::string file, int choice){
+void main_mongoTest(int num, std::string file, int choice){
 	//mongoTest();
 	mongo_thread(num, file.c_str(), choice);
 }
 
-int mainM(int argc, char** argv){
+void mainM(int argc, char** argv){
 	//main_http(argc, argv);
 	std::string test = "  jgb \t\n";
 	LOG("=====%s====",trim(test).c_str());
@@ -203,14 +210,59 @@ int mainM(int argc, char** argv){
 	//
 }
 
-int main_time(){
+void json_test(){
+	std::string docstr="{\"type\":\"M\",\"data\":{\"meaning\":\"相同语义输出\",\"paramsss\":{\"省份\":\"e浙江省\",\"城市\":\"e杭州市\",\"区县\":\"e滨江区\",\"街道\":\"e白马湖街道\"}}}";
+	json_mk_document(doc);
+	json_parse(doc, docstr.c_str());
+	auto &data = json_get_object(doc, "data");
+    if(json_is_object(data, "params")){
+        auto &param = json_get_object(data, "params");
+        std::string skey = "";
+        std::string svalue = "";
+        bool act = true;
+        for(auto iter = param.MemberBegin(); iter != param.MemberEnd(); ++iter)
+        {
+            skey = std::string("s") + iter->name.GetString(); 
+            if(!iter->value.IsString()){
+                std::cout << iter->name.GetString() << "对应值[" << json_encode(iter->value) <<"]不是字符串类型";
+                act = false;
+                break;
+            }
+            
+        }
+        if(act){
+            for(auto iter = param.MemberBegin(); iter != param.MemberEnd(); ++iter)
+            {
+                skey = std::string("s") + iter->name.GetString(); 
+                svalue = iter->value.GetString();
+                std::cout << "设置s变元:" << skey << " " << svalue ;
+            }
+        }
+        
+
+    }else{
+         std::cout << "param字段不合法:" << json_encode(data) ;
+    }
+}
+
+void main_md5(){
+	std::string test = "你好";
+	std::cout << MYMD5(test);
+}
+
+void main_time(){
 	timeTest();
 }
 
-int main_TimerDB(){
+void main_TimerDB(){
 	TestTimerDB();
 }
 
+void test_Easy(){
+	testEasy();
+}
+
 int main(int argc, char** argv){
-	main_crc();
+	main_redis_test();
+	return 0;
 }

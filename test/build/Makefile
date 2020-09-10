@@ -136,6 +136,33 @@ clientAPI/fast:
 	$(MAKE) -f src/SDK/CMakeFiles/clientAPI.dir/build.make src/SDK/CMakeFiles/clientAPI.dir/build
 .PHONY : clientAPI/fast
 
+calendar/calendar.o: calendar/calendar.cpp.o
+
+.PHONY : calendar/calendar.o
+
+# target to build an object file
+calendar/calendar.cpp.o:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o
+.PHONY : calendar/calendar.cpp.o
+
+calendar/calendar.i: calendar/calendar.cpp.i
+
+.PHONY : calendar/calendar.i
+
+# target to preprocess a source file
+calendar/calendar.cpp.i:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/calendar/calendar.cpp.i
+.PHONY : calendar/calendar.cpp.i
+
+calendar/calendar.s: calendar/calendar.cpp.s
+
+.PHONY : calendar/calendar.s
+
+# target to generate assembly for a file
+calendar/calendar.cpp.s:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/calendar/calendar.cpp.s
+.PHONY : calendar/calendar.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -163,6 +190,114 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+mysql/DBMySql.o: mysql/DBMySql.cpp.o
+
+.PHONY : mysql/DBMySql.o
+
+# target to build an object file
+mysql/DBMySql.cpp.o:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o
+.PHONY : mysql/DBMySql.cpp.o
+
+mysql/DBMySql.i: mysql/DBMySql.cpp.i
+
+.PHONY : mysql/DBMySql.i
+
+# target to preprocess a source file
+mysql/DBMySql.cpp.i:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.i
+.PHONY : mysql/DBMySql.cpp.i
+
+mysql/DBMySql.s: mysql/DBMySql.cpp.s
+
+.PHONY : mysql/DBMySql.s
+
+# target to generate assembly for a file
+mysql/DBMySql.cpp.s:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.s
+.PHONY : mysql/DBMySql.cpp.s
+
+mysql/DBTimer.o: mysql/DBTimer.cpp.o
+
+.PHONY : mysql/DBTimer.o
+
+# target to build an object file
+mysql/DBTimer.cpp.o:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o
+.PHONY : mysql/DBTimer.cpp.o
+
+mysql/DBTimer.i: mysql/DBTimer.cpp.i
+
+.PHONY : mysql/DBTimer.i
+
+# target to preprocess a source file
+mysql/DBTimer.cpp.i:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.i
+.PHONY : mysql/DBTimer.cpp.i
+
+mysql/DBTimer.s: mysql/DBTimer.cpp.s
+
+.PHONY : mysql/DBTimer.s
+
+# target to generate assembly for a file
+mysql/DBTimer.cpp.s:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.s
+.PHONY : mysql/DBTimer.cpp.s
+
+src/common/md5/my_md5.o: src/common/md5/my_md5.cpp.o
+
+.PHONY : src/common/md5/my_md5.o
+
+# target to build an object file
+src/common/md5/my_md5.cpp.o:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o
+.PHONY : src/common/md5/my_md5.cpp.o
+
+src/common/md5/my_md5.i: src/common/md5/my_md5.cpp.i
+
+.PHONY : src/common/md5/my_md5.i
+
+# target to preprocess a source file
+src/common/md5/my_md5.cpp.i:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.i
+.PHONY : src/common/md5/my_md5.cpp.i
+
+src/common/md5/my_md5.s: src/common/md5/my_md5.cpp.s
+
+.PHONY : src/common/md5/my_md5.s
+
+# target to generate assembly for a file
+src/common/md5/my_md5.cpp.s:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.s
+.PHONY : src/common/md5/my_md5.cpp.s
+
+src/leetCode/leetCodeEasy.o: src/leetCode/leetCodeEasy.cpp.o
+
+.PHONY : src/leetCode/leetCodeEasy.o
+
+# target to build an object file
+src/leetCode/leetCodeEasy.cpp.o:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o
+.PHONY : src/leetCode/leetCodeEasy.cpp.o
+
+src/leetCode/leetCodeEasy.i: src/leetCode/leetCodeEasy.cpp.i
+
+.PHONY : src/leetCode/leetCodeEasy.i
+
+# target to preprocess a source file
+src/leetCode/leetCodeEasy.cpp.i:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.i
+.PHONY : src/leetCode/leetCodeEasy.cpp.i
+
+src/leetCode/leetCodeEasy.s: src/leetCode/leetCodeEasy.cpp.s
+
+.PHONY : src/leetCode/leetCodeEasy.s
+
+# target to generate assembly for a file
+src/leetCode/leetCodeEasy.cpp.s:
+	$(MAKE) -f CMakeFiles/jgbtest.dir/build.make CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.s
+.PHONY : src/leetCode/leetCodeEasy.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -173,9 +308,24 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... jgbtest"
 	@echo "... clientAPI"
+	@echo "... calendar/calendar.o"
+	@echo "... calendar/calendar.i"
+	@echo "... calendar/calendar.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... mysql/DBMySql.o"
+	@echo "... mysql/DBMySql.i"
+	@echo "... mysql/DBMySql.s"
+	@echo "... mysql/DBTimer.o"
+	@echo "... mysql/DBTimer.i"
+	@echo "... mysql/DBTimer.s"
+	@echo "... src/common/md5/my_md5.o"
+	@echo "... src/common/md5/my_md5.i"
+	@echo "... src/common/md5/my_md5.s"
+	@echo "... src/leetCode/leetCodeEasy.o"
+	@echo "... src/leetCode/leetCodeEasy.i"
+	@echo "... src/leetCode/leetCodeEasy.s"
 .PHONY : help
 
 

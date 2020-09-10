@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/syDemo.dir/demo/speechSynthesizerDemo.cpp.o  -o ../demo/syDemo  -L/home/jgb/c++/NlsSdkCpp3.X/lib -rdynamic -lalibabacloud-idst-common -lalibabacloud-idst-speech -lpthread -Wl,-rpath,/home/jgb/c++/NlsSdkCpp3.X/lib 

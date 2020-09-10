@@ -4,7 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/jgb/c++/test/calendar/calendar.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/calendar/calendar.cpp.o"
   "/home/jgb/c++/test/main.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/main.cpp.o"
+  "/home/jgb/c++/test/mysql/DBMySql.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/mysql/DBMySql.cpp.o"
+  "/home/jgb/c++/test/mysql/DBTimer.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/mysql/DBTimer.cpp.o"
+  "/home/jgb/c++/test/src/common/md5/my_md5.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/src/common/md5/my_md5.cpp.o"
+  "/home/jgb/c++/test/src/leetCode/leetCodeEasy.cpp" "/home/jgb/c++/test/build/CMakeFiles/jgbtest.dir/src/leetCode/leetCodeEasy.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -21,6 +26,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   ".././src/mongodb"
   "/usr/local/include/bsoncxx/v_noabi"
   "/usr/local/include/mongocxx/v_noabi"
+  "/home/jgb/mts_outer/cjson/include"
+  ".././calendar"
+  ".././mysql"
+  "/home/jgb/mts_outer/mysql/include"
+  ".././src/leetCode"
   )
 
 # Targets to which this target links.

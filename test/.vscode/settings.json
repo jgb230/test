@@ -44,6 +44,22 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "tuple": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "csignal": "cpp",
+        "codecvt": "cpp",
+        "condition_variable": "cpp",
+        "list": "cpp",
+        "slist": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "*.ipp": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "cerrno": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp",
+        "algorithm": "cpp",
+        "cfenv": "cpp",
+        "regex": "cpp"
     }
 }
