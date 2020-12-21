@@ -2,7 +2,7 @@
 #include <stdio.h>  
 #include <stdlib.h>
 
-
+#include <vector>
 #include <redis/redisJgb.hpp>
 #include <redis/redisTest.hpp>
 #include <http/httpTest.hpp>
@@ -22,6 +22,7 @@
 #pragma comment(lib,"clientAPI.lib")
 #include "src/common/md5/my_md5.hpp"
 #include "leetCodeEasy.h"
+#include<fstream>
 
 using namespace std;
 
@@ -261,8 +262,73 @@ void main_TimerDB(){
 void test_Easy(){
 	testEasy();
 }
+static unsigned char CUTF8[7] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02}; 
+
+bool isUTF8(char *in)
+{
+	bool ret = true;
+	char *pin = in;
+	char *tmp = in;
+	while(*tmp != '\0'){
+		std::cout << std::hex << (static_cast<short>(*tmp) & 0xff);
+		++tmp;
+	}
+	std::cout << std::endl;
+	while(*pin != '\0'){
+		int iUtf8 = 0;
+		unsigned char bc = (unsigned char)*pin;
+		if(bc < 128){
+			++pin;
+			continue;
+		}
+		if((bc&0xc0) == 0x80){
+			ret = false;
+			break;
+		}
+		if((CUTF8[iUtf8]&bc) != CUTF8[iUtf8]){
+			ret = false;
+			break;
+		}
+		++iUtf8;
+		while((CUTF8[iUtf8]&bc) == CUTF8[iUtf8]){
+			++iUtf8;
+			if(((unsigned char)(*(++pin))&0xc0) == 0x80) continue;
+			else{
+				ret = false;
+				break;
+			}
+		}
+		if(ret == false) break;
+		++pin;
+	}
+	return ret;
+}
+
+void test(string filePwd)
+{
+    std::ifstream inFile(filePwd.c_str());
+	if(!inFile.is_open())
+	{
+		std::cout<<"文件不存在！！！"<< std::endl;
+		return;
+	}
+	;
+	std::string line;
+	while(getline(inFile, line)){
+		char *s2 = (char *)malloc(line.length()+1);
+		memset(s2, 0, line.length()+1);
+		memcpy(s2, line.c_str(), line.length());
+		char *tmp = s2;
+		std::cout<< "line:" << line << std::endl;
+		std::cout<< "s2:" << s2 << std::endl;
+		std::cout<< "--------------------------isUTF:" << isUTF8(tmp) << std::endl;
+		free(s2);
+		line = "";
+	}
+} 
 
 int main(int argc, char** argv){
-	main_redis_test();
+	test("/home/jgb/c++/test/jgbtest/11.txt");
+	test("/home/jgb/c++/test/jgbtest/12.txt");
 	return 0;
 }
